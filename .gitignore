@@ -1,0 +1,10 @@
+# Project exclude paths
+/exceptionstask/target/
+/listtask/target/
+/multithreadapp/target/
+/onlinepiano/target/
+/overwatch/target/
+/patterns/target/
+/springtest/target/
+/target/
+/triangle/target/

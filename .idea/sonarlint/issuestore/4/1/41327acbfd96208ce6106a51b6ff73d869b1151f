@@ -1,0 +1,7 @@
+
+[
+java:S4973"9Use the "equals" method if value comparison was intended.(·ĞâÌúÿÿÿÿ8àÿ¤­¸.
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ÿËê¯¹.
+u
+java:S3012"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(öÁá(8×Şâ¯¹.
