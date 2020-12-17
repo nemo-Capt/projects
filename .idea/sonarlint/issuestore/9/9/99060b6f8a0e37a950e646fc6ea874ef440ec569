@@ -1,16 +1,14 @@
 
+U	java:S106l"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
+U	java:S106@"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
+i
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8öÈØı¯.
+U	java:S106%"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
+U	java:S106U"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
+i
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(„Î­øÿÿÿÿ8öÈØı¯.
 ’
 java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ßÕ†Êşÿÿÿÿ8öÈØı¯.
 U	java:S106"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
-U	java:S106l"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
-O
-java:S1481"-Remove this unused "noteList" local variable.(èÄ°œûÿÿÿÿ8¿Õô¥°.
-i
-java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(„Î­øÿÿÿÿ8öÈØı¯.
-U	java:S106U"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
 d
 java:S20953"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8öÈØı¯.
-U	java:S106%"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.
-i
-java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8öÈØı¯.
-U	java:S106@"9Replace this use of System.out or System.err by a logger.(ö¬8öÈØı¯.

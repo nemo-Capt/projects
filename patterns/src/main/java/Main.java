@@ -7,7 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CountInterface ex = new CountProxy();
+
+
+        CountInterface ex = new CountProxy(new Count());
         CountInterface ex2 = new Count();
         Singleton singleton = Singleton.getInstance("test1");
         Singleton singleton2 = Singleton.getInstance("test2");

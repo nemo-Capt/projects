@@ -145,3 +145,12 @@ _
 ,patterns/src/main/java/observer/CarSite.java,9\1\911c3c4d82f25194e45aa7f1a7a357f2dd5db458
 ^
 .patterns/src/main/java/observer/CarSearch.java,e\3\e366bfe21e1488525d388602ae33f2450a1b50ee
+H
+multithreadapp/tests.txt,4\2\42229955d5fc27b0c87ce079a675eda6c88fbb14
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+<
+projects.iml,9\0\90a00dab8d440b5a2ebfd40731a9154b7cd96943
