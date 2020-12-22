@@ -119,14 +119,6 @@ Y
 )patterns/src/test/java/SingletonTest.java,6\5\65fcde132f3c261a6bee529ded6cfe72fd93be46
 Z
 *patterns/src/test/java/CountProxyTest.java,7\3\73cb97671a8fbbb7293e4dfc82a3deb9d8bbd34e
-B
-springtest/pom.xml,b\e\be386e119ecd81e163019e6b406c5631ffce0ff3
-e
-5springtest/src/main/java/com/project/Application.java,a\c\acccc4e0977aa1ec1a2dd0a0cfffc175f2e66543
-n
->springtest/src/main/java/com/project/restservice/Greeting.java,1\7\1735016959142df197feded11e33208097a4ee3a
-x
-Hspringtest/src/main/java/com/project/restservice/GreetingController.java,0\4\044b1ab727c850a51ae59d992b37b2e844f884ae
 `
 0patterns/src/main/java/proxy/CountInterface.java,f\9\f9c947c02c37ffec781a65eafcba0b32f7612932
 W
@@ -154,3 +146,13 @@ H
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 projects.iml,9\0\90a00dab8d440b5a2ebfd40731a9154b7cd96943
+h
+8jira/src/main/java/com/project/restservice/Greeting.java,7\c\7c8d2a015460ec22f08467b9a64655ba30a450e4
+r
+Bjira/src/main/java/com/project/restservice/GreetingController.java,8\f\8f65be1ac7a1d273785e2f9cf08894943deef1f1
+<
+jira/pom.xml,0\9\098a66c433d473a3fe9243d308be9416755c3918
+_
+/jira/src/main/java/com/project/Application.java,d\a\dab768d426a2a2a86fd1651e79e3b5c76c76b78f
+]
+-jira/src/main/java/com/project/view/User.java,2\9\2968866992422414338c99c64bd61e0875f8fc73

@@ -16,7 +16,7 @@
         <module>onlinepiano</module>
         <module>overwatch</module>
         <module>patterns</module>
-        <module>springtest</module>
+        <module>jira</module>
     </modules>
 
     <dependencies>
