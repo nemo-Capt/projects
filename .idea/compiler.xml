@@ -10,10 +10,10 @@
         <module name="multithreadapp" />
         <module name="exceptionstask" />
         <module name="listtask" />
+        <module name="jira" />
         <module name="patterns" />
         <module name="triangle" />
         <module name="onlinepiano" />
-        <module name="springtest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,7 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="springtest" options="-parameters" />
+      <module name="jira" options="-parameters" />
     </option>
   </component>
 </project>
