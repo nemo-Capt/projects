@@ -1,5 +1,7 @@
 package com.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ public class Role {
         return rolename;
     }
 
+    @JsonIgnore
     public Set<User> getUsers() {
         return users;
     }

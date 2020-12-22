@@ -1,16 +1,16 @@
 package com.project.restservice;
 
 import com.project.entity.User;
-import com.project.repository.UserRepository;
-import javassist.tools.web.BadHttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
+
 
     private final UserService service;
 
@@ -24,8 +24,8 @@ public class UserController {
         return service.getUsers();
     }
 
-    @GetMapping(path = "/{user}")
-    public User find(@PathVariable("id") long id) {
+    @GetMapping(path = "/{id}")
+    public Optional<User> find(@PathVariable("id") long id) {
         return service.getUser(id);
     }
 
@@ -34,20 +34,14 @@ public class UserController {
         service.addUser(user);
     }
 
-    @DeleteMapping(path = "/{user}")
+    @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable("id") long id) {
         service.deleteUser(id);
     }
 
-    /*@PutMapping(path = "/{user}")
-    public User update(@PathVariable("id") long id, @RequestBody User user) throws BadHttpRequest {
-        if (repository.exists(id)) {
-            user.setSurname(surname);
-            return repository.save(user);
-        } else {
-            throw new BadHttpRequest();
-        }
-    }*/
-
+    @PutMapping(path = "/{id}")
+    public void edit(@RequestBody User user, @PathVariable long id) {
+        service.editUser(user, id);
+    }
 }
 

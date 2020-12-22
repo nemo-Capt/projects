@@ -38,4 +38,16 @@ public class User {
     public Role getRole() {
         return role;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

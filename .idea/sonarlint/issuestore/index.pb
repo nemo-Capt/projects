@@ -162,3 +162,5 @@ _
 /jira/src/main/java/com/project/entity/Role.java,4\6\4628a7ff18243f5300f9b83825b761312e096597
 _
 /jira/src/main/java/com/project/entity/User.java,7\a\7aab87277d4fe697b1e9c042000956683ce2703e
+m
+=jira/src/main/java/com/project/repository/RoleRepository.java,9\e\9ef4c6479e859b92a866abb6da8b27360d2b5c76
