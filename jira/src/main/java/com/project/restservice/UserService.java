@@ -3,7 +3,6 @@ package com.project.restservice;
 
 import com.project.entity.User;
 import com.project.repository.UserRepository;
-import javassist.tools.web.BadHttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,13 +39,13 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public User editUser(@RequestBody User user, @PathVariable long id) {
+    public void editUser(@RequestBody User user, @PathVariable long id) {
 
-        return repository.findById(id)
-                .map(employee -> {
-                    employee.setUsername(user.getUsername());
-                    employee.setRole(user.getRole());
-                    return repository.save(employee);
+        repository.findById(id)
+                .map(oldUser -> {
+                    oldUser.setUsername(user.getUsername());
+                    oldUser.setRole(user.getRole());
+                    return repository.save(oldUser);
                 })
                 .orElseGet(() -> {
                     user.setId(id);
