@@ -164,3 +164,13 @@ _
 /jira/src/main/java/com/project/entity/User.java,7\a\7aab87277d4fe697b1e9c042000956683ce2703e
 m
 =jira/src/main/java/com/project/repository/RoleRepository.java,9\e\9ef4c6479e859b92a866abb6da8b27360d2b5c76
+Y
+)patterns/src/main/java/facade/Eating.java,4\6\4692a7ed688689ed14c8e2635080734a82ff6d7b
+W
+'patterns/src/main/java/facade/Food.java,a\4\a4941bf349dec2b39a20e9a86a5cef2801d410e5
+W
+'patterns/src/main/java/facade/Fork.java,1\8\1869aa0a5cd61bb64a71a68b803edebfc3943965
+X
+(patterns/src/main/java/facade/Plate.java,8\e\8ed8efbb8b3909ea8baff5a70922ecb8aea1eb69
+W
+'patterns/src/main/java/facade/Main.java,6\d\6d7a36a1ddd9321c9394c5699fe77de2aef829e1
