@@ -152,10 +152,6 @@ _
 /jira/src/main/java/com/project/Application.java,d\a\dab768d426a2a2a86fd1651e79e3b5c76c76b78f
 W
 '.idea/libraries/Java_EE_6_Java_EE_6.xml,d\e\de547daf4b9e3e50cc4e8f5d80bd27749df7c357
-k
-;jira/src/main/java/com/project/restservice/UserService.java,8\c\8cf60cb9b64fc7d7c7a223183d23a5c6d2b8c6ef
-n
->jira/src/main/java/com/project/restservice/UserController.java,8\9\89e0c87e51098e3164746e6677b29c978fab7a2c
 m
 =jira/src/main/java/com/project/repository/UserRepository.java,7\e\7e5af84dd1f3358c1b9bd7a19ffafac51d475dd8
 _
@@ -174,3 +170,9 @@ X
 (patterns/src/main/java/facade/Plate.java,8\e\8ed8efbb8b3909ea8baff5a70922ecb8aea1eb69
 W
 'patterns/src/main/java/facade/Main.java,6\d\6d7a36a1ddd9321c9394c5699fe77de2aef829e1
+m
+=jira/src/main/java/com/project/controller/UserController.java,b\7\b7fbc351f82811a0c1b86ee1b0b9d2cbf609d708
+o
+?jira/src/main/java/com/project/restservice/api/UserService.java,2\2\2206c6ab9f14284ab7c0390484def67520af7913
+t
+Djira/src/main/java/com/project/restservice/impl/UserServiceImpl.java,a\7\a766b9e979bd5a70f8ffcc309bcc4ec96c73088d
