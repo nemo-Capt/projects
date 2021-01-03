@@ -4,7 +4,11 @@ package com.project.restservice.impl;
 import com.project.entity.User;
 import com.project.repository.UserRepository;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.UserDTO;
+import com.project.restservice.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,23 +28,24 @@ public class UserServiceImpl implements UserService {
         this.repository = repository;
     }
 
-    public List<User> getUsers() {
-        return repository.findAll();
+    public Page<UserDTO> getUsers(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(UserMapper::createDTO);
     }
 
     public void addUser(User user) {
         repository.save(user);
     }
 
-    public Optional<User> getUser(long id) {
-        return repository.findById(id);
+    public User getUser(Long id) {
+        return repository.getOne(id);
     }
 
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         repository.deleteById(id);
     }
 
-    public void editUser(@RequestBody User user, @PathVariable long id) {
+    public void editUser(@RequestBody User user, @PathVariable Long id) {
 
         repository.findById(id)
                 .map(oldUser -> {

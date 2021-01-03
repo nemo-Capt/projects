@@ -1,8 +1,14 @@
 package com.project.controller;
 
 import com.project.entity.User;
+import com.project.restservice.dto.UserDTO;
+import com.project.restservice.dto.UserMapper;
 import com.project.restservice.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,13 +33,19 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> findAll() {
-        return service.getUsers();
+    public Page<UserDTO> findAll(Pageable pageable) {
+
+        Page<UserDTO> userDTOs = service.getUsers(pageable);
+
+        return userDTOs;
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<User> find(@PathVariable("id") long id) {
-        return service.getUser(id);
+    public UserDTO find(@PathVariable("id") long id) {
+        User user = service.getUser(id);
+        UserDTO userDTO = UserMapper.createDTO(user);
+
+        return userDTO;
     }
 
     @PostMapping(consumes = "application/json")
