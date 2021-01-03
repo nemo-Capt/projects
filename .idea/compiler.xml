@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="overwatch" />
         <module name="multithreadapp" />
         <module name="jira" />
         <module name="listtask" />
-        <module name="triangle" />
         <module name="patterns" />
         <module name="exceptionstask" />
-        <module name="overwatch" />
+        <module name="triangle" />
         <module name="onlinepiano" />
       </profile>
     </annotationProcessing>
