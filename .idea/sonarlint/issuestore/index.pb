@@ -200,3 +200,15 @@ k
 ;jira/src/main/java/com/project/restservice/dto/UserDTO.java,0\9\094e53c4226cab0c90caed2935349b6480e86daf
 n
 >jira/src/main/java/com/project/restservice/dto/UserMapper.java,b\1\b131ba394246c4feb610aef82cb595277a4c2441
+=
+jira/jira.iml,0\4\04e5a54589849f7a0ce65e11aa7c4b326742edbb
+b
+2jira/src/main/java/com/project/entity/Project.java,b\7\b711a079168ccae4ff0239b4cd53533677a708ba
+a
+1jira/src/main/java/com/project/entity/Status.java,0\e\0e213e16b7b3c84a71c6a050b1255e8fcd2de3a0
+b
+2jira/src/main/java/com/project/entity/Comment.java,7\f\7f7b2d6475aacb53aa3083861d238a15d0a03068
+_
+/jira/src/main/java/com/project/entity/Task.java,f\5\f57b7b28dd11af0f709b922c51b2b83bd7c932cc
+c
+3jira/src/main/java/com/project/entity/Reporter.java,8\e\8eccc48e3703e049fe6d29e5340219c5076091d1

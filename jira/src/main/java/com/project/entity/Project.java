@@ -7,28 +7,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.sql.Time;
 import java.util.Set;
 
+
 @Entity
-public class Role {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String rolename;
-    @OneToMany(mappedBy = "role")
-    private Set<User> users;
-
-    public long getId() {
-        return id;
-    }
-
-    public String getRolename() {
-        return rolename;
-    }
+    private String stage;
+    private Time duedate;
+    private Time estimatedtime;
+    private String desc;
+    @OneToMany(mappedBy = "project")
+    private Set<Task> tasks;
 
     @JsonIgnore
-    public Set<User> getUsers() {
-        return users;
+    public Set<Task> getTasks() {
+        return tasks;
     }
+
+
 }

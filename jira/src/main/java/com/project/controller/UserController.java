@@ -31,7 +31,6 @@ public class UserController {
     public Page<UserDTO> findAll(Pageable pageable) {
 
         Page<UserDTO> userDTOs = service.getUsers(pageable);
-
         return userDTOs;
     }
 
