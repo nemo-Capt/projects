@@ -1,9 +1,10 @@
 package abstractfactory.apple.products;
 
-import abstractfactory.Tablet;
+import abstractfactory.Device;
 
-public class Ipad implements Tablet {
-    public Ipad() {
-        System.out.println("Ipad created");
+public class Ipad implements Device {
+    @Override
+    public String createDevice() {
+        return "Ipad created";
     }
 }

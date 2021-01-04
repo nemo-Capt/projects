@@ -1,21 +1,12 @@
 package abstractfactory;
 
-import abstractfactory.apple.AppleFactory;
-import abstractfactory.samsung.SamsungFactory;
 
 public class Main {
 
     public static void main(String[] args) {
-        AbstractFactory appleFactory;
-        appleFactory = new AppleFactory();
+        DeviceFactory device = new DeviceFactory();
+        System.out.println(device.create("apple").createDevice());
+        System.out.println(device.create("samsung").createDevice());
 
-        appleFactory.createPhone();
-        appleFactory.createTablet();
-
-        AbstractFactory samsungFactory;
-        samsungFactory = new SamsungFactory();
-
-        samsungFactory.createPhone();
-        samsungFactory.createTablet();
     }
 }

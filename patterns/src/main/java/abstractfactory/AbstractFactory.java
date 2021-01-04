@@ -1,8 +1,7 @@
 package abstractfactory;
 
-public interface AbstractFactory {
+public interface AbstractFactory<T> {
 
-    Phone createPhone();
+    T create(String deviceType);
 
-    Tablet createTablet();
 }
