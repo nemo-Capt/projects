@@ -196,3 +196,7 @@ b
 2patterns/src/main/java/abstractfactory/Tablet.java,6\4\64cf284dda99e683d0d46c1aab4076ad2bdfdcda
 `
 0patterns/src/main/java/abstractfactory/Main.java,c\7\c741a206a9c1918f39f0dd14c2b42cdd514dac6a
+k
+;jira/src/main/java/com/project/restservice/dto/UserDTO.java,0\9\094e53c4226cab0c90caed2935349b6480e86daf
+n
+>jira/src/main/java/com/project/restservice/dto/UserMapper.java,b\1\b131ba394246c4feb610aef82cb595277a4c2441
