@@ -18,6 +18,6 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    void editUser(@RequestBody User user, @PathVariable Long id);
+    void editUser(User user, Long id);
 
 }

@@ -26,28 +26,36 @@ public class UserServiceImpl implements UserService {
         this.repository = repository;
     }
 
+    @Override
     public Page<UserDTO> getUsers(Pageable pageable) {
         return repository.findAll(pageable)
                 .map(UserMapper::createDTO);
     }
 
+    @Override
     public void addUser(User user) {
         repository.save(user);
     }
 
+    @Override
     public User getUser(Long id) {
         return repository.getOne(id);
     }
 
+    @Override
     public void deleteUser(Long id) {
         repository.deleteById(id);
     }
 
-    public void editUser(@RequestBody User user, @PathVariable Long id) {
+    @Override
+    public void editUser(User user, Long id) {
 
         repository.findById(id)
                 .map(oldUser -> {
                     oldUser.setUsername(user.getUsername());
+                    oldUser.setEmail(user.getEmail());
+                    oldUser.setPassword(user.getPassword());
+                    oldUser.setBanned(user.isBanned());
                     oldUser.setRole(user.getRole());
                     return repository.save(oldUser);
                 })

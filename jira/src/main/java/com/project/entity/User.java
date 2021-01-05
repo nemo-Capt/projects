@@ -76,5 +76,15 @@ public class User {
         this.id = id;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
 }
