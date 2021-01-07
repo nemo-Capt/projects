@@ -25,8 +25,8 @@ public class Task {
     @JoinColumn(name = "projectid", nullable = false)
     private Project project;
     @ManyToOne
-    @JoinColumn(name = "reporterid", nullable = false)
-    private Reporter reporter;
+    @JoinColumn(name = "assigneeid", nullable = false)
+    private Assignee assignee;
     private String desc;
     private String priority;
     private Time duedate;

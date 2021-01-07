@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
-public class Reporter {
+public class Assignee {
 
     @Id
     private Long id;
@@ -23,7 +23,7 @@ public class Reporter {
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
     private User user;
-    @OneToMany(mappedBy = "reporter")
+    @OneToMany(mappedBy = "assignee")
     private Set<Task> tasks;
 
     @JsonIgnore

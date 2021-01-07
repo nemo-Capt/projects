@@ -1,9 +1,9 @@
 package com.project.controller;
 
 import com.project.entity.User;
+import com.project.restservice.api.UserService;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
-import com.project.restservice.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/users")
 public class UserController {
 
-    private final UserServiceImpl service;
+    private final UserService service;
 
     @Autowired
-    public UserController(UserServiceImpl service) {
+    public UserController(UserService service) {
         this.service = service;
     }
 
