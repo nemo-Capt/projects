@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import java.sql.Time;
 import java.util.Set;
 
 @Entity
@@ -27,10 +26,11 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "assigneeid", nullable = false)
     private Assignee assignee;
+    private String name;
     private String desc;
     private String priority;
-    private Time duedate;
-    private Time estimatedtime;
+    private String duedate;
+    private String estimatedtime;
     @ManyToOne
     @JoinColumn(name = "statusid", nullable = false)
     private Status status;
@@ -43,4 +43,88 @@ public class Task {
         return comments;
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getDuedate() {
+        return duedate;
+    }
+
+    public void setDuedate(String duedate) {
+        this.duedate = duedate;
+    }
+
+    public String getEstimatedtime() {
+        return estimatedtime;
+    }
+
+    public void setEstimatedtime(String estimatedtime) {
+        this.estimatedtime = estimatedtime;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -31,8 +31,8 @@ public class RoleController {
 
     @GetMapping(path = "/{id}")
     public Optional<Role> find(@PathVariable("id") Long id) {
-        Optional<Role> role = service.getRole(id);
 
+        Optional<Role> role = service.getRole(id);
         return role;
     }
 }
