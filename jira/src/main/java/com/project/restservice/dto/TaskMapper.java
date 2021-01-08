@@ -1,5 +1,6 @@
 package com.project.restservice.dto;
 
+import com.project.EntityNotFoundException;
 import com.project.entity.Task;
 
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.stream.Collectors;
 public class TaskMapper {
 
     public static TaskDTO createDTO(Task task) {
-//        if (user == null) {
-//            throw new Exception("user not found");
-//        }
+        if (task == null) {
+            throw new EntityNotFoundException("Task hasn't been found");
+        }
         TaskDTO taskDTO = new TaskDTO();
         taskDTO.setId(task.getId());
         taskDTO.setUser(task.getUser().getUsername());
@@ -22,6 +23,7 @@ public class TaskMapper {
         taskDTO.setDuedate(task.getDuedate());
         taskDTO.setEstimatedtime(task.getEstimatedtime());
         taskDTO.setStatus(task.getStatus().getStatus());
+        taskDTO.setComments(task.getComments());
         return taskDTO;
     }
 

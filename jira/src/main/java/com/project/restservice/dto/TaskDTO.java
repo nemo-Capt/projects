@@ -1,5 +1,10 @@
 package com.project.restservice.dto;
 
+import com.project.entity.Comment;
+
+import java.util.List;
+import java.util.Set;
+
 public class TaskDTO {
 
     private Long id;
@@ -12,6 +17,7 @@ public class TaskDTO {
     private String duedate;
     private String estimatedtime;
     private String status;
+    private List<Comment> comments;
 
     public Long getId() {
         return id;
@@ -91,5 +97,13 @@ public class TaskDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

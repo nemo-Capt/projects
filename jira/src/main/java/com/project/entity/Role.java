@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class Role {
     private Long id;
     private String rolename;
     @OneToMany(mappedBy = "role")
-    private Set<User> users;
+    private List<User> users;
 
     public long getId() {
         return id;
@@ -28,7 +29,7 @@ public class Role {
     }
 
     @JsonIgnore
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 }

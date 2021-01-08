@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,10 +37,10 @@ public class Task {
     private Status status;
 
     @OneToMany(mappedBy = "task")
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
     @JsonIgnore
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -116,7 +117,7 @@ public class Task {
         this.status = status;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

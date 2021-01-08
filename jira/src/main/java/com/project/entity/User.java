@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,17 +27,17 @@ public class User {
     @JoinColumn(name = "roleid", nullable = false)
     private Role role;
     @OneToMany(mappedBy = "user")
-    private Set<Task> tasks;
+    private List<Task> tasks;
     @OneToMany(mappedBy = "user")
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
     @JsonIgnore
-    public Set<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
     @JsonIgnore
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -86,5 +87,17 @@ public class User {
 
     public void setBanned(boolean banned) {
         this.banned = banned;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

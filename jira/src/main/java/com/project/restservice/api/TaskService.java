@@ -18,7 +18,7 @@ public interface TaskService {
 
     void editTask(Task task, Long id);
 
-    void assignUser(Long id, Long userId);
+    void assignAssignee(Long id, Long userId);
 
     void assignReporter(Long id, Long userId);
 }

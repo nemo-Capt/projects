@@ -1,46 +1,21 @@
-package com.project.entity;
+package com.project.restservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.entity.Assignee;
+import com.project.entity.Task;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.sql.Time;
 import java.util.List;
 import java.util.Set;
 
+public class ProjectDTO {
 
-@Entity
-public class Project {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String stage;
     private String duedate;
     private String estimatedtime;
     private String desc;
-    @OneToMany(mappedBy = "project")
     private List<Task> tasks;
-    @OneToMany(mappedBy = "project")
     private List<Assignee> assignees;
-
-    @JsonIgnore
-    public List<Assignee> getAssignees() {
-        return assignees;
-    }
-
-    public void setAssignees(List<Assignee> assignees) {
-        this.assignees = assignees;
-    }
-
-    @JsonIgnore
-    public List<Task> getTasks() {
-        return tasks;
-    }
 
     public Long getId() {
         return id;
@@ -66,6 +41,22 @@ public class Project {
         this.stage = stage;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public String getDuedate() {
         return duedate;
     }
@@ -82,15 +73,11 @@ public class Project {
         this.estimatedtime = estimatedtime;
     }
 
-    public String getDesc() {
-        return desc;
+    public List<Assignee> getAssignees() {
+        return assignees;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setAssignees(List<Assignee> assignees) {
+        this.assignees = assignees;
     }
 }

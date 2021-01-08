@@ -66,7 +66,7 @@ public class TaskServiceImpl implements TaskService {
                     oldTask.setDuedate(task.getDuedate());
                     oldTask.setEstimatedtime(task.getEstimatedtime());
                     oldTask.setStatus(task.getStatus());
-                    return repository.save(task);
+                    return repository.save(oldTask);
                 })
                 .orElseThrow(
                         () -> new EntityNotFoundException("Task hasn't been found")
@@ -74,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void assignUser(Long id, Long assigneeId) {
+    public void assignAssignee(Long id, Long assigneeId) {
         Assignee newAssignee = assigneeRepository.getOne(assigneeId);
         repository.findById(id)
                 .map(oldTask -> {

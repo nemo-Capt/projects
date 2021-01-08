@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,10 +25,10 @@ public class Assignee {
     @JoinColumn(name = "userid", nullable = false)
     private User user;
     @OneToMany(mappedBy = "assignee")
-    private Set<Task> tasks;
+    private List<Task> tasks;
 
     @JsonIgnore
-    public Set<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
@@ -55,7 +56,7 @@ public class Assignee {
         this.user = user;
     }
 
-    public void setTasks(Set<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }

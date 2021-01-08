@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,10 +18,10 @@ public class Status {
     private Long id;
     private String status;
     @OneToMany(mappedBy = "status")
-    private Set<Task> tasks;
+    private List<Task> tasks;
 
     @JsonIgnore
-    public Set<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
@@ -40,7 +41,7 @@ public class Status {
         this.status = status;
     }
 
-    public void setTasks(Set<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }
