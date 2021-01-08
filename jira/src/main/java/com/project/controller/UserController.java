@@ -56,5 +56,10 @@ public class UserController {
     public void edit(@RequestBody User user, @PathVariable long id) {
         service.editUser(user, id);
     }
+
+    @PutMapping(path = "/setrole/{id}/{roleId}")
+    public void setUserRole(@PathVariable long id, @PathVariable long roleId) {
+        service.setUserRole(id, roleId);
+    }
 }
 

@@ -1,7 +1,10 @@
 package com.project.restservice.impl;
 
 
+import com.project.EntityNotFoundException;
+import com.project.entity.Role;
 import com.project.entity.User;
+import com.project.repository.RoleRepository;
 import com.project.repository.UserRepository;
 import com.project.restservice.api.UserService;
 import com.project.restservice.dto.UserDTO;
@@ -18,10 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository, RoleRepository roleRepository) {
         this.repository = repository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -54,13 +59,24 @@ public class UserServiceImpl implements UserService {
                     oldUser.setEmail(user.getEmail());
                     oldUser.setPassword(user.getPassword());
                     oldUser.setBanned(user.isBanned());
-                    oldUser.setRole(user.getRole());
                     return repository.save(oldUser);
                 })
-                .orElseGet(() -> {
-                    user.setId(id);
-                    return repository.save(user);
-                });
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Task hasn't been found")
+                );
+    }
+
+    @Override
+    public void setUserRole(Long id, Long roleId) {
+        Role newRole = roleRepository.getOne(roleId);
+        repository.findById(id)
+                .map(oldUser -> {
+                    oldUser.setRole(newRole);
+                    return repository.save(oldUser);
+                })
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Task hasn't been found")
+                );
     }
 
 }

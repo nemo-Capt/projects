@@ -20,4 +20,6 @@ public interface UserService {
 
     void editUser(User user, Long id);
 
+    void setUserRole(Long id, Long roleId);
+
 }

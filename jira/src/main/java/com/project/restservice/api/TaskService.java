@@ -1,12 +1,10 @@
 package com.project.restservice.api;
 
 import com.project.entity.Task;
-import com.project.entity.User;
 import com.project.restservice.dto.TaskDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
 
 public interface TaskService {
 
@@ -20,7 +18,7 @@ public interface TaskService {
 
     void editTask(Task task, Long id);
 
-    void assignUser(Task task, Long id, User user);
+    void assignUser(Long id, Long userId);
 
-    void assignReporter(Task task, Long id, User user);
+    void assignReporter(Long id, Long userId);
 }
