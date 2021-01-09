@@ -1,9 +1,12 @@
 package com.project.restservice.dto;
 
 import com.project.EntityNotFoundException;
+import com.project.entity.Assignee;
 import com.project.entity.Project;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ProjectMapper {
@@ -19,8 +22,16 @@ public class ProjectMapper {
         projectDTO.setDuedate(project.getDuedate());
         projectDTO.setEstimatedtime(project.getEstimatedtime());
         projectDTO.setDesc(project.getDesc());
-        projectDTO.setTasks(project.getTasks());
-        projectDTO.setAssignees(project.getAssignees());
+        List<String> tasks = new ArrayList<>();
+        for (int i = 0; i < project.getTasks().size(); i++) {
+            tasks.add(project.getTasks().get(i).getName());
+        }
+        projectDTO.setTasks(tasks);
+        List<String> assignees = new ArrayList<>();
+        for (int i = 0; i < project.getAssignees().size(); i++) {
+            assignees.add(project.getAssignees().get(i).getUser().getUsername());
+        }
+        projectDTO.setAssignees(assignees);
         return projectDTO;
     }
 

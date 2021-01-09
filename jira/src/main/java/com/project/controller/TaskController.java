@@ -66,6 +66,11 @@ public class TaskController {
         service.assignReporter(id, reporterId);
     }
 
+    @PutMapping(path = "/addstatus/{id}/{statusId}")
+    public void setStatus(@PathVariable long id, @PathVariable long statusId) {
+        service.setStatus(id, statusId);
+    }
+
     @DeleteMapping(path = "/deletetask/{id}")
     public void delete(@PathVariable("id") long id) {
         service.deleteTask(id);

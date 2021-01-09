@@ -75,11 +75,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void assignAssignee(Long id, Long userId) {
         Assignee newAssignee = assigneeRepository.getOne(userId);
-        List<Assignee> assignees = assigneeRepository.findAll();
-        assignees.add(newAssignee);
+        //List<Assignee> assignees = assigneeRepository.findAll();
+        //assignees.add(newAssignee);
         repository.findById(id)
                 .map(oldProject -> {
-                    oldProject.setAssignees(assignees);
+                    List<Assignee> newAssignees = oldProject.getAssignees();
+                    newAssignees.add(newAssignee);
+                    oldProject.setAssignees(newAssignees);
                     return repository.save(oldProject);
                 })
                 .orElseThrow(
@@ -90,11 +92,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void addTask(Long id, Long taskId) {
         Task newTask = taskRepository.getOne(taskId);
-        List<Task> tasks = taskRepository.findAll();
-        tasks.add(newTask);
+        //List<Task> tasks = taskRepository.findAll();
+        //tasks.add(newTask);
         repository.findById(id)
                 .map(oldProject -> {
-                    oldProject.setTasks(tasks);
+                    List<Task> newTasks = oldProject.getTasks();
+                    newTasks.add(newTask);
+                    oldProject.setTasks(newTasks);
                     return repository.save(oldProject);
                 })
                 .orElseThrow(

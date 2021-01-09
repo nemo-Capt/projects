@@ -19,7 +19,7 @@ public class TaskMapper {
         taskDTO.setProject(task.getProject().getName());
         taskDTO.setName(task.getName());
         taskDTO.setDesc(task.getDesc());
-        taskDTO.setProject(task.getProject().getName());
+        taskDTO.setPriority(task.getPriority());
         taskDTO.setDuedate(task.getDuedate());
         taskDTO.setEstimatedtime(task.getEstimatedtime());
         taskDTO.setStatus(task.getStatus().getStatus());

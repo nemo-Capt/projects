@@ -7,9 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -28,14 +26,6 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Assignee> assignees;
 
-    @JsonIgnore
-    public List<Assignee> getAssignees() {
-        return assignees;
-    }
-
-    public void setAssignees(List<Assignee> assignees) {
-        this.assignees = assignees;
-    }
 
     @JsonIgnore
     public List<Task> getTasks() {
@@ -92,5 +82,13 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Assignee> getAssignees() {
+        return assignees;
+    }
+
+    public void setAssignees(List<Assignee> assignees) {
+        this.assignees = assignees;
     }
 }

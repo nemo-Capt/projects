@@ -1,10 +1,10 @@
 package com.project.restservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.entity.Assignee;
 import com.project.entity.Task;
 
 import java.util.List;
-import java.util.Set;
 
 public class ProjectDTO {
 
@@ -14,8 +14,17 @@ public class ProjectDTO {
     private String duedate;
     private String estimatedtime;
     private String desc;
-    private List<Task> tasks;
-    private List<Assignee> assignees;
+    private List<String> tasks;
+    private List<String> assignees;
+
+
+    public List<String> getAssignees() {
+        return assignees;
+    }
+
+    public void setAssignees(List<String> assignees) {
+        this.assignees = assignees;
+    }
 
     public Long getId() {
         return id;
@@ -49,11 +58,11 @@ public class ProjectDTO {
         this.desc = desc;
     }
 
-    public List<Task> getTasks() {
+    public List<String> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(List<String> tasks) {
         this.tasks = tasks;
     }
 
@@ -73,11 +82,4 @@ public class ProjectDTO {
         this.estimatedtime = estimatedtime;
     }
 
-    public List<Assignee> getAssignees() {
-        return assignees;
-    }
-
-    public void setAssignees(List<Assignee> assignees) {
-        this.assignees = assignees;
-    }
 }

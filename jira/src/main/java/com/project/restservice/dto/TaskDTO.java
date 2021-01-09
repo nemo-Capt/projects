@@ -1,9 +1,10 @@
 package com.project.restservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.entity.Assignee;
 import com.project.entity.Comment;
 
 import java.util.List;
-import java.util.Set;
 
 public class TaskDTO {
 
@@ -99,6 +100,7 @@ public class TaskDTO {
         this.status = status;
     }
 
+    @JsonIgnore
     public List<Comment> getComments() {
         return comments;
     }

@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Task {
@@ -24,9 +23,6 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "projectid", nullable = false)
     private Project project;
-    @ManyToOne
-    @JoinColumn(name = "assigneeid", nullable = false)
-    private Assignee assignee;
     private String name;
     private String desc;
     private String priority;
@@ -35,9 +31,20 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "statusid", nullable = false)
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "assigneeid", nullable = false)
+    private Assignee assignee;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> comments;
+
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
+    }
 
     @JsonIgnore
     public List<Comment> getComments() {
@@ -67,14 +74,6 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
-    }
-
-    public Assignee getAssignee() {
-        return assignee;
-    }
-
-    public void setAssignee(Assignee assignee) {
-        this.assignee = assignee;
     }
 
     public String getDesc() {

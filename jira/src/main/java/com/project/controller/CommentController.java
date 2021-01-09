@@ -29,15 +29,15 @@ public class CommentController {
     @GetMapping
     public List<Comment> findAll() {
 
-        List<Comment> roles = service.getComments();
-        return roles;
+        List<Comment> comments = service.getComments();
+        return comments;
     }
 
     @GetMapping(path = "/{id}")
     public Optional<Comment> find(@PathVariable("id") Long id) {
 
-        Optional<Comment> role = service.getComment(id);
-        return role;
+        Optional<Comment> comment = service.getComment(id);
+        return comment;
     }
 
     @PostMapping(consumes = "application/json")

@@ -2,9 +2,11 @@ package com.project.restservice.impl;
 
 import com.project.EntityNotFoundException;
 import com.project.entity.Assignee;
+import com.project.entity.Status;
 import com.project.entity.Task;
 import com.project.entity.User;
 import com.project.repository.AssigneeRepository;
+import com.project.repository.StatusRepository;
 import com.project.repository.TaskRepository;
 import com.project.repository.UserRepository;
 import com.project.restservice.api.TaskService;
@@ -24,12 +26,14 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
     private final UserRepository userRepository;
     private final AssigneeRepository assigneeRepository;
+    private final StatusRepository statusRepository;
 
     @Autowired
-    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository, AssigneeRepository assigneeRepository) {
+    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository, AssigneeRepository assigneeRepository, StatusRepository statusRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.assigneeRepository = assigneeRepository;
+        this.statusRepository = statusRepository;
     }
 
     @Override
@@ -92,6 +96,19 @@ public class TaskServiceImpl implements TaskService {
         repository.findById(id)
                 .map(oldTask -> {
                     oldTask.setUser(newReporter);
+                    return repository.save(oldTask);
+                })
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Task hasn't been found")
+                );
+    }
+
+    @Override
+    public void setStatus(Long id, Long statusId) {
+        Status newStatus = statusRepository.getOne(statusId);
+        repository.findById(id)
+                .map(oldTask -> {
+                    oldTask.setStatus(newStatus);
                     return repository.save(oldTask);
                 })
                 .orElseThrow(

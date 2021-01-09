@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.sql.Time;
 
 @Entity
 public class Comment {
@@ -49,8 +48,8 @@ public class Comment {
         this.date = date;
     }
 
-    public Task getTask() {
-        return task;
+    public String getTask() {
+        return task.getName();
     }
 
     public void setTask(Task task) {
