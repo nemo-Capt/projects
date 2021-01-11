@@ -4,8 +4,6 @@ import com.project.entity.User;
 import com.project.restservice.dto.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 public interface UserService {
@@ -15,6 +13,8 @@ public interface UserService {
     void addUser(User user);
 
     User getUser(Long id);
+
+    User getUserByName(String username);
 
     void deleteUser(Long id);
 

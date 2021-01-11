@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Service
 @Transactional
@@ -43,6 +45,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(Long id) {
         return repository.getOne(id);
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        return repository.findByUsername(username);
     }
 
     @Override

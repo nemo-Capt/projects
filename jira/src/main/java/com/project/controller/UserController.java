@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
@@ -37,6 +38,15 @@ public class UserController {
     @GetMapping(path = "/{id}")
     public UserDTO find(@PathVariable("id") long id) {
         User user = service.getUser(id);
+        UserDTO userDTO = UserMapper.createDTO(user);
+
+        return userDTO;
+    }
+
+    @GetMapping("/username/{username}")
+    public UserDTO getUserByName(@PathVariable(name = "username") String username) {
+
+        User user = service.getUserByName(username);
         UserDTO userDTO = UserMapper.createDTO(user);
 
         return userDTO;

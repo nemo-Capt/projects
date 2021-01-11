@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         user.setBanned(userDTO.isBanned());
         user.setRole(userDTO.getRole());
 
-        restTemplate.postForEntity(Constants.USER_URL, user, ApiResponse.class);
+        restTemplate.postForEntity(Constants.USER_URL, user, ApiResponse.class).getBody();
 
         return user;
     }
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(hashPassword);
         user.setEmail(registrationUserDTO.getEmail());
 
-        restTemplate.postForEntity(Constants.USER_URL + "/registration", user, ApiResponse.class);
+        restTemplate.postForEntity(Constants.USER_URL + "/registration", user, ApiResponse.class).getBody();
 
         return user;
     }

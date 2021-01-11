@@ -2,20 +2,11 @@ package com.project.entity;
 
 public class User {
 
-    private Long id;
     private String username;
     private String email;
     private String password;
     private boolean isBanned;
-    private Long role;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String role;
 
     public String getUsername() {
         return username;
@@ -49,11 +40,11 @@ public class User {
         isBanned = banned;
     }
 
-    public Long getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

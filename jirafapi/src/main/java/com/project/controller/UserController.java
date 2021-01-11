@@ -23,7 +23,7 @@ public class UserController {
         this.service = service;
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/username/{username}")
     public User getUserByName(@PathVariable(name = "username") String username) {
 
         User user = service.getUserByName(username);
