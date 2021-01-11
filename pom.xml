@@ -17,6 +17,7 @@
         <module>overwatch</module>
         <module>patterns</module>
         <module>jira</module>
+        <module>jirafapi</module>
     </modules>
 
     <dependencies>

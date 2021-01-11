@@ -270,3 +270,9 @@ p
 @jira/src/main/java/com/project/controller/ProjectController.java,c\6\c69504da17aa50345224865ac5a2a2b4d54fd67d
 o
 ?jira/src/main/java/com/project/repository/StatusRepository.java,4\a\4abcada5e6524f9d6f8fed25a23311584588baac
+o
+?jira/src/main/java/com/project/controller/StatusController.java,2\9\29d9b4d710222f0fb8d7134c75c5752541eaaf9b
+q
+Ajira/src/main/java/com/project/restservice/api/StatusService.java,1\6\166eaa2171cd11762c1bfa43a47e7dbf81734efc
+v
+Fjira/src/main/java/com/project/restservice/impl/StatusServiceImpl.java,e\d\edc42dff61ec9136184a5d5f7a4b55b37dde2e15
