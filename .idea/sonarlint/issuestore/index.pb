@@ -286,8 +286,6 @@ n
 >jirafapi/src/main/java/com/project/controller/ApiResponse.java,d\a\da20237f70baf1503264d581081e9fd90a15eada
 s
 Cjirafapi/src/main/java/com/project/restservice/api/UserService.java,1\7\17a3c1284e09b04d029801d8abdb2421e73fc998
-b
-2jirafapi/src/main/resources/application.properties,8\8\883293947a674bebc979def824b4cbbbb08ff23c
 @
 jirafapi/pom.xml,2\2\22a7507e3ec96d919d7cddb6b234a9120d962704
 q
