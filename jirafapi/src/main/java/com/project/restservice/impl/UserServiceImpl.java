@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByName(String username) {
-        return restTemplate.getForObject(Constants.USER_URL + "/" + username, User.class);
+        return restTemplate.getForObject(Constants.USER_URL + "/username/" + username, User.class);
     }
 
     @Override
@@ -66,5 +66,13 @@ public class UserServiceImpl implements UserService {
         restTemplate.postForEntity(Constants.USER_URL + "/registration", user, ApiResponse.class).getBody();
 
         return user;
+    }
+
+    @Override
+    public void setUserRole(Long id, Long roleId) {
+        restTemplate.patchForObject(
+                Constants.USER_URL + "/setrole/" + id + "/role?roleId=" + roleId,
+                null,
+                ApiResponse.class);
     }
 }

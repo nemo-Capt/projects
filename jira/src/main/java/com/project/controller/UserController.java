@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -67,8 +68,8 @@ public class UserController {
         service.editUser(user, id);
     }
 
-    @PutMapping(path = "/setrole/{id}/{roleId}")
-    public void setUserRole(@PathVariable long id, @PathVariable long roleId) {
+    @PutMapping(path = "/setrole/{id}/role")
+    public void setUserRole(@PathVariable long id, @RequestParam long roleId) {
         service.setUserRole(id, roleId);
     }
 }

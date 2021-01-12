@@ -16,4 +16,6 @@ public interface UserService {
 
     User register(RegistrationUserDTO registrationUserDTO);
 
+    void setUserRole(Long id, Long roleId);
+
 }
