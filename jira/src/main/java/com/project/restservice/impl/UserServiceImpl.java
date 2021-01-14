@@ -7,15 +7,15 @@ import com.project.entity.User;
 import com.project.repository.RoleRepository;
 import com.project.repository.UserRepository;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 
 @Service
@@ -38,8 +38,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
-        repository.save(user);
+    public User addUser(UserDTO userDTO) {
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setBanned(userDTO.isBanned());
+        user.setRole(roleRepository.findByRolename(userDTO.getRole()));
+
+        return repository.save(user);
+    }
+
+    @Override
+    public User registerUser(RegistrationUserDTO userDTO) {
+
+        User user = new User();
+        user.setId(4);
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setBanned(false);
+        user.setRole(roleRepository.findByRolename("user"));
+
+        return repository.save(user);
     }
 
     @Override

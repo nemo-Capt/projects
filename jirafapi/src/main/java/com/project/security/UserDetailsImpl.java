@@ -17,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
     private boolean isBanned;
     private String role;
 
-    public UserDetailsImpl(User user) {
+    UserDetailsImpl(User user) {
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.password = user.getPassword();

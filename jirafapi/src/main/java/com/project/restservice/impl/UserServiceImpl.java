@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
         String hashPassword = passwordEncoder.encode(registrationUserDTO.getPassword());
         User user = new User();
         user.setUsername(registrationUserDTO.getUsername());
-        user.setPassword(hashPassword);
         user.setEmail(registrationUserDTO.getEmail());
+        user.setPassword(hashPassword);
 
         restTemplate.postForEntity(Constants.USER_URL + "/registration", user, ApiResponse.class).getBody();
 

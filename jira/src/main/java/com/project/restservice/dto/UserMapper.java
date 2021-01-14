@@ -15,6 +15,7 @@ public class UserMapper {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
+        userDTO.setPassword(user.getPassword());
         userDTO.setBanned(user.isBanned());
         userDTO.setUsername(user.getUsername());
         userDTO.setRole(user.getRole().getRolename());

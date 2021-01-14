@@ -2,6 +2,7 @@ package com.project.controller;
 
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,14 @@ public class UserController {
     }
 
     @PostMapping(consumes = "application/json")
-    public void create(@RequestBody User user) {
-        service.addUser(user);
+    public User create(@RequestBody UserDTO userDTO) {
+        return service.addUser(userDTO);
+    }
+
+    @PostMapping("/registration")
+    public void registration(@RequestBody RegistrationUserDTO userDTO) {
+
+        service.registerUser(userDTO);
     }
 
     @DeleteMapping(path = "/{id}")
