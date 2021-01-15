@@ -1,0 +1,8 @@
+
+]
+java:S46847"@Replace this persistent entity with a simple POJO or DTO object.(˜ú¹ê8»õòí.
+V
+java:S1128"4Remove this unused import 'com.project.entity.User'.(ÊÂ‘°úÿÿÿÿ8È¶çôí.
+X	java:S125<"<This block of commented-out lines of code should be removed.(±¨¼Ş8ç€µôí.
+]
+java:S4684""@Replace this persistent entity with a simple POJO or DTO object.(Öš˜‡8È¶çôí.
