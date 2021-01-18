@@ -42,7 +42,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void addProject(Project project) {
+    public void addProject(ProjectDTO projectDTO) {
+
+        Project project = new Project();
+
+        project.setName(projectDTO.getName());
+        project.setStage("in progress");
+
         repository.save(project);
     }
 
@@ -50,6 +56,16 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getProject(Long id) {
         return repository.getOne(id);
     }
+
+    @Override
+    public Project getProjectByName(String name) {
+        return repository.findByName(name);
+    }
+
+//    @Override
+//    public Project getProjectByAssignees(List<String> assignees) {
+//        return repository.findByAssignees(assignees);
+//    }
 
     @Override
     public void deleteProject(Long id) {

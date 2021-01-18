@@ -5,11 +5,13 @@ public class TokenResponse {
     private String token;
     private String username;
     private String role;
+    private Long id;
 
-    public TokenResponse(String token, String username, String role) {
+    public TokenResponse(String token, String username, String role, Long id) {
         this.token = token;
         this.username = username;
         this.role = role;
+        this.id = id;
     }
 
     public String getToken() {
@@ -34,5 +36,13 @@ public class TokenResponse {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

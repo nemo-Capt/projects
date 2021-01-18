@@ -1,14 +1,11 @@
 package com.project.restservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.entity.Assignee;
-import com.project.entity.Task;
 
 import java.util.List;
 
 public class ProjectDTO {
 
-    private Long id;
+    private long id;
     private String name;
     private String stage;
     private String duedate;
@@ -17,20 +14,11 @@ public class ProjectDTO {
     private List<String> tasks;
     private List<String> assignees;
 
-
-    public List<String> getAssignees() {
-        return assignees;
-    }
-
-    public void setAssignees(List<String> assignees) {
-        this.assignees = assignees;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,22 +38,6 @@ public class ProjectDTO {
         this.stage = stage;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public List<String> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<String> tasks) {
-        this.tasks = tasks;
-    }
-
     public String getDuedate() {
         return duedate;
     }
@@ -82,4 +54,27 @@ public class ProjectDTO {
         this.estimatedtime = estimatedtime;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public List<String> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<String> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<String> getAssignees() {
+        return assignees;
+    }
+
+    public void setAssignees(List<String> assignees) {
+        this.assignees = assignees;
+    }
 }

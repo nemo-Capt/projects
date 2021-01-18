@@ -2,6 +2,7 @@ package com.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,16 +17,18 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "\"name\"")
     private String name;
+    @Column(name = "\"stage\"")
     private String stage;
     private String duedate;
     private String estimatedtime;
+    @Column(name = "\"desc\"")
     private String desc;
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
     @OneToMany(mappedBy = "project")
     private List<Assignee> assignees;
-
 
     @JsonIgnore
     public List<Task> getTasks() {

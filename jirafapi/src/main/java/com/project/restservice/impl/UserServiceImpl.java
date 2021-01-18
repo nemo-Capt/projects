@@ -2,12 +2,14 @@ package com.project.restservice.impl;
 
 import com.project.config.Constants;
 import com.project.controller.ApiResponse;
+import com.project.entity.PageResponse;
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
 import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +33,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return Collections.singletonList(restTemplate.getForObject(Constants.USER_URL + "/", User.class));
+    public PageResponse<User> getAll(int page, int size) {
+        PageResponse pageResponse =
+                restTemplate.getForObject(
+                        Constants.USER_URL + "?page=" + page + "&size=" + size,
+                        PageResponse.class
+                );
+        return pageResponse;
     }
 
     @Override

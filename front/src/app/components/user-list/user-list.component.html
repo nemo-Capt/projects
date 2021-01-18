@@ -1,16 +1,28 @@
+<h1>Total pages: {{allPages}}</h1>
+<h2>Current page: {{test}}</h2>
 <table class="table">
   <thead>
   <tr>
-    <th>User</th>
-    <th>Email</th>
-    <th>Role</th>
+    <th scope="col">Username</th>
+    <th scope="col">Email</th>
+    <th scope="col">Role</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let user of users">
-    <td>{{user.username}}</td>
+    <td><a href="/profile">{{user.username}}</a></td>
     <td>{{user.email}}</td>
     <td>{{user.role}}</td>
   </tr>
   </tbody>
 </table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <button class="page-link" (click)="prevPage()">Previous</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="nextPage()">Next</button>
+    </li>
+  </ul>
+</nav>

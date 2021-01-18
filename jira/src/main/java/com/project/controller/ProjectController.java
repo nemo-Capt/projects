@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/projects")
@@ -30,8 +33,8 @@ public class ProjectController {
 
 
     @PostMapping(consumes = "application/json")
-    public void create(@RequestBody Project project) {
-        service.addProject(project);
+    public void create(@RequestBody ProjectDTO projectDTO) {
+        service.addProject(projectDTO);
     }
 
     @GetMapping
@@ -49,6 +52,24 @@ public class ProjectController {
 
         return projectDTO;
     }
+
+    @GetMapping(path = "/name/{name}")
+    public ProjectDTO findByName(@PathVariable("name") String name) {
+
+        Project project = service.getProjectByName(name);
+        ProjectDTO projectDTO = ProjectMapper.createDTO(project);
+
+        return projectDTO;
+    }
+
+//    @GetMapping(path = "/assignee")
+//    public ProjectDTO findByAssignee(@RequestParam List<String> assignees) {
+//
+//        Project project = service.getProjectByAssignees(assignees);
+//        ProjectDTO projectDTO = ProjectMapper.createDTO(project);
+//
+//        return projectDTO;
+//    }
 
     @PutMapping(path = "/{id}")
     public void edit(@RequestBody Project project, @PathVariable long id) {

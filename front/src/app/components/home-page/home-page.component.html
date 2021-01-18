@@ -1,0 +1,26 @@
+<div *ngIf="isAdmin()">
+  <p>
+    <a href="">user list</a>
+    <a href="">create cinema owner</a>
+  </p>
+</div>
+
+<div *ngIf="isOwner()">
+  <p>
+    <a href="">cinema list</a>
+    <a href="">create cinema</a>
+  </p>
+</div>
+
+<div *ngIf="isManager()">
+  <p>
+    <a href="">Film session list</a>
+    <a href="">create film session</a>
+  </p>
+</div>
+
+<div *ngIf="isUser()">
+  <p>
+    <a href="">Project list</a>
+  </p>
+</div>
