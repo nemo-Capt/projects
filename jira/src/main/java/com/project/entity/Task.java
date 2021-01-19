@@ -2,6 +2,7 @@ package com.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Task {
     @JoinColumn(name = "projectid", nullable = false)
     private Project project;
     private String name;
+    @Column(name = "\"desc\"")
     private String desc;
     private String priority;
     private String duedate;

@@ -468,3 +468,15 @@ e
 5front/src/app/components/profile/profile.component.ts,5\4\541ed56287548c82f367114e81570a1765eaf4fa
 X
 (front/src/app/service/project.service.ts,1\b\1b61a401461da8cae745ddc90791b418f712e35d
+j
+:front/src/app/components/home-page/home-page.component.css,3\8\386059ca581bae15c354cdb1ef0a69071ac40f80
+b
+2front/src/app/components/login/login.component.css,6\d\6dfd5bad5f5d8833442eff52cbf7d7096c5e9098
+f
+6front/src/app/components/profile/profile.component.css,7\a\7a725929a10c1c0cc2ecc1f1e5b73537ca9efde7
+f
+6front/src/app/components/project/project.component.css,6\9\69340418dc36f70ee2d78cd375cf1e2b839cc53a
+p
+@front/src/app/components/registration/registration.component.css,9\4\94be1410b2dfbcddc46fa407feef370eaf8fd14e
+n
+>front/src/app/components/home-page/home-page.component.spec.ts,e\0\e0278a73c3c952c3454ad8dfdb0d942e71b9e72e

@@ -32,8 +32,29 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
-  isOwner() {
-    if (this.tokenStorage.getRole() === 'owner') {
+  isProjectManager() {
+    if (this.tokenStorage.getRole() === 'projectmanager') {
+      return true;
+    }
+    return false;
+  }
+
+  isDeveloper() {
+    if (this.tokenStorage.getRole() === 'developer') {
+      return true;
+    }
+    return false;
+  }
+
+  isTester() {
+    if (this.tokenStorage.getRole() === 'tester') {
+      return true;
+    }
+    return false;
+  }
+
+  isUser() {
+    if (this.tokenStorage.getRole() === 'user') {
       return true;
     }
     return false;

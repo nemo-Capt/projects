@@ -30,5 +30,22 @@
       </div>
     </div>
 
+    <div class="tasks col-sm-8">
+      <h3>Tasks</h3>
+      <div class="card" *ngFor="let project of assigneeProjects">
+        <div class="card-header">
+          Project name: {{project.name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Stage: {{project.stage}}</h5>
+          <h5 class="card-title">Tasks: {{project.tasks}}</h5>
+          <h5 class="card-title">Due: {{project.duedate}}</h5>
+          <h5 class="card-title">Estimated: {{project.estimatedtime}}</h5>
+          <h5 class="card-title">Description: {{project.desc}}</h5>
+          <h5 class="card-title">Assignees: {{project.assignees}}</h5>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

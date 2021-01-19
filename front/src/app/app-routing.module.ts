@@ -6,11 +6,13 @@ import {LoginComponent} from "./components/login/login.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {ProjectComponent} from "./components/project/project.component";
 import {ProfileComponent} from "./components/profile/profile.component";
+import {TaskComponent} from "./components/task/task.component";
 
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
   {path: 'projects', component: ProjectComponent},
+  {path: 'tasks', component: TaskComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'header', component: HeaderComponent},

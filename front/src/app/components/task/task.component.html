@@ -1,0 +1,40 @@
+<h1>Total pages: {{allPages}}</h1>
+<h2>Current page: {{test}}</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Priority</th>
+    <th scope="col">Due</th>
+    <th scope="col">Estimated</th>
+    <th scope="col">Status</th>
+    <th scope="col">Reporter</th>
+    <th scope="col">Assignee</th>
+    <th scope="col">Project</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let task of tasks">
+    <td>{{task.name}}</td>
+    <td>{{task.desc}}</td>
+    <td>{{task.priority}}</td>
+    <td>{{task.duedate}}</td>
+    <td>{{task.estimatedtime}}</td>
+    <td>{{task.status}}</td>
+    <td>{{task.user}}</td>
+    <td>{{task.assignee}}</td>
+    <td>{{task.project}}</td>
+  </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <button class="page-link" (click)="prevPage()">Previous</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="nextPage()">Next</button>
+    </li>
+  </ul>
+</nav>

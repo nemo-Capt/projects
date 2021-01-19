@@ -7,12 +7,24 @@
           <li class="nav-item" *ngIf="isAdmin()">
             <a class="nav-link" href="/users">User list</a>
           </li>
-          <li class="nav-item" *ngIf="isOwner() else isUser">
-            <a class="nav-link" href="/owner/cinemas">cinema list</a>
-          </li>
-          <ng-template #isUser>
+          <li class="nav-item" *ngIf="isAdmin()">
             <a class="nav-link" href="/projects">Project list</a>
-          </ng-template>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" href="/tasks">Task list</a>
+          </li>
+          <li class="nav-item" *ngIf="isProjectManager()">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item" *ngIf="isDeveloper()">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item" *ngIf="isTester()">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item" *ngIf="isUser()">
+            <a class="nav-link" href="/projects">Project list</a>
+          </li>
         </ul>
         <form class="form-inline" *ngIf="isLogin() else logoutForm">
           <a class="btn btn-success" href="/profile">Profile</a>

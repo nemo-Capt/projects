@@ -18,6 +18,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProjectComponent } from './components/project/project.component';
 import {ProjectService} from "./service/project.service";
+import {TaskService} from "./service/task.service";
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import {ProjectService} from "./service/project.service";
     HomePageComponent,
     ProfileComponent,
     ProjectComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {ProjectService} from "./service/project.service";
     TokenStorageService,
     RoleService,
     ProjectService,
+    TaskService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -12,7 +12,7 @@ public interface ProjectService {
 
     PageResponse<Project> getProjects(int page, int size);
 
-    void addProject(Project projectDTO);
+    void addProject(Project project);
 
     Project getProject(Long id);
 

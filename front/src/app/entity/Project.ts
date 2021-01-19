@@ -1,5 +1,6 @@
 export class Project {
 
+  id: number;
   name: string;
   stage: string;
   duedate: string;

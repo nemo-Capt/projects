@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   projects: Project[];
-  assigneeProjects;
+  assigneeProjects: Project[];
 
   constructor(
     private userService: UserService,
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   getProjectsByAssignee(username: string) {
     this.projectService.getProjects().subscribe(data => {
       this.projects = data.content;
-      this.assigneeProjects = new Array(Project);
+      this.assigneeProjects = [];
       this.projects.forEach(project => {
         project.assignees.forEach(assignee => {
           if (assignee === username) {
