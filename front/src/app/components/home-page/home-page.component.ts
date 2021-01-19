@@ -22,15 +22,22 @@ export class HomePageComponent implements OnInit {
     return false;
   }
 
-  isOwner(): boolean {
-    if (this.tokenStorage.getRole() === 'ROLE_OWNER') {
+  isProductManager(): boolean {
+    if (this.tokenStorage.getRole() === 'ROLE_PRODUCTMANAGER') {
       return true;
     }
     return false;
   }
 
-  isManager(): boolean {
-    if (this.tokenStorage.getRole() === 'ROLE_MANAGER') {
+  isDeveloper(): boolean {
+    if (this.tokenStorage.getRole() === 'ROLE_DEVELOPER') {
+      return true;
+    }
+    return false;
+  }
+
+  isTester(): boolean {
+    if (this.tokenStorage.getRole() === 'ROLE_TESTER') {
       return true;
     }
     return false;

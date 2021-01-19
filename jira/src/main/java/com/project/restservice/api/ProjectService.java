@@ -26,5 +26,5 @@ public interface ProjectService {
 
     Project getProjectByName(String name);
 
-//    Project getProjectByAssignees(List<String> );
+    List<ProjectDTO> getProjectsByAssignee(Pageable pageable, String assignee);
 }

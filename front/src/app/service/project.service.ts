@@ -20,8 +20,8 @@ export class ProjectService {
     return this.http.get<Page<Project>>(`${this.url}`);
   }
 
-  // public getProjectsByAssignee(assignees: string[], page: number, size: number): Observable<Page<Project>> {
-  //   return this.http.get<Page<Project>>(`${this.url}/${assignees}`);
-  // }
+  public getProjectsByAssignee(assignee: string): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.url}/assignee/nemoCapt`);
+  }
 
 }

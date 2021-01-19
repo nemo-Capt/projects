@@ -51,6 +51,24 @@ public class TaskController {
         return taskDTO;
     }
 
+    @GetMapping(path = "/name/{name}")
+    public TaskDTO findTaskByName(@PathVariable("name") String name) {
+
+        Task task = service.getTaskByName(name);
+        TaskDTO taskDTO = TaskMapper.createDTO(task);
+
+        return taskDTO;
+    }
+
+    @GetMapping(path = "/assignee/{assignee}")
+    public TaskDTO findTaskByAssignee(@PathVariable("assignee") String assignee) {
+
+        Task task = service.getTaskByAssignee(assignee);
+        TaskDTO taskDTO = TaskMapper.createDTO(task);
+
+        return taskDTO;
+    }
+
     @PutMapping(path = "/{id}")
     public void edit(@RequestBody Task task, @PathVariable long id) {
         service.editTask(task, id);

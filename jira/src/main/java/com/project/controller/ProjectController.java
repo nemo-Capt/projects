@@ -62,14 +62,13 @@ public class ProjectController {
         return projectDTO;
     }
 
-//    @GetMapping(path = "/assignee")
-//    public ProjectDTO findByAssignee(@RequestParam List<String> assignees) {
-//
-//        Project project = service.getProjectByAssignees(assignees);
-//        ProjectDTO projectDTO = ProjectMapper.createDTO(project);
-//
-//        return projectDTO;
-//    }
+    @GetMapping(path = "/assignee/{assignee}")
+    public List<ProjectDTO> findByAssignee(Pageable pageable, @PathVariable String assignee) {
+
+        List<ProjectDTO> projects = service.getProjectsByAssignee(pageable, assignee);
+
+        return projects;
+    }
 
     @PutMapping(path = "/{id}")
     public void edit(@RequestBody Project project, @PathVariable long id) {

@@ -53,6 +53,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Task getTaskByName(String name) {
+        return repository.findByName(name);
+    }
+
+    @Override
+    public Task getTaskByAssignee(String assignee) {
+        return repository.findByAssignee(assignee);
+    }
+
+    @Override
     public void deleteTask(Long id) {
         repository.deleteById(id);
     }

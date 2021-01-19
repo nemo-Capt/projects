@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -62,10 +63,19 @@ public class ProjectServiceImpl implements ProjectService {
         return repository.findByName(name);
     }
 
-//    @Override
-//    public Project getProjectByAssignees(List<String> assignees) {
-//        return repository.findByAssignees(assignees);
-//    }
+    @Override
+    public List<ProjectDTO> getProjectsByAssignee(Pageable pageable, String assignee) {
+        Page<ProjectDTO> projectDTOS = repository.findAll(pageable).map(ProjectMapper::createDTO);
+        List<ProjectDTO> newProjects = new ArrayList<>();
+        for (ProjectDTO project : projectDTOS) {
+            for (int i = 0; i < project.getAssignees().size(); i++) {
+                if (project.getAssignees().get(i).equals(assignee)) {
+                    newProjects.add(project);
+                }
+            }
+        }
+        return newProjects;
+    }
 
     @Override
     public void deleteProject(Long id) {

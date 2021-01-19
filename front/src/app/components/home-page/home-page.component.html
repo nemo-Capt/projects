@@ -1,21 +1,28 @@
 <div *ngIf="isAdmin()">
   <p>
     <a href="">user list</a>
-    <a href="">create cinema owner</a>
+    <a href=""></a>
   </p>
 </div>
 
-<div *ngIf="isOwner()">
+<div *ngIf="isDeveloper()">
   <p>
-    <a href="">cinema list</a>
-    <a href="">create cinema</a>
+    <a href=""></a>
+    <a href=""></a>
   </p>
 </div>
 
-<div *ngIf="isManager()">
+<div *ngIf="isProductManager()">
   <p>
-    <a href="">Film session list</a>
-    <a href="">create film session</a>
+    <a href=""></a>
+    <a href=""></a>
+  </p>
+</div>
+
+<div *ngIf="isTester()">
+  <p>
+    <a href=""></a>
+    <a href=""></a>
   </p>
 </div>
 

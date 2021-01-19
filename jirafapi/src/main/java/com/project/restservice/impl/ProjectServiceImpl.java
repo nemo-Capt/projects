@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -74,12 +76,11 @@ public class ProjectServiceImpl implements ProjectService {
         return restTemplate.getForObject(Constants.PROJECT_URL + "/name/" + name, Project.class);
     }
 
-//    @Override
-//    public PageResponse<Project> getProjectsByAssignees(List<String> assignees, int page, int size) {
-//        PageResponse pageResponse = restTemplate.getForObject(
-//                Constants.PROJECT_URL + "?page=" + page + "&size=" + size,
-//                PageResponse.class
-//        );
-//        return pageResponse;
-//    }
+    @Override
+    public List<Project> getProjectsByAssignee(String assignee) {
+        List<Project> projects = Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.PROJECT_URL + "/assignee/" + assignee, Project[].class)));
+        System.out.println(projects.get(0));
+        return projects;
+    }
 }

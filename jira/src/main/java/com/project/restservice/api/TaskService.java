@@ -14,6 +14,10 @@ public interface TaskService {
 
     Task getTask(Long id);
 
+    Task getTaskByName(String name);
+
+    Task getTaskByAssignee(String assignee);
+
     void deleteTask(Long id);
 
     void editTask(Task task, Long id);

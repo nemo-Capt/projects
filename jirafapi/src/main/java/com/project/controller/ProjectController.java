@@ -47,14 +47,11 @@ public class ProjectController {
         return project;
     }
 
-//    @GetMapping("/assignee")
-//    public ResponseEntity getProjectByAssignee(@RequestParam List<String> assignees,
-//                                               @RequestParam(defaultValue = "0") int page,
-//                                               @RequestParam(defaultValue = "100") int size) {
-//
-//        PageResponse<Project> projects = service.getProjectsByAssignees(assignees, page, size);
-//        //List<Project> projects = service.getProjectsByAssignees(assignees);
-//
-//        return new ResponseEntity(projects, HttpStatus.OK);
-//    }
+    @GetMapping("/assignee/{assignee}")
+    public ResponseEntity getProjectByAssignee(@PathVariable String assignee) {
+
+        List<Project> projects = service.getProjectsByAssignee(assignee);
+
+        return new ResponseEntity(projects, HttpStatus.OK);
+    }
 }

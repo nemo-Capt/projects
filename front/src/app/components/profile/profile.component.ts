@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   projects: Project[];
-  assigneeProjects: Project[];
 
   constructor(
     private userService: UserService,
@@ -27,21 +26,13 @@ export class ProfileComponent implements OnInit {
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
       this.user = data;
-      this.getProjectsByAssignee(data.username);
+      this.getProjectsByAssignee(username);
     })
   }
 
   getProjectsByAssignee(username: string) {
-    this.projectService.getProjects().subscribe(data => {
-      this.projects = data.content;
-      this.assigneeProjects = [];
-      this.projects.forEach(project => {
-        project.assignees.forEach(assignee => {
-          if (assignee === username) {
-            this.assigneeProjects.push(project);
-          }
-        })
-      })
+    this.projectService.getProjectsByAssignee(username).subscribe(data => {
+      this.projects = data;
     })
   }
 

@@ -26,5 +26,5 @@ public interface ProjectService {
 
     Project getProjectByName(String name);
 
-//    PageResponse<Project> getProjectsByAssignees(List<String> assignee, int page, int size);
+    List<Project> getProjectsByAssignee(String assignee);
 }
