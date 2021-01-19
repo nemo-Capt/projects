@@ -8,7 +8,9 @@ import strategy.transmission.Manual;
 public class Main {
 
     public static void main(String[] args) {
+
         Peugeot206 peugeot206 = new Peugeot206();
+
         peugeot206.performDrive();
         peugeot206.setDrivable(new Automatic());
         peugeot206.performDrive();
