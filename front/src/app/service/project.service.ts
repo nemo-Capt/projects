@@ -21,7 +21,7 @@ export class ProjectService {
   }
 
   public getProjectsByAssignee(assignee: string): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.url}/assignee/nemoCapt`);
+    return this.http.get<Project[]>(`${this.url}/assignee/${assignee}`);
   }
 
 }
