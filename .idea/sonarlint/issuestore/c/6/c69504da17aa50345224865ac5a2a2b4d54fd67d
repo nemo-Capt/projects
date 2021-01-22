@@ -1,4 +1,5 @@
 
-]	java:S125B"<This block of commented-out lines of code should be removed.(‡ƒ¬Åùÿÿÿÿ8ş Ì«ñ.
+s
+java:S1128"QRemove this unused import 'org.springframework.web.bind.annotation.RequestParam'.(Â¬À·ùÿÿÿÿ8¶ÕªÙñ.
 b
-java:S4684K"@Replace this persistent entity with a simple POJO or DTO object.(Ğ­—ûÿÿÿÿ8ÙøÂŒñ.
+java:S4684J"@Replace this persistent entity with a simple POJO or DTO object.(Ğ­—ûÿÿÿÿ8ÙøÂŒñ.

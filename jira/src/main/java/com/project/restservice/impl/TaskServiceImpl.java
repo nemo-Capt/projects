@@ -18,6 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -58,8 +61,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getTaskByAssignee(String assignee) {
-        return repository.findByAssignee(assignee);
+    public TaskDTO getTaskByAssignee(Pageable pageable, String assignee) {
+        Page<TaskDTO> tasks = repository.findAll(pageable).map(TaskMapper::createDTO);
+        TaskDTO newTask;
+        for (TaskDTO task : tasks) {
+            if (task.getAssignee().equals(assignee)) {
+                newTask = task;
+                return newTask;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -68,18 +79,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void editTask(Task task, Long id) {
+    public void editTask(TaskDTO task, Long id) {
         repository.findById(id)
                 .map(oldTask -> {
                     oldTask.setName(task.getName());
-                    oldTask.setUser(task.getUser());
-                    oldTask.setAssignee(task.getAssignee());
-                    oldTask.setProject(task.getProject());
                     oldTask.setDesc(task.getDesc());
                     oldTask.setPriority(task.getPriority());
                     oldTask.setDuedate(task.getDuedate());
                     oldTask.setEstimatedtime(task.getEstimatedtime());
-                    oldTask.setStatus(task.getStatus());
                     return repository.save(oldTask);
                 })
                 .orElseThrow(
@@ -88,21 +95,29 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void assignAssignee(Long id, Long assigneeId) {
-        Assignee newAssignee = assigneeRepository.getOne(assigneeId);
-        repository.findById(id)
-                .map(oldTask -> {
-                    oldTask.setAssignee(newAssignee);
-                    return repository.save(oldTask);
-                })
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Task hasn't been found")
-                );
+    public void assignAssignee(Long id, String assignee) {
+        List<Assignee> assignees = assigneeRepository.findAll();
+        Assignee newAssignee;
+        for(Assignee i: assignees) {
+            if(i.getUser().getUsername().equals(assignee)) {
+                newAssignee = i;
+                Assignee finalNewAssignee = newAssignee;
+                repository.findById(id)
+                        .map(oldTask -> {
+                            oldTask.setAssignee(finalNewAssignee);
+                            return repository.save(oldTask);
+                        })
+                        .orElseThrow(
+                                () -> new EntityNotFoundException("Task hasn't been found")
+                        );
+            }
+        }
+
     }
 
     @Override
-    public void assignReporter(Long id, Long reporterId) {
-        User newReporter = userRepository.getOne(reporterId);
+    public void assignReporter(Long id, String reporter) {
+        User newReporter = userRepository.findByUsername(reporter);
         repository.findById(id)
                 .map(oldTask -> {
                     oldTask.setUser(newReporter);

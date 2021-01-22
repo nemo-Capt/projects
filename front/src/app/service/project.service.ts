@@ -6,6 +6,7 @@ import {Project} from "../entity/Project";
 import {ApiResponse} from "../entity/ApiResponse";
 import {Page} from "../entity/Page";
 import {User} from "../entity/User";
+import {Task} from "../entity/Task";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class ProjectService {
 
   public getProjectsByAssignee(assignee: string): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}/assignee/${assignee}`);
+  }
+
+  public editProject(project: Project, id: number): Observable<Project> {
+    return this.http.put<Project>(`${this.url}/${id}`, project);
   }
 
 }

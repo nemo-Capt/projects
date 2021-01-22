@@ -16,15 +16,15 @@ public interface TaskService {
 
     Task getTaskByName(String name);
 
-    Task getTaskByAssignee(String assignee);
+    TaskDTO getTaskByAssignee(Pageable pageable, String assignee);
 
     void deleteTask(Long id);
 
-    void editTask(Task task, Long id);
+    void editTask(TaskDTO task, Long id);
 
-    void assignAssignee(Long id, Long userId);
+    void assignAssignee(Long id, String assignee);
 
-    void assignReporter(Long id, Long userId);
+    void assignReporter(Long id, String reporter);
 
     void setStatus(Long id, Long statusId);
 }

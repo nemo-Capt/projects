@@ -11,13 +11,15 @@ public interface TaskService {
 
     Task getTask(Long id);
 
+    Task getTaskBtAssignee(String assignee);
+
     void deleteTask(Long id);
 
     void editTask(Task task, Long id);
 
-    void assignAssignee(Long id, Long userId);
+    void assignAssignee(Long id, String assignee);
 
-    void assignReporter(Long id, Long userId);
+    void assignReporter(Long id, String reporter);
 
     void setStatus(Long id, Long statusId);
 }

@@ -71,7 +71,7 @@ public class ProjectController {
     }
 
     @PutMapping(path = "/{id}")
-    public void edit(@RequestBody Project project, @PathVariable long id) {
+    public void edit(@RequestBody ProjectDTO project, @PathVariable long id) {
         service.editProject(project, id);
     }
 

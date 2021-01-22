@@ -83,7 +83,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void editProject(Project project, Long id) {
+    public void editProject(ProjectDTO project, Long id) {
         repository.findById(id)
                 .map(oldProject -> {
                     oldProject.setName(project.getName());
@@ -101,8 +101,6 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void assignAssignee(Long id, Long userId) {
         Assignee newAssignee = assigneeRepository.getOne(userId);
-        //List<Assignee> assignees = assigneeRepository.findAll();
-        //assignees.add(newAssignee);
         repository.findById(id)
                 .map(oldProject -> {
                     List<Assignee> newAssignees = oldProject.getAssignees();
@@ -118,8 +116,6 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void addTask(Long id, Long taskId) {
         Task newTask = taskRepository.getOne(taskId);
-        //List<Task> tasks = taskRepository.findAll();
-        //tasks.add(newTask);
         repository.findById(id)
                 .map(oldProject -> {
                     List<Task> newTasks = oldProject.getTasks();

@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void setUserRole(Long id, Long roleId) {
-        restTemplate.patchForObject(
+        restTemplate.put(
                 Constants.USER_URL + "/setrole/" + id + "/role?roleId=" + roleId,
                 null,
                 ApiResponse.class);

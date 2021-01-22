@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -61,27 +62,26 @@ public class TaskController {
     }
 
     @GetMapping(path = "/assignee/{assignee}")
-    public TaskDTO findTaskByAssignee(@PathVariable("assignee") String assignee) {
+    public TaskDTO findTaskByAssignee(Pageable pageable, @PathVariable("assignee") String assignee) {
 
-        Task task = service.getTaskByAssignee(assignee);
-        TaskDTO taskDTO = TaskMapper.createDTO(task);
+        TaskDTO task = service.getTaskByAssignee(pageable, assignee);
 
-        return taskDTO;
+        return task;
     }
 
     @PutMapping(path = "/{id}")
-    public void edit(@RequestBody Task task, @PathVariable long id) {
+    public void edit(@RequestBody TaskDTO task, @PathVariable long id) {
         service.editTask(task, id);
     }
 
-//    @PutMapping(path = "/addassignee/{id}/{reporterId}")
-//    public void addAssignee(@RequestBody Task task, @PathVariable long id, @PathVariable long reporterId) {
-//        service.assignReporter(id, reporterId);
-//    }
+    @PutMapping(path = "/addassignee/{id}/assignee")
+    public void addAssignee(@PathVariable long id, @RequestParam String assignee) {
+        service.assignAssignee(id, assignee);
+    }
 
-    @PutMapping(path = "/addreporter/{id}/{reporterId}")
-    public void addReporter(@PathVariable long id, @PathVariable long reporterId) {
-        service.assignReporter(id, reporterId);
+    @PutMapping(path = "/addreporter/{id}/reporter")
+    public void addReporter(@PathVariable long id, @RequestParam String reporter) {
+        service.assignReporter(id, reporter);
     }
 
     @PutMapping(path = "/addstatus/{id}/{statusId}")

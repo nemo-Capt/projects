@@ -18,7 +18,7 @@ public interface ProjectService {
 
     void deleteProject(Long id);
 
-    void editProject(Project project, Long id);
+    void editProject(ProjectDTO project, Long id);
 
     void assignAssignee(Long id, Long userId);
 

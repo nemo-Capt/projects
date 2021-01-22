@@ -56,8 +56,8 @@ public class Comment {
         this.task = task;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return user.getUsername();
     }
 
     public void setUser(User user) {

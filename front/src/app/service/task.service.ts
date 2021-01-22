@@ -19,12 +19,24 @@ export class TaskService {
     return this.http.get<Page<Task>>(`${this.url}`);
   }
 
+  public getTaskByAssignee(assignee: string): Observable<Task> {
+    return this.http.get<Task>(`${this.url}/assignee/${assignee}`);
+  }
+
   public nextPage(currentPage: number): Observable<Page<Task>> {
     return this.http.get<Page<Task>>(`${this.url}?page=${currentPage + 1}`);
   }
 
   public prevPage(currentPage: number): Observable<Page<Task>> {
     return this.http.get<Page<Task>>(`${this.url}?page=${currentPage - 1}`);
+  }
+
+  public editTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.url}/${task.id}`, task);
+  }
+
+  public addAssignee(task: Task, assignee: string): Observable<Task> {
+    return this.http.put<Task>(`${this.url}/addassignee/${task.id}/assignee?assignee=${assignee}`, task);
   }
 
 }

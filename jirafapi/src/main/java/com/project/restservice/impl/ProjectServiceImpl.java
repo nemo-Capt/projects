@@ -58,7 +58,16 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void editProject(Project project, Long id) {
-
+        Project newProject = new Project();
+        newProject.setName(project.getName());
+        newProject.setDesc(project.getDesc());
+        newProject.setStage(project.getStage());
+        newProject.setDuedate(project.getDuedate());
+        newProject.setEstimatedtime(project.getEstimatedtime());
+        restTemplate.put(
+                Constants.PROJECT_URL + "/" + id,
+                newProject
+        );
     }
 
     @Override
