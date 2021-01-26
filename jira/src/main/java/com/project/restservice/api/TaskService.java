@@ -20,7 +20,7 @@ public interface TaskService {
 
     List<TaskDTO> getTasksByAssignee(Pageable pageable, String assignee);
 
-    List<TaskDTO> getTaskByReporter(Pageable pageable, String reporter);
+    List<TaskDTO> getTaskByReporter(String reporter);
 
     void deleteTask(Long id);
 

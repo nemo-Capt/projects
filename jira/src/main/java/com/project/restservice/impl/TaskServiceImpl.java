@@ -73,13 +73,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDTO> getTaskByReporter(Pageable pageable, String reporter) {
-        Page<TaskDTO> tasks = repository.findAll(pageable).map(TaskMapper::createDTO);
+    public List<TaskDTO> getTaskByReporter(String reporter) {
+        List<Task> tasks = repository.findTasksByUserUsername(reporter);
         List<TaskDTO> newTasks = new ArrayList<>();
-        for (TaskDTO task : tasks) {
-            if (task.getUser().equals(reporter)) {
-                newTasks.add(task);
-            }
+        for(Task task : tasks) {
+            newTasks.add(TaskMapper.createDTO(task));
         }
         return newTasks;
     }

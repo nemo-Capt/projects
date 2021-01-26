@@ -29,8 +29,11 @@ export class HomePageComponent implements OnInit {
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
       this.user = data;
-      this.getTaskByAssignee(username);
-      if(this.tokenStorage.getRole() === "productmanager") {
+      if (this.tokenStorage.getRole() === "developer" || this.tokenStorage.getRole() === "tester") {
+        this.getTaskByAssignee(username);
+      }
+      //this.getTaskByAssignee(username);
+      if (this.tokenStorage.getRole() === "productmanager") {
         this.getTaskByReporter(username);
       }
     });

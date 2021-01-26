@@ -72,9 +72,9 @@ public class TaskController {
     }
 
     @GetMapping(path = "/reporter/{reporter}")
-    public List<TaskDTO> findTaskByReporter(Pageable pageable, @PathVariable("reporter") String reporter) {
+    public List<TaskDTO> findTaskByReporter(@PathVariable("reporter") String reporter) {
 
-        List<TaskDTO> tasks = service.getTaskByReporter(pageable, reporter);
+        List<TaskDTO> tasks = service.getTaskByReporter(reporter);
 
         return tasks;
     }
