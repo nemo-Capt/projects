@@ -18,8 +18,6 @@ export class ProfileComponent implements OnInit {
   user: User;
   projects: Project[];
   tasks: Task[];
-  showProject: boolean;
-  showTask: boolean;
   showAssignee: boolean;
 
   constructor(
@@ -31,7 +29,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showTask = false;
     this.showAssignee = false;
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
@@ -55,7 +52,6 @@ export class ProfileComponent implements OnInit {
 
   switchProject(project: Project) {
     project.shown = !project.shown
-    //this.showProject = !this.showProject;
   }
 
   saveProject(project: Project) {
@@ -64,8 +60,8 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  switchTask() {
-    this.showTask = !this.showTask;
+  switchTask(task: Task) {
+    task.shown = !task.shown;
   }
 
   saveTask(task: Task) {

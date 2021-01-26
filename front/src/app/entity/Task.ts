@@ -10,5 +10,6 @@ export class Task {
   duedate: string;
   estimatedtime: string;
   status: string;
+  shown: boolean;
 
 }
