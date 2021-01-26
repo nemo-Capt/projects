@@ -20,15 +20,15 @@ export class TaskComponent implements OnInit {
 
   constructor(private taskService: TaskService) {
     this.currentPage = 0;
-    this.test = 1;
+    //this.test = 1;
   }
 
   nextPage() {
     this.taskService.nextPage(this.currentPage).subscribe(data => {
       this.tasks = data.content;
       this.allPages = data.totalPages;
-      if (this.test != this.allPages) {
-        this.test++;
+      if (this.currentPage != this.allPages - 1) {
+        this.currentPage++;
       }
     })
   }
@@ -37,8 +37,8 @@ export class TaskComponent implements OnInit {
     this.taskService.prevPage(this.currentPage).subscribe(data => {
       this.tasks = data.content;
       this.allPages = data.totalPages;
-      if (this.test != 1) {
-        this.test--;
+      if (this.currentPage != 0) {
+        this.currentPage--;
       }
     })
   }

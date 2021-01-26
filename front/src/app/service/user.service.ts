@@ -22,11 +22,11 @@ export class UserService {
   }
 
   public nextPage(currentPage: number): Observable<Page<User>> {
-    return this.http.get<Page<User>>(`${this.url}?page=${currentPage+1}`);
+    return this.http.get<Page<User>>(`${this.url}?page=${currentPage + 1}`);
   }
 
   public prevPage(currentPage: number): Observable<Page<User>> {
-    return this.http.get<Page<User>>(`${this.url}?page=${currentPage-1}`);
+    return this.http.get<Page<User>>(`${this.url}?page=${currentPage - 1}`);
   }
 
   public getOne(username: string): Observable<User> {

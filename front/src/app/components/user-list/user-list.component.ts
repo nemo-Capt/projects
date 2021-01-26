@@ -14,7 +14,6 @@ export class UserListComponent implements OnInit {
   users: User[];
   pageable: Pageable;
   currentPage: number;
-  test: number;
   allPages: number;
 
   constructor(private userService: UserService) {
@@ -25,7 +24,7 @@ export class UserListComponent implements OnInit {
     this.userService.nextPage(this.currentPage).subscribe(data => {
       this.users = data.content;
       this.allPages = data.totalPages;
-      if (this.currentPage != this.allPages-1) {
+      if (this.currentPage != this.allPages - 1) {
         this.currentPage++;
       }
     })
