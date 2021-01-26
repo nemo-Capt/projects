@@ -19,8 +19,12 @@ export class TaskService {
     return this.http.get<Page<Task>>(`${this.url}`);
   }
 
-  public getTaskByAssignee(assignee: string): Observable<Task> {
-    return this.http.get<Task>(`${this.url}/assignee/${assignee}`);
+  public getTasksByAssignee(assignee: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.url}/assignee/${assignee}`);
+  }
+
+  public getTasksByReporter(reporter: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.url}/reporter/${reporter}`);
   }
 
   public nextPage(currentPage: number): Observable<Page<Task>> {

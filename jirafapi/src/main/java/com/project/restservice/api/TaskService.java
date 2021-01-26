@@ -3,6 +3,8 @@ package com.project.restservice.api;
 import com.project.entity.PageResponse;
 import com.project.entity.Task;
 
+import java.util.List;
+
 public interface TaskService {
 
     PageResponse<Task> getTasks(int page, int size);
@@ -11,7 +13,9 @@ public interface TaskService {
 
     Task getTask(Long id);
 
-    Task getTaskBtAssignee(String assignee);
+    List<Task> getTasksByAssignee(String assignee);
+
+    List<Task> getTasksByReporter(String reporter);
 
     void deleteTask(Long id);
 

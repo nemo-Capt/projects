@@ -61,16 +61,27 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDTO getTaskByAssignee(Pageable pageable, String assignee) {
+    public List<TaskDTO> getTasksByAssignee(Pageable pageable, String assignee) {
         Page<TaskDTO> tasks = repository.findAll(pageable).map(TaskMapper::createDTO);
-        TaskDTO newTask;
+        List<TaskDTO> newTasks = new ArrayList<>();
         for (TaskDTO task : tasks) {
             if (task.getAssignee().equals(assignee)) {
-                newTask = task;
-                return newTask;
+                newTasks.add(task);
             }
         }
-        return null;
+        return newTasks;
+    }
+
+    @Override
+    public List<TaskDTO> getTaskByReporter(Pageable pageable, String reporter) {
+        Page<TaskDTO> tasks = repository.findAll(pageable).map(TaskMapper::createDTO);
+        List<TaskDTO> newTasks = new ArrayList<>();
+        for (TaskDTO task : tasks) {
+            if (task.getUser().equals(reporter)) {
+                newTasks.add(task);
+            }
+        }
+        return newTasks;
     }
 
     @Override
@@ -98,8 +109,8 @@ public class TaskServiceImpl implements TaskService {
     public void assignAssignee(Long id, String assignee) {
         List<Assignee> assignees = assigneeRepository.findAll();
         Assignee newAssignee;
-        for(Assignee i: assignees) {
-            if(i.getUser().getUsername().equals(assignee)) {
+        for (Assignee i : assignees) {
+            if (i.getUser().getUsername().equals(assignee)) {
                 newAssignee = i;
                 Assignee finalNewAssignee = newAssignee;
                 repository.findById(id)

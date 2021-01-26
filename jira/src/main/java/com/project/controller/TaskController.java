@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/tasks")
@@ -62,11 +64,19 @@ public class TaskController {
     }
 
     @GetMapping(path = "/assignee/{assignee}")
-    public TaskDTO findTaskByAssignee(Pageable pageable, @PathVariable("assignee") String assignee) {
+    public List<TaskDTO> findTaskByAssignee(Pageable pageable, @PathVariable("assignee") String assignee) {
 
-        TaskDTO task = service.getTaskByAssignee(pageable, assignee);
+        List<TaskDTO> tasks = service.getTasksByAssignee(pageable, assignee);
 
-        return task;
+        return tasks;
+    }
+
+    @GetMapping(path = "/reporter/{reporter}")
+    public List<TaskDTO> findTaskByReporter(Pageable pageable, @PathVariable("reporter") String reporter) {
+
+        List<TaskDTO> tasks = service.getTaskByReporter(pageable, reporter);
+
+        return tasks;
     }
 
     @PutMapping(path = "/{id}")

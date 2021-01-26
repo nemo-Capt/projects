@@ -5,6 +5,8 @@ import com.project.restservice.dto.TaskDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 
 public interface TaskService {
 
@@ -16,7 +18,9 @@ public interface TaskService {
 
     Task getTaskByName(String name);
 
-    TaskDTO getTaskByAssignee(Pageable pageable, String assignee);
+    List<TaskDTO> getTasksByAssignee(Pageable pageable, String assignee);
+
+    List<TaskDTO> getTaskByReporter(Pageable pageable, String reporter);
 
     void deleteTask(Long id);
 

@@ -17,9 +17,9 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   projects: Project[];
-  task: Task;
-  showProject: boolean
-  showTask: boolean
+  tasks: Task[];
+  showProject: boolean;
+  showTask: boolean;
   showAssignee: boolean;
 
   constructor(
@@ -48,13 +48,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getTaskByAssignee(assignee: string) {
-    this.taskService.getTaskByAssignee(assignee).subscribe(data => {
-      this.task = data;
+    this.taskService.getTasksByAssignee(assignee).subscribe(data => {
+      this.tasks = data;
     })
   }
 
-  switchProject() {
-    this.showProject = !this.showProject;
+  switchProject(project: Project) {
+    project.shown = !project.shown
+    //this.showProject = !this.showProject;
   }
 
   saveProject(project: Project) {
@@ -67,8 +68,8 @@ export class ProfileComponent implements OnInit {
     this.showTask = !this.showTask;
   }
 
-  saveTask() {
-    this.taskService.editTask(this.task).subscribe(data => {
+  saveTask(task: Task) {
+    this.taskService.editTask(task).subscribe(data => {
     });
   }
 
@@ -76,8 +77,8 @@ export class ProfileComponent implements OnInit {
     this.showAssignee = !this.showAssignee;
   }
 
-  saveAssignee() {
-    this.taskService.addAssignee(this.task, this.task.assignee).subscribe(data => {
+  saveAssignee(task: Task) {
+    this.taskService.addAssignee(task, task.assignee).subscribe(data => {
     });
   }
 

@@ -6,24 +6,66 @@
 </div>
 
 <div *ngIf="isDeveloper()">
-  <p>
-    <a href=""></a>
-    <a href=""></a>
-  </p>
+  <div class="tasks col-sm-8">
+    <h3>Tasks</h3>
+    <div class="card" *ngFor="let task of tasks">
+      <div class="card-header">
+        Task name: {{task.name}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Description: {{task.desc}}</h5>
+        <h5 class="card-title">Priority: {{task.priority}}</h5>
+        <h5 class="card-title">Due: {{task.duedate}}</h5>
+        <h5 class="card-title">Estimated: {{task.estimatedtime}}</h5>
+        <h5 class="card-title">Status: {{task.status}}</h5>
+        <h5 class="card-title">Reporter: {{task.user}}</h5>
+        <h5 class="card-title">Assignee: {{task.assignee}}</h5>
+        <h5 class="card-title">Project: {{task.project}}</h5>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="isProductManager()">
-  <p>
-    <a href=""></a>
-    <a href=""></a>
-  </p>
+  <div class="tasks col-sm-8">
+    <h3>Tasks</h3>
+    <div class="card" *ngFor="let task of tasks">
+      <div class="card-header">
+        Task name: {{task.name}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Description: {{task.desc}}</h5>
+        <h5 class="card-title">Priority: {{task.priority}}</h5>
+        <h5 class="card-title">Due: {{task.duedate}}</h5>
+        <h5 class="card-title">Estimated: {{task.estimatedtime}}</h5>
+        <h5 class="card-title">Status: {{task.status}}</h5>
+        <h5 class="card-title">Reporter: {{task.user}}</h5>
+        <h5 class="card-title">Assignee: {{task.assignee}}</h5>
+        <h5 class="card-title">Project: {{task.project}}</h5>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="isTester()">
-  <p>
-    <a href=""></a>
-    <a href=""></a>
-  </p>
+  <div class="tasks col-sm-8">
+    <h3>Tasks</h3>
+    <div class="card" *ngFor="let task of tasks">
+      <div class="card-header">
+        Task name: {{task.name}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Description: {{task.desc}}</h5>
+        <h5 class="card-title">Priority: {{task.priority}}</h5>
+        <h5 class="card-title">Due: {{task.duedate}}</h5>
+        <h5 class="card-title">Estimated: {{task.estimatedtime}}</h5>
+        <h5 class="card-title">Status: {{task.status}}</h5>
+        <h5 class="card-title">Reporter: {{task.user}}</h5>
+        <h5 class="card-title">Assignee: {{task.assignee}}</h5>
+        <h5 class="card-title">Project: {{task.project}}</h5>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="isUser()">

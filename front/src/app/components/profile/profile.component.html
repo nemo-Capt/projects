@@ -18,10 +18,10 @@
       <div class="card" *ngFor="let project of projects">
         <div class="card-header">
           Project name: {{project.name}}
-          <button class="btn btn-outline-dark" (click)="switchProject()">Edit</button>
+          <button class="btn btn-outline-dark" (click)="switchProject(project)">Edit</button>
         </div>
         <div class="card-body">
-          <form *ngIf="showProject" (ngSubmit)="saveProject(project)">
+          <form *ngIf="project.shown" (ngSubmit)="saveProject(project)">
             <label for="ProjectName">Name:</label>
             <input type="text" class="form-control" id="ProjectName" name="name" [(ngModel)]="project.name">
             <label for="ProjectDesc">Desc:</label>
@@ -37,7 +37,7 @@
                    [(ngModel)]="project.estimatedtime">
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
-          <div *ngIf="!showProject">
+          <div *ngIf="!project.shown">
             <h5 class="card-title">Stage: {{project.stage}}</h5>
             <h5 class="card-title">Tasks: {{project.tasks}}</h5>
             <h5 class="card-title">Due: {{project.duedate}}</h5>
@@ -51,13 +51,13 @@
 
     <div class="tasks col-sm-8">
       <h3>Tasks</h3>
-      <div class="card">
+      <div class="card" *ngFor="let task of tasks">
         <div class="card-header">
           Task name: {{task.name}}
           <button class="btn btn-outline-dark" (click)="switchTask()">Edit</button>
         </div>
         <div class="card-body">
-          <form *ngIf="showTask" (ngSubmit)="saveTask()">
+          <form *ngIf="showTask" (ngSubmit)="saveTask(task)">
             <label for="TaskName">Name:</label>
             <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.name">
             <label for="taskDesc">Desc:</label>
@@ -71,7 +71,7 @@
                    [(ngModel)]="task.estimatedtime">
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
-          <form *ngIf="showAssignee" (ngSubmit)="saveAssignee()">
+          <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task)">
             <label for="Assignee">Assignee:</label>
             <input type="text" class="form-control" id="Assignee" name="Assignee" [(ngModel)]="task.assignee">
             <button type="submit" class="btn btn-outline-dark">Submit</button>

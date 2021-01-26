@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
 
 @Service
 @Transactional
@@ -47,9 +51,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getTaskBtAssignee(String assignee) {
+    public List<Task> getTasksByAssignee(String assignee) {
 
-        return restTemplate.getForObject(Constants.TASK_URL + "/assignee/" + assignee, Task.class);
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.TASK_URL + "/assignee/" + assignee, Task[].class)));
+    }
+
+    @Override
+    public List<Task> getTasksByReporter(String reporter) {
+
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.TASK_URL + "/reporter/" + reporter, Task[].class)));
     }
 
     @Override

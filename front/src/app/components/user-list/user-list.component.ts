@@ -19,15 +19,14 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.currentPage = 0;
-    this.test = 1;
   }
 
   nextPage() {
     this.userService.nextPage(this.currentPage).subscribe(data => {
       this.users = data.content;
       this.allPages = data.totalPages;
-      if (this.test != this.allPages) {
-        this.test++;
+      if (this.currentPage != this.allPages-1) {
+        this.currentPage++;
       }
     })
   }
@@ -36,8 +35,8 @@ export class UserListComponent implements OnInit {
     this.userService.prevPage(this.currentPage).subscribe(data => {
       this.users = data.content;
       this.allPages = data.totalPages;
-      if (this.test != 1) {
-        this.test--;
+      if (this.currentPage != 0) {
+        this.currentPage--;
       }
     })
   }

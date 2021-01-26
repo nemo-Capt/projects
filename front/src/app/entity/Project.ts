@@ -5,8 +5,8 @@ export class Project {
   stage: string;
   duedate: string;
   estimatedtime: string;
-  desc: string
+  desc: string;
   assignees: string[];
   tasks: string[];
-
+  shown: boolean;
 }

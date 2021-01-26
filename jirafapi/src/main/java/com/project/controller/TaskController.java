@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/tasks")
@@ -36,9 +38,15 @@ public class TaskController {
     }
 
     @GetMapping(path = "/assignee/{assignee}")
-    public Task getTaskByAssignee(@PathVariable String assignee) {
+    public List<Task> getTaskByAssignee(@PathVariable String assignee) {
 
-        return service.getTaskBtAssignee(assignee);
+        return service.getTasksByAssignee(assignee);
+    }
+
+    @GetMapping(path = "/reporter/{reporter}")
+    public List<Task> getTaskByReporter(@PathVariable String reporter) {
+
+        return service.getTasksByReporter(reporter);
     }
 
     @PutMapping(path = "/{id}")
