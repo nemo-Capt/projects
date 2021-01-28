@@ -13,7 +13,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findTasksByUserUsername(String reporter);
 
-    List<Task> findTasksByAssigneeUserUsername(String assignee);
+    List<Task> findTasksByAssigneeUsername(String assignee);
 
 
 }

@@ -2,9 +2,6 @@ package com.project.restservice.api;
 
 import com.project.entity.PageResponse;
 import com.project.entity.Project;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,7 +9,7 @@ public interface ProjectService {
 
     PageResponse<Project> getProjects(int page, int size);
 
-    void addProject(Project project);
+    void addProject(Project project, String assignee);
 
     Project getProject(Long id);
 

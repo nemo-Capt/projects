@@ -32,9 +32,9 @@ public class ProjectController {
     }
 
 
-    @PostMapping(consumes = "application/json")
-    public void create(@RequestBody ProjectDTO projectDTO) {
-        service.addProject(projectDTO);
+    @PostMapping(path = "/{assignee}", consumes = "application/json")
+    public void create(@RequestBody ProjectDTO projectDTO, @PathVariable String assignee) {
+        service.addProject(projectDTO, assignee);
     }
 
     @GetMapping

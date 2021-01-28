@@ -7,6 +7,7 @@ import {UserService} from "../../service/user.service";
 import {ProjectService} from "../../service/project.service";
 import {TaskService} from "../../service/task.service";
 
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -16,6 +17,9 @@ export class HomePageComponent implements OnInit {
 
   user: User;
   tasks: Task[];
+  popup: boolean;
+  project: Project;
+
 
   constructor(
     private userService: UserService,
@@ -23,6 +27,7 @@ export class HomePageComponent implements OnInit {
     private projectService: ProjectService,
     private taskService: TaskService
   ) {
+    this.project = new Project();
   }
 
   ngOnInit() {
@@ -32,10 +37,15 @@ export class HomePageComponent implements OnInit {
       if (this.tokenStorage.getRole() === "developer" || this.tokenStorage.getRole() === "tester") {
         this.getTaskByAssignee(username);
       }
-      //this.getTaskByAssignee(username);
       if (this.tokenStorage.getRole() === "productmanager") {
         this.getTaskByReporter(username);
       }
+    });
+  }
+
+  addProject() {
+    this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe(data => {
+
     });
   }
 

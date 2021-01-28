@@ -12,7 +12,7 @@ public interface ProjectService {
 
     Page<ProjectDTO> getProjects(Pageable pageable);
 
-    void addProject(ProjectDTO projectDTO);
+    void addProject(ProjectDTO projectDTO, String assignee);
 
     Project getProject(Long id);
 

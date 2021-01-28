@@ -1,6 +1,7 @@
 package com.project.restservice.impl;
 
 import com.project.config.Constants;
+import com.project.controller.ApiResponse;
 import com.project.entity.PageResponse;
 import com.project.entity.Project;
 import com.project.restservice.api.ProjectService;
@@ -42,8 +43,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void addProject(Project projectDTO) {
+    public void addProject(Project project, String assignee) {
 
+        restTemplate.postForEntity(Constants.PROJECT_URL + "/" + assignee, project, ApiResponse.class).getBody();
     }
 
     @Override

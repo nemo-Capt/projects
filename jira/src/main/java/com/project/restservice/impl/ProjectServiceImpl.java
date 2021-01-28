@@ -8,6 +8,7 @@ import com.project.entity.User;
 import com.project.repository.AssigneeRepository;
 import com.project.repository.ProjectRepository;
 import com.project.repository.TaskRepository;
+import com.project.repository.UserRepository;
 import com.project.restservice.api.ProjectService;
 import com.project.restservice.dto.ProjectDTO;
 import com.project.restservice.dto.ProjectMapper;
@@ -28,12 +29,15 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository repository;
     private final TaskRepository taskRepository;
     private final AssigneeRepository assigneeRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProjectServiceImpl(ProjectRepository repository, TaskRepository taskRepository, AssigneeRepository assigneeRepository) {
+    public ProjectServiceImpl(ProjectRepository repository, TaskRepository taskRepository,
+                              AssigneeRepository assigneeRepository, UserRepository userRepository) {
         this.repository = repository;
         this.taskRepository = taskRepository;
         this.assigneeRepository = assigneeRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -43,15 +47,21 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void addProject(ProjectDTO projectDTO) {
+    public void addProject(ProjectDTO projectDTO, String assignee) {
 
         Project project = new Project();
+        Assignee newAssignee = new Assignee();
 
         project.setName(projectDTO.getName());
-        project.setStage("in progress");
+        project.setStage("to do");
+
+        newAssignee.setProject(project);
+        newAssignee.setUser(userRepository.findByUsername(assignee));
 
         repository.save(project);
+        assigneeRepository.save(newAssignee);
     }
+
 
     @Override
     public Project getProject(Long id) {

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,12 @@ public class ProjectController {
 
         return new ResponseEntity(projects, HttpStatus.OK);
     }
+
+    @PostMapping(path = "/{assignee}")
+    public void addProject(@RequestBody Project project, @PathVariable String assignee) {
+        service.addProject(project, assignee);
+    }
+
 
     @GetMapping("/name/{name}")
     public Project getProjectByName(@PathVariable(name = "name") String name) {

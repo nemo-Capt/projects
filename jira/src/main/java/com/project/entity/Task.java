@@ -35,16 +35,16 @@ public class Task {
     private Status status;
     @ManyToOne
     @JoinColumn(name = "assigneeid", nullable = false)
-    private Assignee assignee;
+    private User assignee;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> comments;
 
-    public Assignee getAssignee() {
+    public User getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(Assignee assignee) {
+    public void setAssignee(User assignee) {
         this.assignee = assignee;
     }
 

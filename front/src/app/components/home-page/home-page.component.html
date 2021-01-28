@@ -29,7 +29,7 @@
 <div *ngIf="isProductManager()">
   <div class="tasks col-sm-8">
     <h3>Tasks</h3>
-    <div class="card" *ngFor="let task of tasks">
+    <div class="card pmtasks" *ngFor="let task of tasks">
       <div class="card-header">
         Task name: {{task.name}}
       </div>
@@ -42,6 +42,23 @@
         <h5 class="card-title">Reporter: {{task.user}}</h5>
         <h5 class="card-title">Assignee: {{task.assignee}}</h5>
         <h5 class="card-title">Project: {{task.project}}</h5>
+      </div>
+    </div>
+    <button class="btn newproject btn-outline-dark" (click)="popup = true">New Project</button>
+    <div class="overlay" *ngIf="popup">
+      <div class="popup">
+        <h2>Create new project</h2>
+        <a class="close" (click)="popup = false">&times;</a>
+        <form (ngSubmit)="addProject();popup = false">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="Name">Name</label>
+              <input type="text" class="form-control" id="Name" name="name" [(ngModel)]="project.name">
+            </div>
+
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
       </div>
     </div>
   </div>

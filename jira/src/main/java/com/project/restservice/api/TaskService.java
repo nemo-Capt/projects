@@ -18,7 +18,7 @@ public interface TaskService {
 
     Task getTaskByName(String name);
 
-    List<TaskDTO> getTasksByAssignee(Pageable pageable, String assignee);
+    List<TaskDTO> getTasksByAssignee(String assignee);
 
     List<TaskDTO> getTaskByReporter(String reporter);
 
