@@ -18,7 +18,10 @@ export class HomePageComponent implements OnInit {
   user: User;
   tasks: Task[];
   popup: boolean;
+  popup2: boolean;
   project: Project;
+  task: Task;
+  projects: Project[];
 
 
   constructor(
@@ -28,6 +31,7 @@ export class HomePageComponent implements OnInit {
     private taskService: TaskService
   ) {
     this.project = new Project();
+    this.task = new Task();
   }
 
   ngOnInit() {
@@ -39,12 +43,21 @@ export class HomePageComponent implements OnInit {
       }
       if (this.tokenStorage.getRole() === "productmanager") {
         this.getTaskByReporter(username);
+        this.projectService.getProjectsByAssignee(username).subscribe(data => {
+          this.projects = data;
+        })
       }
     });
   }
 
   addProject() {
     this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe(data => {
+
+    });
+  }
+
+  addTask() {
+    this.taskService.addTask(this.task).subscribe(data => {
 
     });
   }

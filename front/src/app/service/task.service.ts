@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Page} from "../entity/Page";
 import {Task} from "../entity/Task";
+import {ApiResponse} from "../entity/ApiResponse";
 
 
 @Injectable({
@@ -13,6 +14,10 @@ export class TaskService {
   private url: string = `http://localhost:8090/tasks`;
 
   constructor(private http: HttpClient) {
+  }
+
+  public addTask(task: Task): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.url}`, task);
   }
 
   public getTasks(): Observable<Page<Task>> {

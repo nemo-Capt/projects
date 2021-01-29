@@ -19,10 +19,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
+    @JoinColumn(name = "userid")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "projectid", nullable = false)
+    @JoinColumn(name = "projectid")
     private Project project;
     private String name;
     @Column(name = "\"desc\"")
@@ -34,7 +34,7 @@ public class Task {
     @JoinColumn(name = "statusid", nullable = false)
     private Status status;
     @ManyToOne
-    @JoinColumn(name = "assigneeid", nullable = false)
+    @JoinColumn(name = "assigneeid")
     private User assignee;
 
     @OneToMany(mappedBy = "task")

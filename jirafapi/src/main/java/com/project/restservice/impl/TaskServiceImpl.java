@@ -42,7 +42,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void addTask(Task task) {
-
+        restTemplate.postForEntity(Constants.TASK_URL, task, ApiResponse.class).getBody();
     }
 
     @Override

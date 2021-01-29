@@ -2,10 +2,12 @@ package com.project.restservice.impl;
 
 import com.project.EntityNotFoundException;
 import com.project.entity.Assignee;
+import com.project.entity.Project;
 import com.project.entity.Status;
 import com.project.entity.Task;
 import com.project.entity.User;
 import com.project.repository.AssigneeRepository;
+import com.project.repository.ProjectRepository;
 import com.project.repository.StatusRepository;
 import com.project.repository.TaskRepository;
 import com.project.repository.UserRepository;
@@ -28,14 +30,14 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository repository;
     private final UserRepository userRepository;
-    private final AssigneeRepository assigneeRepository;
+    private final ProjectRepository projectRepository;
     private final StatusRepository statusRepository;
 
     @Autowired
-    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository, AssigneeRepository assigneeRepository, StatusRepository statusRepository) {
+    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository, ProjectRepository projectRepository, StatusRepository statusRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
-        this.assigneeRepository = assigneeRepository;
+        this.projectRepository = projectRepository;
         this.statusRepository = statusRepository;
     }
 
@@ -46,7 +48,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void addTask(Task task) {
+    public void addTask(TaskDTO taskDTO) {
+        Task task = new Task();
+
+        task.setName(taskDTO.getName());
+        task.setPriority("green");
+        task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
+        task.setProject(projectRepository.findByName(taskDTO.getProject()));
+
         repository.save(task);
     }
 
@@ -67,13 +76,6 @@ public class TaskServiceImpl implements TaskService {
         for (Task task : tasks) {
             newTasks.add(TaskMapper.createDTO(task));
         }
-//        Page<TaskDTO> tasks = repository.findAll(pageable).map(TaskMapper::createDTO);
-//        List<TaskDTO> newTasks = new ArrayList<>();
-//        for (TaskDTO task : tasks) {
-//            if (task.getAssignee().equals(assignee)) {
-//                newTasks.add(task);
-//            }
-//        }
         return newTasks;
     }
 

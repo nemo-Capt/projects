@@ -34,8 +34,9 @@ public class TaskController {
 
 
     @PostMapping(consumes = "application/json")
-    public void create(@RequestBody Task task) {
-        service.addTask(task);
+    public void create(@RequestBody TaskDTO taskDTO) {
+        
+        service.addTask(taskDTO);
     }
 
     @GetMapping

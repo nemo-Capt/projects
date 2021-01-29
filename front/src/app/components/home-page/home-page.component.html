@@ -44,24 +44,57 @@
         <h5 class="card-title">Project: {{task.project}}</h5>
       </div>
     </div>
-    <button class="btn newproject btn-outline-dark" (click)="popup = true">New Project</button>
-    <div class="overlay" *ngIf="popup">
-      <div class="popup">
-        <h2>Create new project</h2>
-        <a class="close" (click)="popup = false">&times;</a>
-        <form (ngSubmit)="addProject();popup = false">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="Name">Name</label>
-              <input type="text" class="form-control" id="Name" name="name" [(ngModel)]="project.name">
-            </div>
+  </div>
+  <button class="btn newproject btn-outline-dark" (click)="popup = true">New Project</button>
+  <button class="btn newtask btn-outline-dark" (click)="popup2 = true">New Task</button>
 
+  <div class="overlay" *ngIf="popup">
+    <div class="popup">
+      <h2>Create new project</h2>
+      <a class="close" (click)="popup = false">&times;</a>
+      <form (ngSubmit)="addProject();popup = false">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name" name="name" [(ngModel)]="project.name">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+      </form>
     </div>
   </div>
+
+  <div class="overlay" *ngIf="popup2">
+    <div class="popup">
+      <h2>Create new Task</h2>
+      <a class="close" (click)="popup2 = false">&times;</a>
+      <form (ngSubmit)="addTask();popup2 = false">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="TaskName">Name</label>
+            <input type="text" class="form-control" id="TaskName" name="taskName" [(ngModel)]="task.name">
+            <br>
+            <br>
+            <label for="Status">Status</label>
+            <select name="status" id="Status" [(ngModel)]="task.status">
+              <option value="to do">to do</option>
+              <option value="in progress">in progress</option>
+              <option value="done">done</option>
+            </select>
+            <br>
+            <br>
+            <label for="Project">Project</label>
+            <select name="project" id="Project" [(ngModel)]="task.project">
+              <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
 </div>
 
 <div *ngIf="isTester()">

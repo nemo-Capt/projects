@@ -1,7 +1,17 @@
 .newproject {
   position: absolute;
-  top: 20px;
+  top: 80px;
   margin-left: 150px;
+}
+
+.newtask {
+  position: absolute;
+  top: 80px;
+  margin-left: 280px;
+}
+
+#Status, #Project {
+  margin-left: 10px;
 }
 
 .pmtasks {

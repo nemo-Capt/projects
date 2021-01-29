@@ -12,7 +12,7 @@ public interface TaskService {
 
     Page<TaskDTO> getTasks(Pageable pageable);
 
-    void addTask(Task task);
+    void addTask(TaskDTO taskDTO);
 
     Task getTask(Long id);
 
