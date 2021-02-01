@@ -108,4 +108,15 @@ public class UserServiceImpl implements UserService {
                 );
     }
 
+    @Override
+    public void banUser(String username) {
+        repository.findByUsername(username).setBanned(true);
+    }
+
+    @Override
+    public void unbanUser(String username) {
+        repository.findByUsername(username).setBanned(false);
+    }
+
+
 }

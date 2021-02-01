@@ -1,14 +1,15 @@
 
-L
-java:S2201j"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
-L
-java:S2201w"/The return value of "orElseThrow" must be used.(©—şô8ÎäôÏò.
-S
-java:S1068"6Remove this unused "assigneeRepository" private field.(ÒğÑ¯8Êë„Ëô.
 M
-java:S2201…"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
+java:S2201”"/The return value of "orElseThrow" must be used.(©—şô8ç÷€Ãî.
+L
+java:S2201l"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
+M
+java:S2201‡"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
+T
+java:S1128"7Remove this unused import 'com.project.entity.Project'.(¤¢·8ƒâäíô.
+c
+java:S1128	"FRemove this unused import 'com.project.repository.AssigneeRepository'.(Úó’›8†Û‚ïô.
 U
-java:S1128"8Remove this unused import 'com.project.entity.Assignee'.(Øš•Š8Êë„Ëô.
-]	java:S125F"<This block of commented-out lines of code should be removed.(Äííÿÿÿÿÿ8Àù÷Êô.
-M
-java:S2201’"/The return value of "orElseThrow" must be used.(©—şô8ç÷€Ãî.
+java:S1128"8Remove this unused import 'com.project.entity.Assignee'.(Øš•Š8»©èíô.
+L
+java:S2201y"/The return value of "orElseThrow" must be used.(©—şô8ÎäôÏò.

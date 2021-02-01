@@ -6,6 +6,10 @@ import {Task} from "../../entity/Task";
 import {UserService} from "../../service/user.service";
 import {ProjectService} from "../../service/project.service";
 import {TaskService} from "../../service/task.service";
+import {SignUpDTO} from "../../entity/dto/SignUpDTO";
+import {ApiResponse} from "../../entity/ApiResponse";
+import {RoleService} from "../../service/role.service";
+import {AuthService} from "../../service/auth.service";
 
 
 @Component({
@@ -16,22 +20,31 @@ import {TaskService} from "../../service/task.service";
 export class HomePageComponent implements OnInit {
 
   user: User;
+  users: User[];
   tasks: Task[];
   popup: boolean;
   popup2: boolean;
+  popup3: boolean;
   project: Project;
   task: Task;
   projects: Project[];
-
+  signUpDTO: SignUpDTO;
+  apiResponse: ApiResponse;
+  currentPage: number;
+  allPages: number;
 
   constructor(
     private userService: UserService,
     private tokenStorage: TokenStorageService,
     private projectService: ProjectService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private roleService: RoleService,
+    private authService: AuthService
   ) {
     this.project = new Project();
     this.task = new Task();
+    this.signUpDTO = new SignUpDTO();
+    this.currentPage = 0;
   }
 
   ngOnInit() {
@@ -47,6 +60,38 @@ export class HomePageComponent implements OnInit {
           this.projects = data;
         })
       }
+      if (this.tokenStorage.getRole() === "admin") {
+        this.userService.getAll().subscribe(data => {
+          this.users = data.content;
+          this.allPages = data.totalPages;
+        })
+      }
+    });
+  }
+
+  nextPage() {
+    this.userService.nextPage(this.currentPage).subscribe(data => {
+      this.users = data.content;
+      this.allPages = data.totalPages;
+      if (this.currentPage != this.allPages - 1) {
+        this.currentPage++;
+      }
+    })
+  }
+
+  prevPage() {
+    this.userService.prevPage(this.currentPage).subscribe(data => {
+      this.users = data.content;
+      this.allPages = data.totalPages;
+      if (this.currentPage != 0) {
+        this.currentPage--;
+      }
+    })
+  }
+
+  save() {
+    this.authService.signup(this.signUpDTO).subscribe(data => {
+      this.apiResponse = data;
     });
   }
 
@@ -74,6 +119,24 @@ export class HomePageComponent implements OnInit {
     })
   }
 
+  banUser(username: string) {
+    if (this.user.username != username) {
+      this.userService.ban(username).subscribe(data => {
+
+      });
+    }
+    else {
+      alert('You can\'t ban yourself!');
+    }
+  }
+
+  unbanUser(username: string) {
+    this.userService.unban(username).subscribe(data => {
+
+    });
+  }
+
+
   isAdmin(): boolean {
     return this.tokenStorage.getRole() === 'admin';
 
@@ -98,5 +161,6 @@ export class HomePageComponent implements OnInit {
     return this.tokenStorage.getRole() === 'user';
 
   }
+
 
 }

@@ -4,6 +4,12 @@
   margin-left: 150px;
 }
 
+.newuser {
+  position: absolute;
+  top: 80px;
+  margin-left: 280px;
+}
+
 .newtask {
   position: absolute;
   top: 80px;

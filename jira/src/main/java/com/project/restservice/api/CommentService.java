@@ -15,4 +15,6 @@ public interface CommentService {
 
     void editComment(Comment comment, Long id);
 
+    List<Comment> getCommentsByUsername(String username);
+
 }

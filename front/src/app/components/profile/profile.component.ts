@@ -6,7 +6,8 @@ import {User} from "../../entity/User";
 import {Project} from "../../entity/Project";
 import {Task} from "../../entity/Task"
 import {TaskService} from "../../service/task.service";
-import {subscribeTo} from "rxjs/internal-compatibility";
+import {CommentService} from "../../service/comment.service";
+import {Comment} from "../../entity/Comment";
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +20,14 @@ export class ProfileComponent implements OnInit {
   projects: Project[];
   tasks: Task[];
   showAssignee: boolean;
+  comments: Comment[];
 
   constructor(
     private userService: UserService,
     private tokenStorage: TokenStorageService,
     private projectService: ProjectService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private commentService: CommentService
   ) {
   }
 
@@ -35,8 +38,16 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       this.getProjectsByAssignee(username);
       this.getTaskByAssignee(username);
+      this.getCommentsByUsername(username)
     })
   }
+
+  getCommentsByUsername(username: string) {
+    this.commentService.getCommentsByUsername(username).subscribe(data => {
+      this.comments = data;
+    })
+  }
+
 
   getProjectsByAssignee(username: string) {
     this.projectService.getProjectsByAssignee(username).subscribe(data => {

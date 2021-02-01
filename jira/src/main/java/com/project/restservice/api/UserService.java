@@ -25,4 +25,7 @@ public interface UserService {
 
     void setUserRole(Long id, Long roleId);
 
+    void banUser(String username);
+
+    void unbanUser(String username);
 }

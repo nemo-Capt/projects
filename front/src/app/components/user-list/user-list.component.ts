@@ -12,7 +12,6 @@ import {Page} from "../../entity/Page";
 export class UserListComponent implements OnInit {
 
   users: User[];
-  pageable: Pageable;
   currentPage: number;
   allPages: number;
 
@@ -45,6 +44,7 @@ export class UserListComponent implements OnInit {
     this.userService.getAll().subscribe(data => {
       this.users = data.content;
       this.allPages = data.totalPages;
+      console.log(this.users);
     })
   }
 

@@ -30,4 +30,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getComments() {
         return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(Constants.COMMENT_URL, Comment[].class)));
     }
+
+    @Override
+    public List<Comment> getCommentsByUsername(String username) {
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(Constants.COMMENT_URL + "/username/" + username, Comment[].class)));
+    }
 }

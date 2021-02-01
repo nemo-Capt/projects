@@ -1,6 +1,7 @@
 package com.project.security;
 
 import com.project.entity.User;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -48,7 +49,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !isBanned;
     }
 
     @Override

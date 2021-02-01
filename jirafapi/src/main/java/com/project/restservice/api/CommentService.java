@@ -7,4 +7,6 @@ import java.util.List;
 public interface CommentService {
 
     List<Comment> getComments();
+
+    List<Comment> getCommentsByUsername(String username);
 }

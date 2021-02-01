@@ -42,8 +42,16 @@ export class UserService {
   }
 
   public setRole(userId: number, roleId: number): Observable<ApiResponse> {
-
     // @ts-ignore
     return this.http.put<ApiResponse>(`${this.url}/setrole/${userId}/role?roleId=${roleId}`);
   }
+
+  public ban(username: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/ban/${username}`);
+  }
+
+  public unban(username: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/unban/${username}`);
+  }
+
 }

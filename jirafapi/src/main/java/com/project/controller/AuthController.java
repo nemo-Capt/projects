@@ -4,10 +4,20 @@ import com.project.entity.User;
 import com.project.restservice.api.UserService;
 import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.security.TokenProvider;
+import com.project.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMessage;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,25 +50,28 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public TokenResponse login(@RequestBody SigninRequest signInRequest) {
+    public ResponseEntity<TokenResponse> login(@RequestBody SigninRequest signInRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        signInRequest.getUsername(),
-                        signInRequest.getPassword()
-                )
-        );
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            signInRequest.getUsername(),
+                            signInRequest.getPassword()
+                    )
+            );
 
-        String token = tokenProvider.generateToken(authentication);
-        User user = service.getUserByName(signInRequest.getUsername());
 
-        return new TokenResponse(
-                token,
-                user.getUsername(),
-                user.getRole(),
-                user.getId()
-        );
-
+            String token = tokenProvider.generateToken(authentication);
+            User user = service.getUserByName(signInRequest.getUsername());
+            return new ResponseEntity<>(new TokenResponse(
+                    token,
+                    user.getUsername(),
+                    user.getRole(),
+                    user.getId()
+            ), HttpStatus.OK);
+        } catch (LockedException e) {
+            return new ResponseEntity<>(null, HttpStatus.resolve(510));
+        }
     }
 
 }

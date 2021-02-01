@@ -5,6 +5,7 @@ import {LoginDTO} from "../../entity/dto/LoginDTO";
 import {TokenStorageService} from "../../service/token-storage.service";
 import {Router} from "@angular/router";
 import {SignUpDTO} from "../../entity/dto/SignUpDTO";
+import {HttpClientModule, HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +23,20 @@ export class LoginComponent {
   }
 
   login() {
+
     this.authService.login(this.loginDTO).subscribe(data => {
-      this.tokenResponse = data;
-      this.tokenStorage.saveTokenResponse(this.tokenResponse);
-      this.router.navigate(['/']);
-    })
+        this.tokenResponse = data;
+        this.tokenStorage.saveTokenResponse(this.tokenResponse);
+        this.router.navigate(['/']);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        if (error.status == 510)
+          alert('Account is banned');
+        if (error.status == 403)
+          alert('Wrong credentials');
+      }
+    )
   }
 
 }

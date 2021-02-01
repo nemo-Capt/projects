@@ -1,8 +1,65 @@
 <div *ngIf="isAdmin()">
-  <p>
-    <a href="">user list</a>
-    <a href=""></a>
-  </p>
+  <button class="btn newuser btn-outline-dark" (click)="popup3 = true">New User</button>
+  <div class="overlay" *ngIf="popup3">
+    <div class="popup">
+      <h2>Create new user</h2>
+      <a class="close" (click)="popup3 = false">&times;</a>
+      <form (ngSubmit)="save(); popup3 = false">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Username">Username</label>
+            <input type="text" class="form-control" id="Username" name="username" [(ngModel)]="signUpDTO.username">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="Email">Email</label>
+              <input type="text" class="form-control" id="Email" name="firstName" [(ngModel)]="signUpDTO.email">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="Password">Password</label>
+              <input type="password" class="form-control" id="Password" name="password"
+                     [(ngModel)]="signUpDTO.password">
+            </div>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+  <h1>Total pages: {{allPages}}</h1>
+  <h2>Current page: {{currentPage + 1}}</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Banned</th>
+      <th scope="col">Role</th>
+      <th scope="col">Ban</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td>{{user.banned}}</td>
+      <td>{{user.role}}</td>
+      <td>
+        <button *ngIf="!user.banned" class="btn btn-outline-dark" (click)="banUser(user.username)">Ban</button>
+        <button *ngIf="user.banned" class="btn btn-outline-dark" (click)="unbanUser(user.username)">Unban</button>
+      </td>
+
+    </tr>
+    <button class="btn btn-outline-dark" (click)="prevPage()" style="margin-left: 40px;">Previous</button>
+    <button class="btn btn-outline-dark" (click)="nextPage()" style="margin-left: 10px;">Next</button>
+    </tbody>
+  </table>
+
+
 </div>
 
 <div *ngIf="isDeveloper()">

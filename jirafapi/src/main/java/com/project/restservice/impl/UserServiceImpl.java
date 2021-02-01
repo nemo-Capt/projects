@@ -81,4 +81,14 @@ public class UserServiceImpl implements UserService {
                 null,
                 ApiResponse.class);
     }
+
+    @Override
+    public void banUser(String username) {
+        restTemplate.getForObject(Constants.USER_URL + "/ban/" + username, ApiResponse.class);
+    }
+
+    @Override
+    public void unbanUser(String username) {
+        restTemplate.getForObject(Constants.USER_URL + "/unban/" + username, ApiResponse.class);
+    }
 }

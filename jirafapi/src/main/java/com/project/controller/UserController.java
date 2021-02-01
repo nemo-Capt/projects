@@ -61,4 +61,14 @@ public class UserController {
         service.setUserRole(userId, roleName);
     }
 
+    @GetMapping("/ban/{username}")
+    public void ban(@PathVariable String username) {
+        service.banUser(username);
+    }
+
+    @GetMapping("/unban/{username}")
+    public void unban(@PathVariable String username) {
+        service.unbanUser(username);
+    }
+
 }

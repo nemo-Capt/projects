@@ -33,6 +33,13 @@ public class CommentController {
         return comments;
     }
 
+    @GetMapping(path = "/username/{username}")
+    public List<Comment> getCommentsByUsername(@PathVariable String username) {
+
+        List<Comment> comments = service.getCommentsByUsername(username);
+        return comments;
+    }
+
     @GetMapping(path = "/{id}")
     public Optional<Comment> find(@PathVariable("id") Long id) {
 

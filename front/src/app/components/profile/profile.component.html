@@ -63,7 +63,14 @@
             <label for="taskDesc">Desc:</label>
             <input type="text" class="form-control" id="TaskDesc" name="taskDesc" [(ngModel)]="task.desc">
             <label for="TaskPriority">Priority:</label>
-            <input type="text" class="form-control" id="TaskPriority" name="taskPriority" [(ngModel)]="task.priority">
+            <br>
+            <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority">
+              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="orange">Orange</option>
+              <option value="red">Red</option>
+            </select>
+            <br>
             <label for="TaskDuedate">Due:</label>
             <input type="text" class="form-control" id="TaskDuedate" name="taskDuedate" [(ngModel)]="task.duedate">
             <label for="TaskEstimatedtime">Estimated:</label>
@@ -87,6 +94,10 @@
               <button class="btn btn-outline-dark" (click)="switchAssignee()">Edit</button>
             </h5>
             <h5 class="card-title">Project: {{task.project}}</h5>
+            <div class="card" *ngFor="let comment of comments">
+              <h5 class="card-title" *ngIf="comment.task === task.name">Comment {{comment.text}} left
+                by {{user.username}}</h5>
+            </div>
           </div>
         </div>
       </div>

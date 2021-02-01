@@ -81,5 +81,16 @@ public class UserController {
     public void setUserRole(@PathVariable long id, @RequestParam long roleId) {
         service.setUserRole(id, roleId);
     }
+
+    @GetMapping(path = "/ban/{username}")
+    public void banUser(@PathVariable String username) {
+        service.banUser(username);
+    }
+
+    @GetMapping(path = "/unban/{username}")
+    public void unbanUser(@PathVariable String username) {
+        service.unbanUser(username);
+    }
+
 }
 
