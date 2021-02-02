@@ -78,8 +78,8 @@ public class UserController {
     }
 
     @PutMapping(path = "/setrole/{id}/role")
-    public void setUserRole(@PathVariable long id, @RequestParam long roleId) {
-        service.setUserRole(id, roleId);
+    public void setUserRole(@PathVariable long id, @RequestParam String role) {
+        service.setUserRole(id, role);
     }
 
     @GetMapping(path = "/ban/{username}")

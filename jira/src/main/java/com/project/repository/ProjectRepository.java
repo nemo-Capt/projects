@@ -9,6 +9,4 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     Project findByName(String name);
 
-//    Project findAllByAssigneesContaining(List<String> assignees);
-
 }

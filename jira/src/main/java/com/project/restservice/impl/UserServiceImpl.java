@@ -96,8 +96,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setUserRole(Long id, Long roleId) {
-        Role newRole = roleRepository.getOne(roleId);
+    public void setUserRole(Long id, String role) {
+        Role newRole = roleRepository.findByRolename(role);
         repository.findById(id)
                 .map(oldUser -> {
                     oldUser.setRole(newRole);

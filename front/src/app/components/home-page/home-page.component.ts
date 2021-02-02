@@ -58,7 +58,7 @@ export class HomePageComponent implements OnInit {
         this.getTaskByReporter(username);
         this.projectService.getProjectsByAssignee(username).subscribe(data => {
           this.projects = data;
-        })
+        });
       }
       if (this.tokenStorage.getRole() === "admin") {
         this.userService.getAll().subscribe(data => {
@@ -95,6 +95,12 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  changeRole(user: User, userid: number, role: string) {
+    this.userService.setRole(user, userid, role).subscribe(data => {
+
+    })
+  }
+
   addProject() {
     this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe(data => {
 
@@ -124,8 +130,7 @@ export class HomePageComponent implements OnInit {
       this.userService.ban(username).subscribe(data => {
 
       });
-    }
-    else {
+    } else {
       alert('You can\'t ban yourself!');
     }
   }

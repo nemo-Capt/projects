@@ -18,7 +18,7 @@ public interface UserService {
 
     User register(RegistrationUserDTO registrationUserDTO);
 
-    void setUserRole(Long id, Long roleId);
+    void setUserRole(Long id, String role);
 
     void banUser(String username);
 

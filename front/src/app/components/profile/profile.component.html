@@ -76,6 +76,12 @@
             <label for="TaskEstimatedtime">Estimated:</label>
             <input type="text" class="form-control" id="TaskEstimatedtime" name="taskEstimatedtime"
                    [(ngModel)]="task.estimatedtime">
+            <label for="Status">Status</label>
+            <select name="status" id="Status" [(ngModel)]="task.status">
+              <option value="to do">to do</option>
+              <option value="in progress">in progress</option>
+              <option value="done">done</option>
+            </select>
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
           <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task)">
@@ -94,9 +100,18 @@
               <button class="btn btn-outline-dark" (click)="switchAssignee()">Edit</button>
             </h5>
             <h5 class="card-title">Project: {{task.project}}</h5>
-            <div class="card" *ngFor="let comment of comments">
-              <h5 class="card-title" *ngIf="comment.task === task.name">Comment {{comment.text}} left
-                by {{user.username}}</h5>
+            <form (ngSubmit)="addComment(comment, user.username, task.name)">
+              <button type="submit" class="btn btn-outline-dark" style="width: 200px; margin-left: -1px;">Add comment
+              </button>
+              <br>
+              <textarea [(ngModel)]="comment.text" placeholder="Comment" name="commentText"
+                        style="width: 200px;"></textarea>
+            </form>
+
+            <div *ngFor="let comment of comments">
+              <h5 class="card-title" *ngIf="comment.task === task.name">{{comment.date}}
+                Comment "{{comment.text}}" left
+                by {{user.username}}<a class="close" (click)="deleteComment(comment.id)">&times;</a></h5>
             </div>
           </div>
         </div>

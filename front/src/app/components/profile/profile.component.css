@@ -9,3 +9,10 @@
   padding: 0;
   width: 75px;
 }
+.close {
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}

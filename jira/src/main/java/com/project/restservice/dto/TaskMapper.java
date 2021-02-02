@@ -14,8 +14,10 @@ public class TaskMapper {
         }
         TaskDTO taskDTO = new TaskDTO();
         taskDTO.setId(task.getId());
-        taskDTO.setUser(task.getUser().getUsername());
-        taskDTO.setAssignee(task.getAssignee().getUsername());
+        if(task.getUser() != null)
+            taskDTO.setUser(task.getUser().getUsername());
+        if(task.getAssignee() != null)
+            taskDTO.setAssignee(task.getAssignee().getUsername());
         taskDTO.setProject(task.getProject().getName());
         taskDTO.setName(task.getName());
         taskDTO.setDesc(task.getDesc());

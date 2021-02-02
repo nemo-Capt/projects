@@ -8,6 +8,7 @@ import {Task} from "../../entity/Task"
 import {TaskService} from "../../service/task.service";
 import {CommentService} from "../../service/comment.service";
 import {Comment} from "../../entity/Comment";
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -21,14 +22,18 @@ export class ProfileComponent implements OnInit {
   tasks: Task[];
   showAssignee: boolean;
   comments: Comment[];
+  comment: Comment;
+  currentDate: number;
 
   constructor(
     private userService: UserService,
     private tokenStorage: TokenStorageService,
     private projectService: ProjectService,
     private taskService: TaskService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    public datepipe: DatePipe
   ) {
+    this.comment = new Comment();
   }
 
   ngOnInit() {
@@ -38,7 +43,21 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       this.getProjectsByAssignee(username);
       this.getTaskByAssignee(username);
-      this.getCommentsByUsername(username)
+      this.getCommentsByUsername(username);
+      this.currentDate = Date.now();
+    })
+  }
+
+  addComment(comment: Comment, username: string, task: string) {
+    this.comment.date = this.datepipe.transform(this.currentDate, 'yyyy-dd-MM HH:mm:ss');
+    this.commentService.addComment(comment, username, task).subscribe(data => {
+
+    })
+  }
+
+  deleteComment(id: number) {
+    this.commentService.deleteComment(id).subscribe(data => {
+
     })
   }
 

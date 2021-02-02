@@ -47,7 +47,15 @@
     <tr *ngFor="let user of users">
       <td>{{user.username}}</td>
       <td>{{user.banned}}</td>
-      <td>{{user.role}}</td>
+      <td><b *ngIf="user.role === 'admin'">{{user.role}}</b>
+        <select *ngIf="user.role != 'admin'" [(ngModel)]="user.role" name="role" (change)="changeRole(user, user.id, user.role)">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option value="productmanager">PM</option>
+          <option value="developer">Developer</option>
+          <option value="tester">Tester</option>
+        </select>
+      </td>
       <td>
         <button *ngIf="!user.banned" class="btn btn-outline-dark" (click)="banUser(user.username)">Ban</button>
         <button *ngIf="user.banned" class="btn btn-outline-dark" (click)="unbanUser(user.username)">Unban</button>
@@ -144,6 +152,13 @@
             <select name="project" id="Project" [(ngModel)]="task.project">
               <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
             </select>
+
+            <label for="Reporter">Reporter</label>
+            <input name="reporter" id="Reporter" [(ngModel)]="task.user">
+
+            <label for="Assignee">Assignee</label>
+            <input name="assignee" id="Assignee" [(ngModel)]="task.assignee">
+
           </div>
         </div>
         <button type="submit" class="btn btn-outline-dark">Submit</button>

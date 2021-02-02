@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CommentService {
 
-    void addComment(Comment comment);
+    void addComment(Comment comment, String username, String task);
 
     List<Comment> getComments();
 
@@ -16,5 +16,7 @@ public interface CommentService {
     void editComment(Comment comment, Long id);
 
     List<Comment> getCommentsByUsername(String username);
+
+    void deleteComment(Long id);
 
 }

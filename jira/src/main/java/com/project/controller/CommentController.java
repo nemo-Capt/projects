@@ -3,12 +3,14 @@ package com.project.controller;
 import com.project.entity.Comment;
 import com.project.restservice.api.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -47,14 +49,21 @@ public class CommentController {
         return comment;
     }
 
-    @PostMapping(consumes = "application/json")
-    public void create(@RequestBody Comment comment) {
-        service.addComment(comment);
+    @PostMapping()
+    public void create(@RequestBody Comment comment, @RequestParam String username, @RequestParam String task) {
+
+        service.addComment(comment, username, task);
     }
 
     @PutMapping(path = "/{id}")
     public void edit(@RequestBody Comment comment, @PathVariable long id) {
         service.editComment(comment, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteComment(@PathVariable Long id) {
+
+        service.deleteComment(id);
     }
 
 }

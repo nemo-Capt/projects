@@ -55,6 +55,8 @@ public class TaskServiceImpl implements TaskService {
         task.setPriority("green");
         task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
         task.setProject(projectRepository.findByName(taskDTO.getProject()));
+        task.setUser(userRepository.findByUsername(taskDTO.getUser()));
+        task.setAssignee(userRepository.findByUsername(taskDTO.getAssignee()));
 
         repository.save(task);
     }

@@ -23,7 +23,7 @@ public interface UserService {
 
     void editUser(User user, Long id);
 
-    void setUserRole(Long id, Long roleId);
+    void setUserRole(Long id, String role);
 
     void banUser(String username);
 

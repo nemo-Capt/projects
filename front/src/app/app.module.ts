@@ -22,6 +22,7 @@ import {TaskService} from "./service/task.service";
 import { TaskComponent } from './components/task/task.component';
 import { CommentComponent } from './components/comment/comment.component';
 import {CommentService} from "./service/comment.service";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {CommentService} from "./service/comment.service";
     ProjectService,
     TaskService,
     CommentService,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
