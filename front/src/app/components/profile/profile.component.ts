@@ -111,7 +111,7 @@ export class ProfileComponent implements OnInit {
 
 
   switchTask(task: Task) {
-    task.shown = !task.shown;
+    task.showEdit = !task.showEdit;
   }
 
   saveTask(task: Task) {

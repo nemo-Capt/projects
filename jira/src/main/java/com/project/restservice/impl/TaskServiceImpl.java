@@ -52,7 +52,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
 
         task.setName(taskDTO.getName());
-        task.setPriority("green");
+        task.setPriority("low");
         task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
         task.setProject(projectRepository.findByName(taskDTO.getProject()));
         task.setUser(userRepository.findByUsername(taskDTO.getUser()));
@@ -106,6 +106,7 @@ public class TaskServiceImpl implements TaskService {
                     oldTask.setPriority(task.getPriority());
                     oldTask.setDuedate(task.getDuedate());
                     oldTask.setEstimatedtime(task.getEstimatedtime());
+                    oldTask.setStatus(statusRepository.findByStatus(task.getStatus()));
                     return repository.save(oldTask);
                 })
                 .orElseThrow(

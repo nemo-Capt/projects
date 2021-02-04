@@ -1,5 +1,6 @@
-.tasks {
-  margin-left: 380px;
+.showtaskbtn {
+  position: absolute;
+  right: 10px;
 }
 
 .btn {

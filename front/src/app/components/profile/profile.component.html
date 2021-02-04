@@ -14,11 +14,12 @@
     </div>
 
     <div class="col-sm-8">
-      <h3>Projects</h3>
-      <div class="card" *ngFor="let project of projects">
+      <h3 style="margin-top: 20px;">Projects</h3>
+      <div class="card" *ngFor="let project of projects" style="margin-top: 50px;">
         <div class="card-header">
-          Project name: {{project.name}}
-          <button class="btn btn-outline-dark" (click)="switchProject(project)">Edit</button>
+          <h4>{{project.name}}
+            <button class="btn btn-outline-dark" (click)="switchProject(project)">Edit</button>
+          </h4>
         </div>
         <div class="card-body">
           <form *ngIf="project.shown" (ngSubmit)="saveProject(project); switchProject(project)">
@@ -65,90 +66,102 @@
             </h5>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="tasks col-sm-8">
-      <h3>Tasks</h3>
-      <div class="card" *ngFor="let task of tasks">
-        <div class="card-header">
-          Task name: {{task.name}}
-          <button class="btn btn-outline-dark" (click)="switchTask(task)">Edit</button>
-        </div>
-        <div class="card-body">
-          <form *ngIf="task.shown" (ngSubmit)="saveTask(task); switchTask(task);">
-            <label for="TaskName">Name:</label>
-            <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.name">
-            <label for="taskDesc">Desc:</label>
-            <input type="text" class="form-control" id="TaskDesc" name="taskDesc" [(ngModel)]="task.desc">
-            <label for="TaskPriority">Priority:</label>
-            <br>
-            <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority">
-              <option value="blocker">Blocker</option>
-              <option value="critical">Critical</option>
-              <option value="major">Major</option>
-              <option value="highest">Highest</option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-              <option value="lowest">Lowest</option>
-              <option value="minor">Minor</option>
-              <option value="trivial">Trivial</option>
-            </select>
-            <br>
-            <label for="TaskDuedate">Due:</label>
-            <input type="datetime-local" class="form-control" id="TaskDuedate" name="taskDuedate"
-                   [(ngModel)]="task.duedate">
-            <label for="Status">Status</label>
-            <select name="status" id="Status" [(ngModel)]="task.status">
-              <option value="to do">to do</option>
-              <option value="in progress">in progress</option>
-              <option value="done">done</option>
-            </select>
-            <br>
-            <button type="submit" class="btn btn-outline-dark">Submit</button>
-          </form>
-          <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
-            <label for="Assignee">Assignee:</label>
-            <input type="text" class="form-control" id="Assignee" name="Assignee" [(ngModel)]="task.assignee">
-            <button type="submit" class="btn btn-outline-dark">Submit</button>
-          </form>
-          <form *ngIf="showReporter" (ngSubmit)="saveReporter(task); switchReporter();">
-            <label for="Reporter">Reporter:</label>
-            <input type="text" class="form-control" id="Reporter" name="reporter" [(ngModel)]="task.user">
-            <button type="submit" class="btn btn-outline-dark">Submit</button>
-          </form>
-          <div *ngIf="!task.shown">
-            <h5 class="card-title">Description: {{task.desc}}</h5>
-            <h5 class="card-title">Priority: {{task.priority}}</h5>
-            <h5 class="card-title">Due: {{task.duedate}}</h5>
-            <h5 class="card-title">Started: {{task.estimatedtime}}</h5>
-            <h5 class="card-title">Status: {{task.status}}</h5>
-            <h5 class="card-title">Reporter: {{task.user}}
-              <button class="btn btn-outline-dark" (click)="switchReporter()">Edit</button>
-            </h5>
-            <h5 class="card-title">Assignee: {{task.assignee}}
-              <button class="btn btn-outline-dark" (click)="switchAssignee()">Edit</button>
-            </h5>
-            <h5 class="card-title">Project: {{task.project}}</h5>
-            <form (ngSubmit)="addComment(comment, user.username, task.name)">
-              <button type="submit" class="btn btn-outline-dark" style="width: 200px; margin-left: -1px;">Add comment
-              </button>
-              <br>
-              <textarea [(ngModel)]="comment.text" placeholder="Comment" name="commentText"
-                        style="width: 200px;"></textarea>
-            </form>
 
-            <div *ngFor="let comment of task.comments">
-              <h5 class="card-title">{{comment.date}}
-                Comment "{{comment.text}}" left
-                by {{comment.user}}<a *ngIf="comment.user == user.username" class="close"
-                                      (click)="deleteComment(comment.id)">&times;</a></h5>
+        <div class="tasks">
+          <h4 style="margin-left: 20px;">Your Tasks:</h4>
+          <div *ngFor="let task of tasks">
+            <div class="card" *ngIf="task.project == project.name">
+              <div class="card-header">
+                <h4>{{task.name}}
+                  <button class="btn btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit</button>
+                  <button class="showtaskbtn btn btn-outline-dark" (click)="task.showTask = !task.showTask">Show</button>
+                </h4>
+              </div>
+              <div class="card-body" *ngIf="task.showTask">
+                <form *ngIf="task.showEdit" (ngSubmit)="saveTask(task); switchTask(task);">
+                  <label for="TaskName">Name:</label>
+                  <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.name">
+                  <label for="TaskDesc">Desc:</label>
+                  <input class="form-control" id="TaskDesc" name="taskDesc" [(ngModel)]="task.desc">
+                  <label for="TaskPriority">Priority:</label>
+                  <br>
+                  <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority">
+                    <option value="blocker">Blocker</option>
+                    <option value="critical">Critical</option>
+                    <option value="major">Major</option>
+                    <option value="highest">Highest</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                    <option value="lowest">Lowest</option>
+                    <option value="minor">Minor</option>
+                    <option value="trivial">Trivial</option>
+                  </select>
+                  <br>
+                  <label for="TaskDuedate">Due:</label>
+                  <input type="datetime-local" class="form-control" id="TaskDuedate" name="taskDuedate"
+                         [(ngModel)]="task.duedate">
+                  <label for="Status">Status</label>
+                  <br>
+                  <select name="status" id="Status" [(ngModel)]="task.status">
+                    <option value="to do">to do</option>
+                    <option value="in progress">in progress</option>
+                    <option value="done">done</option>
+                  </select>
+                  <br>
+                  <br>
+                  <button type="submit" class="btn btn-outline-dark">Submit</button>
+                </form>
+                <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
+                  <label for="Assignee">Assignee:</label>
+                  <input type="text" class="form-control" id="Assignee" name="Assignee" [(ngModel)]="task.assignee">
+                  <button type="submit" class="btn btn-outline-dark">Submit</button>
+                </form>
+                <form *ngIf="showReporter" (ngSubmit)="saveReporter(task); switchReporter();">
+                  <label for="Reporter">Reporter:</label>
+                  <input type="text" class="form-control" id="Reporter" name="reporter" [(ngModel)]="task.user">
+                  <button type="submit" class="btn btn-outline-dark">Submit</button>
+                </form>
+                <div *ngIf="!task.showEdit">
+                  <h5 class="card-title">Description: {{task.desc}}</h5>
+                  <h5 class="card-title">Priority: {{task.priority}}</h5>
+                  <h5 class="card-title">Due: {{task.duedate}}</h5>
+                  <h5 class="card-title">Started: {{task.estimatedtime}}</h5>
+                  <h5 class="card-title">Status: {{task.status}}</h5>
+                  <h5 class="card-title">Reporter: {{task.user}}
+                    <button class="btn btn-outline-dark" (click)="switchReporter()">Edit</button>
+                  </h5>
+                  <h5 class="card-title">Assignee: {{task.assignee}}
+                    <button class="btn btn-outline-dark" (click)="switchAssignee()">Edit</button>
+                  </h5>
+                  <h5 class="card-title">Project: {{task.project}}</h5>
+                  <form (ngSubmit)="addComment(comment, user.username, task.name)">
+                    <button type="submit" class="btn btn-outline-dark" style="width: 200px; margin-left: -1px;">Add
+                      comment
+                    </button>
+                    <br>
+                    <textarea [(ngModel)]="comment.text" placeholder="Comment" name="commentText"
+                              style="width: 200px;"></textarea>
+                  </form>
+
+                  <div *ngFor="let comment of task.comments">
+                    <h5 class="card-title">{{comment.date}}
+                      Comment "{{comment.text}}" left
+                      by {{comment.user}}<a *ngIf="comment.user == user.username" class="close"
+                                            (click)="deleteComment(comment.id)">&times;</a></h5>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
+
         </div>
       </div>
     </div>
+
 
   </div>
 </div>

@@ -77,6 +77,7 @@ public class TaskServiceImpl implements TaskService {
         newTask.setPriority(task.getPriority());
         newTask.setDuedate(task.getDuedate());
         newTask.setEstimatedtime(task.getEstimatedtime());
+        newTask.setStatus(task.getStatus());
         restTemplate.put(
                 Constants.TASK_URL + "/" + id,
                 newTask
