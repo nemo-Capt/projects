@@ -10,6 +10,7 @@ import {SignUpDTO} from "../../entity/dto/SignUpDTO";
 import {ApiResponse} from "../../entity/ApiResponse";
 import {RoleService} from "../../service/role.service";
 import {AuthService} from "../../service/auth.service";
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -22,9 +23,9 @@ export class HomePageComponent implements OnInit {
   user: User;
   users: User[];
   tasks: Task[];
-  popup: boolean;
-  popup2: boolean;
-  popup3: boolean;
+  newprojectpopup: boolean;
+  newtaskpopup: boolean;
+  newuserpopup: boolean;
   project: Project;
   task: Task;
   projects: Project[];
@@ -32,6 +33,7 @@ export class HomePageComponent implements OnInit {
   apiResponse: ApiResponse;
   currentPage: number;
   allPages: number;
+  currentDate: number;
 
   constructor(
     private userService: UserService,
@@ -39,7 +41,8 @@ export class HomePageComponent implements OnInit {
     private projectService: ProjectService,
     private taskService: TaskService,
     private roleService: RoleService,
-    private authService: AuthService
+    private authService: AuthService,
+    public datepipe: DatePipe
   ) {
     this.project = new Project();
     this.task = new Task();
@@ -95,22 +98,25 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  changeRole(user: User, userid: number, role: string) {
-    this.userService.setRole(user, userid, role).subscribe(data => {
-
-    })
+  changeRole(user: User) {
+    this.userService.setRole(user).subscribe()
   }
 
   addProject() {
-    this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe(data => {
+    this.currentDate = Date.now();
+    this.project.estimatedtime = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+    this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe();
 
-    });
   }
 
   addTask() {
-    this.taskService.addTask(this.task).subscribe(data => {
+    this.currentDate = Date.now();
+    this.task.estimatedtime = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+    if(this.task.assignee == null) {
+      this.task.assignee = this.tokenStorage.getUsername();
+    }
 
-    });
+    this.taskService.addTask(this.task).subscribe();
   }
 
   getTaskByAssignee(assignee: string) {
@@ -130,6 +136,7 @@ export class HomePageComponent implements OnInit {
       this.userService.ban(username).subscribe(data => {
 
       });
+      window.location.reload();
     } else {
       alert('You can\'t ban yourself!');
     }
@@ -139,6 +146,7 @@ export class HomePageComponent implements OnInit {
     this.userService.unban(username).subscribe(data => {
 
     });
+    window.location.reload();
   }
 
 

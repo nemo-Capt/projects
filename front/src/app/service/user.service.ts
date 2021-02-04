@@ -41,8 +41,8 @@ export class UserService {
     return this.http.post<ApiResponse>(`${this.url}/registration`, userDTO);
   }
 
-  public setRole(user: User, userId: number, role: string): Observable<User> {
-    return this.http.put<User>(`${this.url}/setrole/${userId}/role?role=${role}`, user);
+  public setRole(user: User): Observable<User> {
+    return this.http.put<User>(`${this.url}/setrole`, user);
   }
 
   public ban(username: string): Observable<User> {

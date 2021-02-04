@@ -21,29 +21,48 @@
           <button class="btn btn-outline-dark" (click)="switchProject(project)">Edit</button>
         </div>
         <div class="card-body">
-          <form *ngIf="project.shown" (ngSubmit)="saveProject(project)">
+          <form *ngIf="project.shown" (ngSubmit)="saveProject(project); switchProject(project)">
             <label for="ProjectName">Name:</label>
             <input type="text" class="form-control" id="ProjectName" name="name" [(ngModel)]="project.name">
             <label for="ProjectDesc">Desc:</label>
             <input type="text" class="form-control" id="ProjectDesc" name="projectDesc" [(ngModel)]="project.desc">
             <label for="ProjectStage">Stage:</label>
-            <input type="text" class="form-control" id="ProjectStage" name="projectPriority"
-                   [(ngModel)]="project.stage">
+            <select class="form-control" id="ProjectStage" name="projectPriority"
+                    [(ngModel)]="project.stage">
+              <option value="to do">To do</option>
+              <option value="in progress">In progress</option>
+              <option value="done">Done</option>
+            </select>
             <label for="ProjectDuedate">Due:</label>
-            <input type="text" class="form-control" id="ProjectDuedate" name="projectDuedate"
+            <input type="datetime-local" class="form-control"
+                   id="ProjectDuedate" name="projectDuedate"
                    [(ngModel)]="project.duedate">
-            <label for="ProjectEstimatedtime">Estimated:</label>
-            <input type="text" class="form-control" id="ProjectEstimatedtime" name="rojectEstimatedtime"
-                   [(ngModel)]="project.estimatedtime">
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+          </form>
+          <form *ngIf="showProjectAssignees" (ngSubmit)="addAssignee(project.id); switchProjectAssignees();">
+            <label for="ProjectAssignee">Assignee:</label>
+            <input type="text" class="form-control" id="ProjectAssignee" name="projectAssignee"
+                   [(ngModel)]="projectUser.username">
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+          </form>
+          <form *ngIf="showDeleteAssignee" (ngSubmit)="deleteAssignee(project.id); switchDeleteAssignee();">
+            <label for="DeleteAssignee">Who do you want to remove?</label>
+            <select class="form-control" id="DeleteAssignee" name="deleteAssignee"
+                    [(ngModel)]="projectUser.username">
+              <option *ngFor="let assignee of project.assignees" value="{{assignee}}">{{assignee}}</option>
+            </select>
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
           <div *ngIf="!project.shown">
             <h5 class="card-title">Stage: {{project.stage}}</h5>
             <h5 class="card-title">Tasks: {{project.tasks}}</h5>
             <h5 class="card-title">Due: {{project.duedate}}</h5>
-            <h5 class="card-title">Estimated: {{project.estimatedtime}}</h5>
+            <h5 class="card-title">Started: {{project.estimatedtime}}</h5>
             <h5 class="card-title">Description: {{project.desc}}</h5>
-            <h5 class="card-title">Assignees: {{project.assignees}}</h5>
+            <h5 class="card-title">Assignees: {{project.assignees}}
+              <button class="btn btn-outline-dark" (click)="switchProjectAssignees()">Add</button>
+              <button class="btn btn-outline-dark" (click)="switchDeleteAssignee()">Delete</button>
+            </h5>
           </div>
         </div>
       </div>
@@ -57,7 +76,7 @@
           <button class="btn btn-outline-dark" (click)="switchTask(task)">Edit</button>
         </div>
         <div class="card-body">
-          <form *ngIf="task.shown" (ngSubmit)="saveTask(task)">
+          <form *ngIf="task.shown" (ngSubmit)="saveTask(task); switchTask(task);">
             <label for="TaskName">Name:</label>
             <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.name">
             <label for="taskDesc">Desc:</label>
@@ -65,37 +84,49 @@
             <label for="TaskPriority">Priority:</label>
             <br>
             <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority">
-              <option value="green">Green</option>
-              <option value="yellow">Yellow</option>
-              <option value="orange">Orange</option>
-              <option value="red">Red</option>
+              <option value="blocker">Blocker</option>
+              <option value="critical">Critical</option>
+              <option value="major">Major</option>
+              <option value="highest">Highest</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+              <option value="lowest">Lowest</option>
+              <option value="minor">Minor</option>
+              <option value="trivial">Trivial</option>
             </select>
             <br>
             <label for="TaskDuedate">Due:</label>
-            <input type="text" class="form-control" id="TaskDuedate" name="taskDuedate" [(ngModel)]="task.duedate">
-            <label for="TaskEstimatedtime">Estimated:</label>
-            <input type="text" class="form-control" id="TaskEstimatedtime" name="taskEstimatedtime"
-                   [(ngModel)]="task.estimatedtime">
+            <input type="datetime-local" class="form-control" id="TaskDuedate" name="taskDuedate"
+                   [(ngModel)]="task.duedate">
             <label for="Status">Status</label>
             <select name="status" id="Status" [(ngModel)]="task.status">
               <option value="to do">to do</option>
               <option value="in progress">in progress</option>
               <option value="done">done</option>
             </select>
+            <br>
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
-          <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task)">
+          <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
             <label for="Assignee">Assignee:</label>
             <input type="text" class="form-control" id="Assignee" name="Assignee" [(ngModel)]="task.assignee">
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+          </form>
+          <form *ngIf="showReporter" (ngSubmit)="saveReporter(task); switchReporter();">
+            <label for="Reporter">Reporter:</label>
+            <input type="text" class="form-control" id="Reporter" name="reporter" [(ngModel)]="task.user">
             <button type="submit" class="btn btn-outline-dark">Submit</button>
           </form>
           <div *ngIf="!task.shown">
             <h5 class="card-title">Description: {{task.desc}}</h5>
             <h5 class="card-title">Priority: {{task.priority}}</h5>
             <h5 class="card-title">Due: {{task.duedate}}</h5>
-            <h5 class="card-title">Estimated: {{task.estimatedtime}}</h5>
+            <h5 class="card-title">Started: {{task.estimatedtime}}</h5>
             <h5 class="card-title">Status: {{task.status}}</h5>
-            <h5 class="card-title">Reporter: {{task.user}}</h5>
+            <h5 class="card-title">Reporter: {{task.user}}
+              <button class="btn btn-outline-dark" (click)="switchReporter()">Edit</button>
+            </h5>
             <h5 class="card-title">Assignee: {{task.assignee}}
               <button class="btn btn-outline-dark" (click)="switchAssignee()">Edit</button>
             </h5>
@@ -108,10 +139,11 @@
                         style="width: 200px;"></textarea>
             </form>
 
-            <div *ngFor="let comment of comments">
-              <h5 class="card-title" *ngIf="comment.task === task.name">{{comment.date}}
+            <div *ngFor="let comment of task.comments">
+              <h5 class="card-title">{{comment.date}}
                 Comment "{{comment.text}}" left
-                by {{user.username}}<a class="close" (click)="deleteComment(comment.id)">&times;</a></h5>
+                by {{comment.user}}<a *ngIf="comment.user == user.username" class="close"
+                                      (click)="deleteComment(comment.id)">&times;</a></h5>
             </div>
           </div>
         </div>

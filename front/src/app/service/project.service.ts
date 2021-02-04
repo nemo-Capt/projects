@@ -35,4 +35,16 @@ export class ProjectService {
     return this.http.put<Project>(`${this.url}/${id}`, project);
   }
 
+  public addAssignee(id: number, assignee: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.url}/addassignee/${id}/${assignee}`, ApiResponse);
+  }
+
+  public deleteAssignee(projectId: number, username: string): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.url}/deleteassignee/${projectId}/${username}`);
+  }
+
+  public getProjectByName(name: string): Observable<Project> {
+    return this.http.get<Project>(`${this.url}/name/${name}`);
+  }
+
 }

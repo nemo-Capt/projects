@@ -17,7 +17,9 @@ public interface ProjectService {
 
     void editProject(Project project, Long id);
 
-    void assignAssignee(Long id, Long userId);
+    void assignAssignee(Long id, String assignee);
+
+    void removeAssignee(Long projectId, String username);
 
     void addTask(Long id, Long taskId);
 

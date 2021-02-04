@@ -13,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,4 +72,17 @@ public class ProjectController {
 
         service.editProject(project, id);
     }
+
+    @PutMapping(path = "/addassignee/{id}/{assignee}")
+    public void addAssignee(@PathVariable Long id, @PathVariable String assignee) {
+
+        service.assignAssignee(id, assignee);
+    }
+
+    @DeleteMapping(path = "/deleteassignee/{projectId}/{username}")
+    public void deleteAssignee(@PathVariable Long projectId, @PathVariable String username) {
+
+        service.removeAssignee(projectId, username);
+    }
+
 }

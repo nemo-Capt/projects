@@ -27,6 +27,10 @@ export class CommentService {
     return this.http.get<Comment[]>(`${this.url}/username/${username}`);
   }
 
+  public getCommentsByTask(task: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.url}/task/${task}`);
+  }
+
   public deleteComment(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(`${this.url}/${id}`);
   }

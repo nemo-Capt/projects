@@ -48,4 +48,9 @@ export class TaskService {
     return this.http.put<Task>(`${this.url}/addassignee/${task.id}/assignee?assignee=${assignee}`, task);
   }
 
+  public addReporter(task: Task, reporter: string): Observable<Task> {
+    return this.http.put<Task>(`${this.url}/addreporter/${task.id}/reporter?reporter=${reporter}`, task);
+
+  }
+
 }

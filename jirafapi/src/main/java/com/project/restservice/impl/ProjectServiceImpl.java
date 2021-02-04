@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import sun.security.krb5.internal.APOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,8 +74,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void assignAssignee(Long id, Long userId) {
+    public void assignAssignee(Long id, String assignee) {
+        restTemplate.put(Constants.PROJECT_URL + "/addassignee/" + id + "/" + assignee, ApiResponse.class);
+    }
 
+    @Override
+    public void removeAssignee(Long projectId, String username) {
+        restTemplate.delete(Constants.PROJECT_URL + "/deleteassignee/" + projectId + "/" + username);
     }
 
     @Override

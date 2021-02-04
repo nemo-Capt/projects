@@ -43,6 +43,12 @@ public class CommentController {
         return service.getCommentsByUsername(username);
     }
 
+    @GetMapping("/task/{task}")
+    public List<Comment> getCommentsByTask(@PathVariable String task) {
+
+        return service.getCommentsByTask(task);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteComment(@PathVariable Long id) {
 

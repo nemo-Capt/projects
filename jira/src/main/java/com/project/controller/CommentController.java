@@ -42,6 +42,13 @@ public class CommentController {
         return comments;
     }
 
+    @GetMapping(path = "/task/{task}")
+    public List<Comment> getCommentsByTask(@PathVariable String task) {
+
+        List<Comment> comments = service.getCommentsByTask(task);
+        return comments;
+    }
+
     @GetMapping(path = "/{id}")
     public Optional<Comment> find(@PathVariable("id") Long id) {
 

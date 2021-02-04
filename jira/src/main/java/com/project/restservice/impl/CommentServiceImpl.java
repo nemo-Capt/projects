@@ -52,6 +52,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<Comment> getCommentsByTask(String task) {
+        return repository.getCommentsByTaskName(task);
+    }
+
+    @Override
     public Optional<Comment> getComment(Long id) {
         return repository.findById(id);
     }

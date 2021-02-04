@@ -57,6 +57,7 @@ public class TaskServiceImpl implements TaskService {
         task.setProject(projectRepository.findByName(taskDTO.getProject()));
         task.setUser(userRepository.findByUsername(taskDTO.getUser()));
         task.setAssignee(userRepository.findByUsername(taskDTO.getAssignee()));
+        task.setEstimatedtime(taskDTO.getEstimatedtime());
 
         repository.save(task);
     }

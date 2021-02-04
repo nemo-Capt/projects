@@ -100,7 +100,6 @@ public class TaskDTO {
         this.status = status;
     }
 
-    @JsonIgnore
     public List<Comment> getComments() {
         return comments;
     }

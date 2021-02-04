@@ -46,6 +46,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<Comment> getCommentsByTask(String task) {
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(Constants.COMMENT_URL + "/task/" + task, Comment[].class)));
+    }
+
+    @Override
     public void deleteComment(Long id) {
 
         restTemplate.delete(Constants.COMMENT_URL + "/" + id);

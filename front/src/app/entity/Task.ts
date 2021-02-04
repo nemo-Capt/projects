@@ -1,3 +1,5 @@
+import {Comment} from "../entity/Comment";
+
 export class Task {
 
   id: number;
@@ -10,6 +12,7 @@ export class Task {
   duedate: string;
   estimatedtime: string;
   status: string;
+  comments: Comment[];
   shown: boolean;
 
 }

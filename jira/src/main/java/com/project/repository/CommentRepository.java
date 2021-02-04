@@ -9,4 +9,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> getCommentsByUserUsername(String username);
 
+    List<Comment> getCommentsByTaskName(String task);
+
 }

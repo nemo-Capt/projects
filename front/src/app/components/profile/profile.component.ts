@@ -19,8 +19,12 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   projects: Project[];
+  projectUser: User;
   tasks: Task[];
   showAssignee: boolean;
+  showReporter: boolean;
+  showProjectAssignees: boolean;
+  showDeleteAssignee: boolean;
   comments: Comment[];
   comment: Comment;
   currentDate: number;
@@ -34,6 +38,7 @@ export class ProfileComponent implements OnInit {
     public datepipe: DatePipe
   ) {
     this.comment = new Comment();
+    this.projectUser = new User();
   }
 
   ngOnInit() {
@@ -43,19 +48,28 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       this.getProjectsByAssignee(username);
       this.getTaskByAssignee(username);
-      this.getCommentsByUsername(username);
-      this.currentDate = Date.now();
     })
+  }
+
+  addAssignee(id: number) {
+    this.projectService.addAssignee(id, this.projectUser.username).subscribe()
+  }
+
+  deleteAssignee(projectId: number) {
+    this.projectService.deleteAssignee(projectId, this.projectUser.username).subscribe();
   }
 
   addComment(comment: Comment, username: string, task: string) {
-    this.comment.date = this.datepipe.transform(this.currentDate, 'yyyy-dd-MM HH:mm:ss');
+    this.currentDate = Date.now();
+    this.comment.date = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
     this.commentService.addComment(comment, username, task).subscribe(data => {
 
-    })
+    });
+    window.location.reload();
   }
 
   deleteComment(id: number) {
+    window.location.reload();
     this.commentService.deleteComment(id).subscribe(data => {
 
     })
@@ -63,6 +77,12 @@ export class ProfileComponent implements OnInit {
 
   getCommentsByUsername(username: string) {
     this.commentService.getCommentsByUsername(username).subscribe(data => {
+      this.comments = data;
+    })
+  }
+
+  getCommentsByTask(task: string) {
+    this.commentService.getCommentsByTask(task).subscribe(data => {
       this.comments = data;
     })
   }
@@ -85,8 +105,8 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProject(project: Project) {
-    this.projectService.editProject(project, project.id).subscribe(data => {
-    });
+    project.duedate = this.datepipe.transform(project.duedate, 'yyyy-MM-dd HH:mm:ss');
+    this.projectService.editProject(project, project.id).subscribe();
   }
 
 
@@ -95,8 +115,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveTask(task: Task) {
-    this.taskService.editTask(task).subscribe(data => {
-    });
+    this.taskService.editTask(task).subscribe();
   }
 
   switchAssignee() {
@@ -104,8 +123,35 @@ export class ProfileComponent implements OnInit {
   }
 
   saveAssignee(task: Task) {
-    this.taskService.addAssignee(task, task.assignee).subscribe(data => {
+    this.taskService.addAssignee(task, task.assignee).subscribe();
+    this.projectService.getProjectByName(task.project).subscribe(data => {
+      if (!data.assignees.includes(task.user)) {
+        this.projectService.addAssignee(data.id, task.user).subscribe();
+      }
     });
+  }
+
+  switchReporter() {
+    this.showReporter = !this.showReporter;
+  }
+
+  saveReporter(task: Task) {
+    this.taskService.addReporter(task, task.user).subscribe();
+
+    this.projectService.getProjectByName(task.project).subscribe(data => {
+      if (!data.assignees.includes(task.user)) {
+        this.projectService.addAssignee(data.id, task.user).subscribe();
+      }
+    });
+
+  }
+
+  switchProjectAssignees() {
+    this.showProjectAssignees = !this.showProjectAssignees;
+  }
+
+  switchDeleteAssignee() {
+    this.showDeleteAssignee = !this.showDeleteAssignee;
   }
 
 }

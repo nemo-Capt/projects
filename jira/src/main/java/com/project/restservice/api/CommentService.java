@@ -17,6 +17,8 @@ public interface CommentService {
 
     List<Comment> getCommentsByUsername(String username);
 
+    List<Comment> getCommentsByTask(String task);
+
     void deleteComment(Long id);
 
 }

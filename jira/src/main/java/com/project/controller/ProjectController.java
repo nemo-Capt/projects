@@ -75,14 +75,19 @@ public class ProjectController {
         service.editProject(project, id);
     }
 
-    @PutMapping(path = "/addreporter/{id}/{assigneeId}")
-    public void addAssignee(@PathVariable long id, @PathVariable long assigneeId) {
-        service.assignAssignee(id, assigneeId);
+    @PutMapping(path = "/addassignee/{id}/{assignee}")
+    public void addAssignee(@PathVariable long id, @PathVariable String assignee) {
+        service.assignAssignee(id, assignee);
     }
 
     @PutMapping(path = "/addtask/{id}/{taskId}")
     public void addTask(@PathVariable long id, @PathVariable long taskId) {
         service.addTask(id, taskId);
+    }
+
+    @DeleteMapping(path = "/deleteassignee/{projectId}/{username}")
+    public void deleteAssignee(@PathVariable Long projectId, @PathVariable String username) {
+        service.removeAssignee(projectId, username);
     }
 
     @DeleteMapping(path = "/deleteproject/{id}")

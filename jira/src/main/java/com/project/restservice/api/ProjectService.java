@@ -20,7 +20,9 @@ public interface ProjectService {
 
     void editProject(ProjectDTO project, Long id);
 
-    void assignAssignee(Long id, Long userId);
+    void assignAssignee(Long id, String assignee);
+
+    void removeAssignee(Long id, String assignee);
 
     void addTask(Long id, Long taskId);
 

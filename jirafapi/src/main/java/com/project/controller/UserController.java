@@ -55,10 +55,10 @@ public class UserController {
         return new ApiResponse("User successfully created");
     }
 
-    @PutMapping("/setrole/{id}/role")
-    public void changeRole(@PathVariable(name = "id") Long userId, @RequestParam String role) {
+    @PutMapping("/setrole")
+    public void changeRole(@RequestBody User user) {
 
-        service.setUserRole(userId, role);
+        service.setUserRole(user.getId(), user.getRole());
     }
 
     @GetMapping("/ban/{username}")

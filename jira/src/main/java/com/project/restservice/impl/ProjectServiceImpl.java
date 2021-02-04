@@ -54,6 +54,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         project.setName(projectDTO.getName());
         project.setStage("to do");
+        project.setEstimatedtime(projectDTO.getEstimatedtime());
 
         newAssignee.setProject(project);
         newAssignee.setUser(userRepository.findByUsername(assignee));
@@ -109,8 +110,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void assignAssignee(Long id, Long userId) {
-        Assignee newAssignee = assigneeRepository.getOne(userId);
+    public void assignAssignee(Long id, String assignee) {
+        Assignee newAssignee = new Assignee();
+        newAssignee.setProject(repository.getOne(id));
+        newAssignee.setUser(userRepository.findByUsername(assignee));
+        assigneeRepository.save(newAssignee);
         repository.findById(id)
                 .map(oldProject -> {
                     List<Assignee> newAssignees = oldProject.getAssignees();
@@ -122,6 +126,12 @@ public class ProjectServiceImpl implements ProjectService {
                         () -> new EntityNotFoundException("Task hasn't been found")
                 );
     }
+
+    @Override
+    public void removeAssignee(Long id, String assignee) {
+        assigneeRepository.deleteByUserUsernameAndProjectId(assignee, id);
+    }
+
 
     @Override
     public void addTask(Long id, Long taskId) {
