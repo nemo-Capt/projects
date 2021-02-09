@@ -4,6 +4,7 @@
 }
 
 .unassigned {
+  min-width: 620px;
   margin-left: 400px;
   margin-bottom: 100px;
 }
@@ -13,7 +14,7 @@
   height: 30px;
   text-align: center;
   padding: 0;
-  width: 75px;
+  min-width: 75px;
   border-radius: 12px;
   background: none;
   border-color: #a136ac!important;
@@ -72,4 +73,11 @@
 .card-header {
   background: #191919!important;
   color: white;
+}
+
+.card-body {
+  min-width: 620px;
+  max-width: 620px;
+  background: #cdcdcd;
+  border: 1px solid #a136ac;
 }

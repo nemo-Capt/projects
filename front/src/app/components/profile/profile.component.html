@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-      <div class="card" style="width: 20rem;">
+      <div class="card" style="width: 20%; border: 1px solid #a136ac;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Logged id as: <b>{{user.username}}</b></li>
           <li class="list-group-item">Email: {{user.email}}</li>
@@ -66,9 +66,8 @@
 
 
         <div class="tasks">
-          <h4 style="margin-left: 20px;">Your Tasks:</h4>
           <div *ngFor="let task of tasks">
-            <div class="card" *ngIf="task.project == project.name">
+            <div class="card" *ngIf="task.project == project.name" style="border: none;">
               <div class="card-header">
                 <h4>{{task.name}}
                   <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
@@ -89,8 +88,7 @@
                   <label for="TaskDesc">Desc:</label>
                   <input class="form-control" id="TaskDesc" name="taskDesc" [(ngModel)]="task.desc">
                   <label for="TaskPriority">Priority:</label>
-                  <br>
-                  <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority">
+                  <select [(ngModel)]="task.priority" id="TaskPriority" name="taskPriority" class="form-control">
                     <option value="blocker">Blocker</option>
                     <option value="critical">Critical</option>
                     <option value="major">Major</option>
@@ -102,20 +100,16 @@
                     <option value="minor">Minor</option>
                     <option value="trivial">Trivial</option>
                   </select>
-                  <br>
                   <label for="TaskDuedate">Due:</label>
                   <input type="datetime-local" class="form-control" id="TaskDuedate" name="taskDuedate"
                          [(ngModel)]="task.duedate">
                   <label for="Status">Status</label>
-                  <br>
-                  <select name="status" id="Status" [(ngModel)]="task.status">
+                  <select name="status" id="Status" [(ngModel)]="task.status" class="form-control">
                     <option value="to do">to do</option>
                     <option value="in progress">in progress</option>
                     <option value="done">done</option>
                   </select>
-                  <br>
-                  <br>
-                  <button type="submit" class="btn btn-white" style="margin-left: 40%">Submit</button>
+                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
                 </form>
                 <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
                   <label for="Assignee">Assignee:</label>
@@ -170,7 +164,7 @@
     </div>
 
 
-    <div class="unassigned col-sm-8" *ngIf="user.role == 'productmanager'">
+    <div class="unassigned" *ngIf="user.role == 'productmanager'">
       <h3 style="margin-top: 20px;">Unassigned Projects</h3>
       <div class="card" *ngFor="let project of unassignedProjects" style="margin-top: 50px;">
         <div class="card-header">
@@ -227,7 +221,6 @@
 
 
         <div class="tasks">
-          <h4 style="margin-left: 20px;">Your Tasks:</h4>
           <div *ngFor="let task of tasks">
             <div class="card" *ngIf="task.project == project.name">
               <div class="card-header">
@@ -247,8 +240,7 @@
                   <label for="TaskDesc">Desc:</label>
                   <input class="form-control" id="UTaskDesc" name="taskDesc" [(ngModel)]="task.desc">
                   <label for="TaskPriority">Priority:</label>
-                  <br>
-                  <select [(ngModel)]="task.priority" id="UTaskPriority" name="taskPriority">
+                  <select [(ngModel)]="task.priority" id="UTaskPriority" name="taskPriority" class="form-control">
                     <option value="blocker">Blocker</option>
                     <option value="critical">Critical</option>
                     <option value="major">Major</option>
@@ -260,19 +252,15 @@
                     <option value="minor">Minor</option>
                     <option value="trivial">Trivial</option>
                   </select>
-                  <br>
                   <label for="TaskDuedate">Due:</label>
                   <input type="datetime-local" class="form-control" id="UTaskDuedate" name="taskDuedate"
                          [(ngModel)]="task.duedate">
                   <label for="Status">Status</label>
-                  <br>
-                  <select name="status" id="UStatus" [(ngModel)]="task.status">
+                  <select name="status" id="UStatus" [(ngModel)]="task.status" class="form-control">
                     <option value="to do">to do</option>
                     <option value="in progress">in progress</option>
                     <option value="done">done</option>
                   </select>
-                  <br>
-                  <br>
                   <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
                 </form>
                 <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
