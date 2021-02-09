@@ -27,11 +27,13 @@ public class ProjectMapper {
             tasks.add(project.getTasks().get(i).getName());
         }
         projectDTO.setTasks(tasks);
-        List<String> assignees = new ArrayList<>();
-        for (int i = 0; i < project.getAssignees().size(); i++) {
-            assignees.add(project.getAssignees().get(i).getUser().getUsername());
+        if (project.getAssignees() != null) {
+            List<String> assignees = new ArrayList<>();
+            for (int i = 0; i < project.getAssignees().size(); i++) {
+                assignees.add(project.getAssignees().get(i).getUser().getUsername());
+            }
+            projectDTO.setAssignees(assignees);
         }
-        projectDTO.setAssignees(assignees);
         return projectDTO;
     }
 

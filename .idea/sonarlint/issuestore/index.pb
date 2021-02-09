@@ -528,3 +528,5 @@ e
 5front/src/app/components/comment/comment.component.ts,7\f\7f76d945afda85eec23fbae98b8b32fce473bda2
 g
 7front/src/app/components/comment/comment.component.html,9\2\92ad19b85bde5e9fe145cf0f3d804363cd87cea2
+i
+9jira/src/main/java/com/project/restservice/mail/Mail.java,d\c\dcf8f7d7d650c6546070b758f85989193748d7db

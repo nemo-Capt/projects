@@ -10,9 +10,12 @@ import com.project.restservice.api.UserService;
 import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
+import com.project.restservice.mail.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,11 +27,15 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final RoleRepository roleRepository;
+    private final JavaMailSender javaMailSender;
+    private final Mail mail;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository repository, RoleRepository roleRepository, JavaMailSender javaMailSender, Mail mail) {
         this.repository = repository;
         this.roleRepository = roleRepository;
+        this.javaMailSender = javaMailSender;
+        this.mail = mail;
     }
 
     @Override
@@ -101,6 +108,7 @@ public class UserServiceImpl implements UserService {
         repository.findById(id)
                 .map(oldUser -> {
                     oldUser.setRole(newRole);
+                    mail.sendEmail(oldUser.getEmail(), oldUser.getRole().getRolename());
                     return repository.save(oldUser);
                 })
                 .orElseThrow(
@@ -117,6 +125,7 @@ public class UserServiceImpl implements UserService {
     public void unbanUser(String username) {
         repository.findByUsername(username).setBanned(false);
     }
+
 
 
 }

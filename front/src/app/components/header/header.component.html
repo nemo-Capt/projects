@@ -27,12 +27,12 @@
           </li>
         </ul>
         <form class="form-inline" *ngIf="isLogin() else logoutForm">
-          <a class="btn btn-success" href="/profile">Profile</a>
-          <button class="btn btn-success" type="submit" (click)="logout()">Logout</button>
+          <a class="btn" href="/profile">Profile</a>
+          <button class="btn" type="submit" (click)="logout()">Logout</button>
         </form>
         <ng-template #logoutForm>
-          <a class="btn btn-success" href="/login">SignIn</a>
-          <a class="btn btn-success" href="/registration">SignUp</a>
+          <a class="btn" href="/login">SignIn</a>
+          <a class="btn" href="/registration">SignUp</a>
         </ng-template>
       </div>
     </div>

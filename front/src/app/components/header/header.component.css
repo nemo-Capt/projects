@@ -1,3 +1,20 @@
 .btn {
-  margin-left: 10px;
+  background: none;
+  margin-left: 15px;
+  text-align: center;
+  border: 2px solid #a136ac;
+  padding: 7px 20px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer
+}
+
+.btn:hover {
+  background: #a136ac;
+}
+
+.navbar {
+  background: #191919!important;
 }

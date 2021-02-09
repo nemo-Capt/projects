@@ -1,7 +1,11 @@
 
-L
-java:S2201j"/The return value of "orElseThrow" must be used.(©—ώτ8΅Ί‘ξ.
-L
-java:S2201]"/The return value of "orElseThrow" must be used.(©—ώτ8΅Ί‘ξ.
 {
-java:S1128"YRemove this unused import 'org.springframework.security.crypto.password.PasswordEncoder'.(‰΅ίαÿÿÿÿÿ8€Ν―π.
+java:S1128"YRemove this unused import 'org.springframework.security.crypto.password.PasswordEncoder'.(‰΅ίαÿÿÿÿÿ8€Ν―π.
+L
+java:S2201d"/The return value of "orElseThrow" must be used.(©—ώτ8΅Ί‘ξ.
+L
+java:S2201r"/The return value of "orElseThrow" must be used.(©—ώτ8΅Ί‘ξ.
+O
+java:S1068"2Remove this unused "javaMailSender" private field.(ΎχΨχ8…ί²•ψ.
+d
+java:S1128"GRemove this unused import 'org.springframework.mail.SimpleMailMessage'.(€·Κ8…ί²•ψ.

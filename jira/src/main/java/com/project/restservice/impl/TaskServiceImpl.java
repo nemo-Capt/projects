@@ -117,28 +117,32 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void assignAssignee(Long id, String assignee) {
         User newAssignee = userRepository.findByUsername(assignee);
-        repository.findById(id)
-                .map(oldTask -> {
-                    oldTask.setAssignee(newAssignee);
-                    return repository.save(oldTask);
-                })
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Task hasn't been found")
-                );
+        if (newAssignee != null) {
+            repository.findById(id)
+                    .map(oldTask -> {
+                        oldTask.setAssignee(newAssignee);
+                        return repository.save(oldTask);
+                    })
+                    .orElseThrow(
+                            () -> new EntityNotFoundException("Task hasn't been found")
+                    );
+        }
     }
 
 
     @Override
     public void assignReporter(Long id, String reporter) {
         User newReporter = userRepository.findByUsername(reporter);
-        repository.findById(id)
-                .map(oldTask -> {
-                    oldTask.setUser(newReporter);
-                    return repository.save(oldTask);
-                })
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Task hasn't been found")
-                );
+        if (newReporter != null) {
+            repository.findById(id)
+                    .map(oldTask -> {
+                        oldTask.setUser(newReporter);
+                        return repository.save(oldTask);
+                    })
+                    .orElseThrow(
+                            () -> new EntityNotFoundException("Task hasn't been found")
+                    );
+        }
     }
 
     @Override

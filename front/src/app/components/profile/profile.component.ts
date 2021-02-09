@@ -9,6 +9,8 @@ import {TaskService} from "../../service/task.service";
 import {CommentService} from "../../service/comment.service";
 import {Comment} from "../../entity/Comment";
 import {DatePipe} from '@angular/common';
+import {HttpClientModule, HttpErrorResponse} from '@angular/common/http';
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   projects: Project[];
+  unassignedProjects: Project[];
   projectUser: User;
   tasks: Task[];
   showAssignee: boolean;
@@ -48,7 +51,16 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       this.getProjectsByAssignee(username);
       this.getTaskByAssignee(username);
+      if (this.user.role == "productmanager") {
+        this.getUnassignedProjects();
+      }
     })
+  }
+
+  getUnassignedProjects() {
+    this.projectService.getUnassignedProjects().subscribe(data => {
+      this.unassignedProjects = data;
+    });
   }
 
   addAssignee(id: number) {
@@ -109,6 +121,21 @@ export class ProfileComponent implements OnInit {
     this.projectService.editProject(project, project.id).subscribe();
   }
 
+  deleteProjectApprove(id: number) {
+    if (confirm('Are you sure?') == true) {
+      this.deleteProject(id);
+    }
+  }
+
+  deleteProject(id: number) {
+    this.projectService.deleteProject(id).subscribe(data => {
+
+      },
+      (error: HttpErrorResponse) => {
+        alert("Project must be empty");
+      });
+  }
+
 
   switchTask(task: Task) {
     task.showEdit = !task.showEdit;
@@ -116,6 +143,17 @@ export class ProfileComponent implements OnInit {
 
   saveTask(task: Task) {
     this.taskService.editTask(task).subscribe();
+  }
+
+  deleteTaskApprove(id: number) {
+    if (confirm('Are you sure?') == true) {
+      this.deleteTask(id);
+      window.location.reload();
+    }
+  }
+
+  deleteTask(id: number) {
+    this.taskService.deleteTask(id).subscribe();
   }
 
   switchAssignee() {
@@ -136,7 +174,12 @@ export class ProfileComponent implements OnInit {
   }
 
   saveReporter(task: Task) {
-    this.taskService.addReporter(task, task.user).subscribe();
+    this.taskService.addReporter(task, task.user).subscribe(res => {
+
+    }, (err: HttpErrorResponse) => {
+      alert("qq");
+      console.log(err.message);
+    });
 
     this.projectService.getProjectByName(task.project).subscribe(data => {
       if (!data.assignees.includes(task.user)) {

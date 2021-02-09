@@ -31,6 +31,10 @@ export class ProjectService {
     return this.http.get<Project[]>(`${this.url}/assignee/${assignee}`);
   }
 
+  public getUnassignedProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.url}/unassigned`);
+  }
+
   public editProject(project: Project, id: number): Observable<Project> {
     return this.http.put<Project>(`${this.url}/${id}`, project);
   }
@@ -45,6 +49,10 @@ export class ProjectService {
 
   public getProjectByName(name: string): Observable<Project> {
     return this.http.get<Project>(`${this.url}/name/${name}`);
+  }
+
+  public deleteProject(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.url}/${id}`);
   }
 
 }

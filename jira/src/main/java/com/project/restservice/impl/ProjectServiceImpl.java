@@ -89,6 +89,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<ProjectDTO> getUnassignedProjects(Pageable pageable) {
+        Page<ProjectDTO> projectDTOS = repository.findAll(pageable).map(ProjectMapper::createDTO);
+        List<ProjectDTO> newProjects = new ArrayList<>();
+        for (ProjectDTO project : projectDTOS) {
+            if (project.getAssignees().isEmpty()) {
+                newProjects.add(project);
+            }
+        }
+        return newProjects;
+    }
+
+    @Override
     public void deleteProject(Long id) {
         repository.deleteById(id);
     }

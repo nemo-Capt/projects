@@ -56,7 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void deleteProject(Long id) {
-
+        restTemplate.delete(Constants.PROJECT_URL + "/" + id);
     }
 
     @Override
@@ -97,7 +97,14 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> getProjectsByAssignee(String assignee) {
         List<Project> projects = Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
                 Constants.PROJECT_URL + "/assignee/" + assignee, Project[].class)));
-        System.out.println(projects.get(0));
         return projects;
     }
+
+    @Override
+    public List<Project> getUnassignedProjects() {
+        List<Project> projects = Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.PROJECT_URL + "/unassigned", Project[].class)));
+        return projects;
+    }
+
 }

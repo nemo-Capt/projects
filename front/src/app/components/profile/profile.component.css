@@ -3,17 +3,73 @@
   right: 10px;
 }
 
-.btn {
+.unassigned {
+  margin-left: 400px;
+  margin-bottom: 100px;
+}
+
+.btn-black {
   margin-left: 20px;
   height: 30px;
   text-align: center;
   padding: 0;
   width: 75px;
+  border-radius: 12px;
+  background: none;
+  border-color: #a136ac!important;
+  border: 2px solid;
+  color: white;
+  transition: 0.25s
 }
+
+.btn-black:hover {
+  border-color: #a136ac!important;
+  background: #a136ac;
+}
+
+.btn-white {
+  outline: none;
+  margin-left: 20px;
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  width: 75px;
+  border-radius: 12px;
+  background: none;
+  border-color: #191919!important;
+  border: 2px solid;
+  color: #191919;
+  transition: 0.25s
+}
+
+.btn-white:hover {
+  background: #191919;
+  border: 2px solid white!important;
+  color: white;
+}
+
+
+.btn-delete {
+  margin-left: 20px;
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  width: 75px;
+  border-radius: 12px;
+  border: 2px solid #DC3545;
+  transition: 0.25s
+}
+
+
 .close {
   cursor: pointer;
 }
 
 .close:hover {
   color: red;
+}
+
+.card-header {
+  background: #191919!important;
+  color: white;
 }

@@ -29,4 +29,6 @@ public interface ProjectService {
     Project getProjectByName(String name);
 
     List<ProjectDTO> getProjectsByAssignee(Pageable pageable, String assignee);
+
+    List<ProjectDTO> getUnassignedProjects(Pageable pageable);
 }

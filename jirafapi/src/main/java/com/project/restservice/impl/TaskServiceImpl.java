@@ -66,7 +66,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Long id) {
-
+        restTemplate.delete(Constants.TASK_URL + "/" + id);
     }
 
     @Override

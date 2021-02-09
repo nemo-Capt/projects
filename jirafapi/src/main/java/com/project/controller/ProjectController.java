@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 
@@ -67,6 +69,13 @@ public class ProjectController {
         return new ResponseEntity(projects, HttpStatus.OK);
     }
 
+    @GetMapping("/unassigned")
+    public List<Project> getUnassignedProjects() {
+        List<Project> projects = service.getUnassignedProjects();
+
+        return projects;
+    }
+
     @PutMapping(path = "/{id}")
     public void editProject(@RequestBody Project project, @PathVariable Long id) {
 
@@ -81,8 +90,17 @@ public class ProjectController {
 
     @DeleteMapping(path = "/deleteassignee/{projectId}/{username}")
     public void deleteAssignee(@PathVariable Long projectId, @PathVariable String username) {
-
         service.removeAssignee(projectId, username);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteProject(@PathVariable Long id) {
+        try {
+            service.deleteProject(id);
+        } catch (HttpServerErrorException e) {
+            return new ResponseEntity<>(null, HttpStatus.resolve(511));
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

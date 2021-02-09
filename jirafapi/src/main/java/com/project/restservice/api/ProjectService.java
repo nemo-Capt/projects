@@ -26,4 +26,6 @@ public interface ProjectService {
     Project getProjectByName(String name);
 
     List<Project> getProjectsByAssignee(String assignee);
+
+    List<Project> getUnassignedProjects();
 }

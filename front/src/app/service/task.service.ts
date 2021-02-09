@@ -1,9 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {Page} from "../entity/Page";
 import {Task} from "../entity/Task";
 import {ApiResponse} from "../entity/ApiResponse";
+import {error} from "@angular/compiler/src/util";
+import {catchError} from "rxjs/operators";
 
 
 @Injectable({
@@ -51,6 +53,10 @@ export class TaskService {
   public addReporter(task: Task, reporter: string): Observable<Task> {
     return this.http.put<Task>(`${this.url}/addreporter/${task.id}/reporter?reporter=${reporter}`, task);
 
+  }
+
+  public deleteTask(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.url}/${id}`);
   }
 
 }
