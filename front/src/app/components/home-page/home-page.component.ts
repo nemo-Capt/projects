@@ -34,6 +34,7 @@ export class HomePageComponent implements OnInit {
   currentPage: number;
   allPages: number;
   currentDate: number;
+  dateFormat: string;
 
   constructor(
     private userService: UserService,
@@ -48,6 +49,7 @@ export class HomePageComponent implements OnInit {
     this.task = new Task();
     this.signUpDTO = new SignUpDTO();
     this.currentPage = 0;
+    this.dateFormat = 'yyyy-MM-dd HH:mm:ss';
   }
 
   ngOnInit() {
@@ -99,20 +101,20 @@ export class HomePageComponent implements OnInit {
   }
 
   changeRole(user: User) {
-    this.userService.setRole(user).subscribe()
+    this.userService.setRole(user).subscribe();
   }
 
   addProject() {
     this.currentDate = Date.now();
-    this.project.estimatedtime = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+    this.project.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
     this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe();
-
+    this.ngOnInit();
   }
 
   addTask() {
     this.currentDate = Date.now();
-    this.task.estimatedtime = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
-    if(this.task.assignee == null) {
+    this.task.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
+    if (this.task.assignee == null) {
       this.task.assignee = this.tokenStorage.getUsername();
     }
 

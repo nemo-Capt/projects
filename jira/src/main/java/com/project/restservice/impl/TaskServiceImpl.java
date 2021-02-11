@@ -14,6 +14,7 @@ import com.project.repository.UserRepository;
 import com.project.restservice.api.TaskService;
 import com.project.restservice.dto.TaskDTO;
 import com.project.restservice.dto.TaskMapper;
+import com.project.restservice.mail.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,13 +33,16 @@ public class TaskServiceImpl implements TaskService {
     private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
     private final StatusRepository statusRepository;
+    private final Mail mail;
 
     @Autowired
-    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository, ProjectRepository projectRepository, StatusRepository statusRepository) {
+    public TaskServiceImpl(TaskRepository repository, UserRepository userRepository,
+                           ProjectRepository projectRepository, StatusRepository statusRepository, Mail mail) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
         this.statusRepository = statusRepository;
+        this.mail = mail;
     }
 
     @Override
@@ -121,6 +125,7 @@ public class TaskServiceImpl implements TaskService {
             repository.findById(id)
                     .map(oldTask -> {
                         oldTask.setAssignee(newAssignee);
+                        mail.sendEmailToReporter(newAssignee.getEmail(), oldTask.getName());
                         return repository.save(oldTask);
                     })
                     .orElseThrow(
@@ -137,6 +142,7 @@ public class TaskServiceImpl implements TaskService {
             repository.findById(id)
                     .map(oldTask -> {
                         oldTask.setUser(newReporter);
+                        mail.sendEmailToReporter(newReporter.getEmail(), oldTask.getName());
                         return repository.save(oldTask);
                     })
                     .orElseThrow(

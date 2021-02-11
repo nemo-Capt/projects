@@ -4,6 +4,7 @@ package com.project.controller;
 import com.project.entity.PageResponse;
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.EditDTO;
 import com.project.restservice.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,6 +70,11 @@ public class UserController {
     @GetMapping("/unban/{username}")
     public void unban(@PathVariable String username) {
         service.unbanUser(username);
+    }
+
+    @PutMapping("/edit")
+    public void edit(@RequestBody EditDTO editDTO) {
+        service.edit(editDTO);
     }
 
 }

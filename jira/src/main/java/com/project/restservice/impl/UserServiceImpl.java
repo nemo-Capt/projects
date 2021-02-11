@@ -11,12 +11,10 @@ import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
 import com.project.restservice.mail.Mail;
+import com.project.restservice.mail.MailImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,14 +25,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final RoleRepository roleRepository;
-    private final JavaMailSender javaMailSender;
     private final Mail mail;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, RoleRepository roleRepository, JavaMailSender javaMailSender, Mail mail) {
+    public UserServiceImpl(UserRepository repository, RoleRepository roleRepository, Mail mail) {
         this.repository = repository;
         this.roleRepository = roleRepository;
-        this.javaMailSender = javaMailSender;
         this.mail = mail;
     }
 
@@ -87,7 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user, Long id) {
+    public void editUser(UserDTO user, Long id) {
 
         repository.findById(id)
                 .map(oldUser -> {
@@ -105,15 +101,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setUserRole(Long id, String role) {
         Role newRole = roleRepository.findByRolename(role);
-        repository.findById(id)
-                .map(oldUser -> {
-                    oldUser.setRole(newRole);
-                    mail.sendEmail(oldUser.getEmail(), oldUser.getRole().getRolename());
-                    return repository.save(oldUser);
-                })
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Task hasn't been found")
-                );
+        User oldUser = repository.getOne(id);
+        oldUser.setRole(newRole);
+        repository.save(oldUser);
+        mail.sendEmail(oldUser.getEmail(), oldUser.getRole().getRolename());
     }
 
     @Override
@@ -125,7 +116,6 @@ public class UserServiceImpl implements UserService {
     public void unbanUser(String username) {
         repository.findByUsername(username).setBanned(false);
     }
-
 
 
 }

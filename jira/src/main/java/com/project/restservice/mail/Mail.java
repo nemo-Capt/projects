@@ -1,29 +1,11 @@
 package com.project.restservice.mail;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+public interface Mail {
 
-@Service
-public class Mail {
+    void sendEmail(String email, String role);
 
-    private final JavaMailSender javaMailSender;
+    void sendEmailToReporter(String email, String task);
 
-    @Autowired
-    public Mail(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
+    void sendEmailToAssignee(String email, String task);
 
-    public void sendEmail(String email, String role) {
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(email);
-
-        msg.setSubject("Role change");
-        msg.setText("Your role has been changed to " + role);
-
-        javaMailSender.send(msg);
-
-    }
 }

@@ -1,0 +1,38 @@
+table {
+  margin-top: 50px;
+  width: 70%;
+  color: white;
+}
+
+th {
+  font-size: 24px;
+  font-style: oblique;
+  background: #191919;
+  text-align: center;
+}
+
+td {
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid #a136ac;
+  background: white;
+  color: #191919;
+}
+
+.btn {
+  background: none;
+  text-align: center;
+  border: 2px solid #191919;
+  padding: 7px 20px;
+  outline: none;
+  color: #191919;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #191919;
+  border-color: white;
+  color: white;
+}

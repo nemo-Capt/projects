@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row">
 
-      <div class="card" style="width: 20%; border: 1px solid #a136ac;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Logged id as: <b>{{user.username}}</b></li>
-          <li class="list-group-item">Email: {{user.email}}</li>
-          <li class="list-group-item">Role: {{user.role}}</li>
-        </ul>
-      </div>
+    <div class="card" style="width: 20%; border: 1px solid #a136ac;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Logged id as: <b>{{user.username}}</b></li>
+        <li class="list-group-item">Email: {{user.email}}</li>
+        <li class="list-group-item">Role: {{user.role}}</li>
+      </ul>
+      <button class="btn btn-edit" routerLink="edit">Edit</button>
+    </div>
 
     <div style="margin-left: 400px; margin-bottom: 100px; margin-top: -100px;">
       <h3>Projects</h3>
@@ -15,6 +16,10 @@
         <div class="card-header">
           <h4>{{project.name}}
             <button class="btn btn-black btn-outline-dark" (click)="switchProject(project)">Edit</button>
+            <button class="btn btn-black btn-outline-dark" (click)="newtaskpopup = true; task.project = project.name"
+                    style="width: 100px;">
+              New Task
+            </button>
           </h4>
         </div>
         <div class="card-body">
@@ -109,7 +114,8 @@
                     <option value="in progress">in progress</option>
                     <option value="done">done</option>
                   </select>
-                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
+                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
+                  </button>
                 </form>
                 <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
                   <label for="Assignee">Assignee:</label>
@@ -138,7 +144,8 @@
                   </h5>
                   <h5 class="card-title">Project: {{task.project}}</h5>
                   <form (ngSubmit)="addComment(comment, user.username, task.name)">
-                    <button type="submit" class="btn btn-white" style="width: 200px; margin-left: -1px; border-radius: 5px;">Add
+                    <button type="submit" class="btn btn-white"
+                            style="width: 200px; margin-left: -1px; border-radius: 5px;">Add
                       comment
                     </button>
                     <br>
@@ -225,11 +232,14 @@
             <div class="card" *ngIf="task.project == project.name">
               <div class="card-header">
                 <h4>{{task.name}}
-                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit</button>
-                  <button class="btn btn-delete btn-outline-danger" (click)="deleteTaskApprove(task.id)" *ngIf="task.showTask">
+                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
+                  </button>
+                  <button class="btn btn-delete btn-outline-danger" (click)="deleteTaskApprove(task.id)"
+                          *ngIf="task.showTask">
                     Delete
                   </button>
-                  <button class="showtaskbtn btn btn-black btn-outline-dark" (click)="task.showTask = !task.showTask">Show
+                  <button class="showtaskbtn btn btn-black btn-outline-dark" (click)="task.showTask = !task.showTask">
+                    Show
                   </button>
                 </h4>
               </div>
@@ -261,17 +271,20 @@
                     <option value="in progress">in progress</option>
                     <option value="done">done</option>
                   </select>
-                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
+                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
+                  </button>
                 </form>
                 <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
                   <label for="Assignee">Assignee:</label>
                   <input type="text" class="form-control" id="UAssignee" name="Assignee" [(ngModel)]="task.assignee">
-                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
+                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
+                  </button>
                 </form>
                 <form *ngIf="showReporter" (ngSubmit)="saveReporter(task); switchReporter();">
                   <label for="Reporter">Reporter:</label>
                   <input type="text" class="form-control" id="UReporter" name="reporter" [(ngModel)]="task.user">
-                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit</button>
+                  <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
+                  </button>
                 </form>
                 <div *ngIf="!task.showEdit">
                   <h5 class="card-title">Description: {{task.desc}}</h5>
@@ -287,7 +300,8 @@
                   </h5>
                   <h5 class="card-title">Project: {{task.project}}</h5>
                   <form (ngSubmit)="addComment(comment, user.username, task.name)">
-                    <button type="submit" class="btn btn-white" style="width: 200px; margin-left: -1px; border-radius: 5px;">Add
+                    <button type="submit" class="btn btn-white"
+                            style="width: 200px; margin-left: -1px; border-radius: 5px;">Add
                       comment
                     </button>
                     <br>
@@ -313,5 +327,32 @@
     </div>
 
 
+  </div>
+</div>
+
+
+<div class="overlay" *ngIf="newtaskpopup">
+  <div class="popup">
+    <h2>Create new Task in {{task.project}}</h2>
+    <a class="close" (click)="newtaskpopup = false">&times;</a>
+    <form (ngSubmit)="addTask();newtaskpopup = false">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control input" id="TaskNamePopUp" name="taskName" [(ngModel)]="task.name"
+                 placeholder="Name">
+          <select class="select" name="status" id="StatusPopUp" [(ngModel)]="task.status">
+            <option value="to do">to do</option>
+            <option value="in progress">in progress</option>
+            <option value="done">done</option>
+          </select>
+          <input class="input" type="text" name="reporter" id="ReporterPopUp" [(ngModel)]="task.user"
+                 placeholder="Reporter">
+          <input class="input" type="text" name="assignee" id="AssigneePopUp" [(ngModel)]="task.assignee"
+                 placeholder="Assignee">
+
+        </div>
+      </div>
+      <button type="submit" class="btn btn-black" style="margin-left: 32%;">Submit</button>
+    </form>
   </div>
 </div>

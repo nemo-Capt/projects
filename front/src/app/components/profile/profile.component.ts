@@ -31,6 +31,9 @@ export class ProfileComponent implements OnInit {
   comments: Comment[];
   comment: Comment;
   currentDate: number;
+  dateFormat: string;
+  newtaskpopup: boolean;
+  task: Task;
 
   constructor(
     private userService: UserService,
@@ -42,10 +45,11 @@ export class ProfileComponent implements OnInit {
   ) {
     this.comment = new Comment();
     this.projectUser = new User();
+    this.dateFormat = 'yyyy-MM-dd HH:mm:ss';
+    this.task = new Task();
   }
 
   ngOnInit() {
-    this.showAssignee = false;
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
       this.user = data;
@@ -57,6 +61,18 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  addTask() {
+    this.currentDate = Date.now();
+    this.task.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
+    if (this.task.assignee == null) {
+      this.task.assignee = this.tokenStorage.getUsername();
+    }
+    this.taskService.addTask(this.task).subscribe();
+
+    this.ngOnInit();
+    window.location.reload();
+  }
+
   getUnassignedProjects() {
     this.projectService.getUnassignedProjects().subscribe(data => {
       this.unassignedProjects = data;
@@ -64,27 +80,27 @@ export class ProfileComponent implements OnInit {
   }
 
   addAssignee(id: number) {
-    this.projectService.addAssignee(id, this.projectUser.username).subscribe()
+    this.projectService.addAssignee(id, this.projectUser.username).subscribe();
+    this.ngOnInit();
   }
 
   deleteAssignee(projectId: number) {
     this.projectService.deleteAssignee(projectId, this.projectUser.username).subscribe();
+    this.ngOnInit();
   }
 
   addComment(comment: Comment, username: string, task: string) {
     this.currentDate = Date.now();
-    this.comment.date = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+    this.comment.date = this.datepipe.transform(this.currentDate, this.dateFormat);
     this.commentService.addComment(comment, username, task).subscribe(data => {
 
     });
-    window.location.reload();
+    this.ngOnInit();
   }
 
   deleteComment(id: number) {
-    window.location.reload();
-    this.commentService.deleteComment(id).subscribe(data => {
-
-    })
+    this.commentService.deleteComment(id).subscribe()
+    this.ngOnInit();
   }
 
   getCommentsByUsername(username: string) {
@@ -117,8 +133,9 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProject(project: Project) {
-    project.duedate = this.datepipe.transform(project.duedate, 'yyyy-MM-dd HH:mm:ss');
+    project.duedate = this.datepipe.transform(project.duedate, this.dateFormat);
     this.projectService.editProject(project, project.id).subscribe();
+    this.ngOnInit();
   }
 
   deleteProjectApprove(id: number) {
@@ -134,6 +151,7 @@ export class ProfileComponent implements OnInit {
       (error: HttpErrorResponse) => {
         alert("Project must be empty");
       });
+    this.ngOnInit();
   }
 
 
@@ -154,6 +172,7 @@ export class ProfileComponent implements OnInit {
 
   deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe();
+    this.ngOnInit();
   }
 
   switchAssignee() {
@@ -167,6 +186,7 @@ export class ProfileComponent implements OnInit {
         this.projectService.addAssignee(data.id, task.user).subscribe();
       }
     });
+    this.ngOnInit();
   }
 
   switchReporter() {
@@ -186,6 +206,7 @@ export class ProfileComponent implements OnInit {
         this.projectService.addAssignee(data.id, task.user).subscribe();
       }
     });
+    this.ngOnInit();
 
   }
 

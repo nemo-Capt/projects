@@ -21,11 +21,12 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    void editUser(User user, Long id);
+    void editUser(UserDTO user, Long id);
 
     void setUserRole(Long id, String role);
 
     void banUser(String username);
 
     void unbanUser(String username);
+
 }

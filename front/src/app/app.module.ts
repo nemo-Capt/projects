@@ -23,6 +23,7 @@ import { TaskComponent } from './components/task/task.component';
 import { CommentComponent } from './components/comment/comment.component';
 import {CommentService} from "./service/comment.service";
 import {DatePipe} from "@angular/common";
+import { ProfileeditComponent } from './components/profileedit/profileedit.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {DatePipe} from "@angular/common";
     ProjectComponent,
     TaskComponent,
     CommentComponent,
+    ProfileeditComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = restTemplate.getForObject(Constants.USER_URL + "/username/" + username, User.class);
         if (user == null) {
-            throw new UsernameNotFoundException("USer doesn't exist: " + username);
+            throw new UsernameNotFoundException("User doesn't exist: " + username);
         }
         return new UserDetailsImpl(user);
     }

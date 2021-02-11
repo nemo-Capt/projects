@@ -5,6 +5,7 @@ import {CreateUserDTO} from "../entity/dto/CreateUserDTO";
 import {ApiResponse} from "../entity/ApiResponse";
 import {User} from "../entity/User";
 import {Page} from "../entity/Page";
+import {EditDTO} from "../entity/dto/EditDTO";
 
 
 @Injectable({
@@ -51,6 +52,10 @@ export class UserService {
 
   public unban(username: string): Observable<User> {
     return this.http.get<User>(`${this.url}/unban/${username}`);
+  }
+
+  public edit(editDTO: EditDTO): Observable<EditDTO> {
+    return this.http.put<EditDTO>(`${this.url}/edit`, editDTO);
   }
 
 }

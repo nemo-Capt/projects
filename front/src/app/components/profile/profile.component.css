@@ -17,14 +17,14 @@
   min-width: 75px;
   border-radius: 12px;
   background: none;
-  border-color: #a136ac!important;
+  border-color: #a136ac !important;
   border: 2px solid;
   color: white;
   transition: 0.25s
 }
 
 .btn-black:hover {
-  border-color: #a136ac!important;
+  border-color: #a136ac !important;
   background: #a136ac;
 }
 
@@ -37,7 +37,7 @@
   width: 75px;
   border-radius: 12px;
   background: none;
-  border-color: #191919!important;
+  border-color: #191919 !important;
   border: 2px solid;
   color: #191919;
   transition: 0.25s
@@ -45,7 +45,7 @@
 
 .btn-white:hover {
   background: #191919;
-  border: 2px solid white!important;
+  border: 2px solid white !important;
   color: white;
 }
 
@@ -61,6 +61,15 @@
   transition: 0.25s
 }
 
+.btn-edit {
+  border-radius: 0 0 1px 1px;
+  transition: 0.25s;
+}
+
+.btn-edit:hover {
+  background: #a136ac;
+  color: white;
+}
 
 .close {
   cursor: pointer;
@@ -71,13 +80,125 @@
 }
 
 .card-header {
-  background: #191919!important;
+  background: #191919 !important;
   color: white;
 }
 
 .card-body {
   min-width: 620px;
   max-width: 620px;
-  background: #cdcdcd;
   border: 1px solid #a136ac;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #191919;
+  color: white;
+  border-radius: 5px;
+  min-width: 400px;
+  max-width: 400px;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: #06D85F;
+  cursor: pointer;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+
+  .popup {
+    width: 70%;
+  }
+}
+
+
+.input {
+  background: none;
+  display: block;
+  /*margin-left: 10px;*/
+  margin-top: 20px;
+  text-align: center;
+  border: 2px solid white;
+  padding: 10px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
+}
+
+.select {
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid white;
+  padding: 10px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
+}
+
+.select:focus {
+  border-color: #a136ac;
+}
+
+option {
+  background: #191919;
+  color: white;
+}
+
+.input:focus {
+  width: 300px;
+  border-color: #a136ac;
+}
+
+.label {
+  margin-left: 80%;
+  position: absolute;
+  font-size: 20px;
+}
+
+h2 {
+  color: white !important;
 }

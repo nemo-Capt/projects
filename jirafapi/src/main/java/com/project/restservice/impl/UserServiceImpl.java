@@ -5,6 +5,7 @@ import com.project.controller.ApiResponse;
 import com.project.entity.PageResponse;
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.EditDTO;
 import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-import java.util.List;
 
 
 @Service
@@ -59,6 +58,23 @@ public class UserServiceImpl implements UserService {
         restTemplate.postForEntity(Constants.USER_URL, user, ApiResponse.class).getBody();
 
         return user;
+    }
+
+    @Override
+    public void edit(EditDTO editDTO) {
+        String oldPassword = editDTO.getOldPassword();
+        User user = restTemplate.getForObject(Constants.USER_URL + "/" + editDTO.getId(), User.class);
+        assert user != null;
+        String oldHashPassword = user.getPassword();
+        if (passwordEncoder.matches(oldPassword, oldHashPassword)) {
+            user.setUsername(editDTO.getUsername());
+            user.setEmail(editDTO.getEmail());
+            if (editDTO.getNewPassword() != null) {
+                user.setPassword(passwordEncoder.encode(editDTO.getNewPassword()));
+            }
+        }
+        restTemplate.put(Constants.USER_URL + "/" + user.getId(), user);
+
     }
 
     @Override

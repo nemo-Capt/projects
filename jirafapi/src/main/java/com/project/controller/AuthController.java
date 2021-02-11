@@ -2,6 +2,7 @@ package com.project.controller;
 
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
+import com.project.restservice.dto.EditDTO;
 import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.security.TokenProvider;
 import com.project.security.UserDetailsImpl;
@@ -18,7 +19,9 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +51,7 @@ public class AuthController {
 
         service.register(registrationUserDTO);
     }
+
 
     @PostMapping("/signin")
     public ResponseEntity<TokenResponse> login(@RequestBody SigninRequest signInRequest) {

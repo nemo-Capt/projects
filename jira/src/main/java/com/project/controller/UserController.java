@@ -73,7 +73,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/{id}")
-    public void edit(@RequestBody User user, @PathVariable long id) {
+    public void edit(@RequestBody UserDTO user, @PathVariable Long id) {
         service.editUser(user, id);
     }
 

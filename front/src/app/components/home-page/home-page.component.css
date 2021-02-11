@@ -5,15 +5,15 @@
 }
 
 .newuser {
-  position: absolute;
-  top: 80px;
-  margin-left: 280px;
+  position: relative;
+  margin-top: 30px;
+  margin-left: 380px;
 }
 
 .newtask {
   position: absolute;
   top: 80px;
-  margin-left: 280px;
+  margin-left: 290px;
 }
 
 #Status, #Project {
@@ -40,9 +40,11 @@
 .popup {
   margin: 70px auto;
   padding: 20px;
-  background: #fff;
+  background: #191919;
+  color: white;
   border-radius: 5px;
-  width: 15%;
+  min-width: 400px;
+  max-width: 400px;
   position: relative;
   transition: all 5s ease-in-out;
 }
@@ -52,6 +54,7 @@
   color: #333;
   font-family: Tahoma, Arial, sans-serif;
 }
+
 .popup .close {
   position: absolute;
   top: 20px;
@@ -62,18 +65,144 @@
   text-decoration: none;
   color: #333;
 }
+
 .popup .close:hover {
   color: #06D85F;
   cursor: pointer;
 }
+
 .popup .content {
   max-height: 30%;
   overflow: auto;
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
 
-  .popup{
+  .popup {
     width: 70%;
   }
+}
+
+.btn {
+  background: none;
+  text-align: center;
+  border: 2px solid #191919;
+  padding: 7px 20px;
+  outline: none;
+  color: #191919;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #191919;
+  border-color: white;
+  color: white;
+}
+
+.btn-dark {
+  border-color: #a136ac;
+  color: white;
+}
+
+.btn-dark:hover {
+  background: #a136ac;
+  border-color: #a136ac;
+}
+
+.card {
+  min-width: 620px;
+  max-width: 620px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.card-header {
+  background: #191919 !important;
+  color: white;
+  min-width: 620px;
+  max-width: 620px;
+}
+
+.card-body {
+  min-width: 620px;
+  max-width: 620px;
+  background: #cdcdcd;
+  border: 1px solid #a136ac;
+}
+
+input[type="text"], input[type="password"] {
+  background: none;
+  display: block;
+  margin-left: 10px;
+  margin-top: 20px;
+  text-align: center;
+  border: 2px solid white;
+  padding: 10px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
+}
+
+.select {
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid white;
+  padding: 10px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
+}
+
+.select:focus {
+  border-color: #a136ac;
+}
+
+option {
+  background: #191919;
+  color: white;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+  width: 300px;
+  border-color: #a136ac;
+}
+
+label {
+  margin-left: 80%;
+  position: absolute;
+  font-size: 20px;
+}
+
+h2 {
+  color: white!important;
+}
+
+table {
+  margin-top: 50px;
+  width: 70%;
+  color: white;
+}
+
+th {
+  font-size: 24px;
+  font-style: oblique;
+  background: #191919;
+  text-align: center;
+}
+
+td {
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #a136ac;
+  background: white;
+  color: #191919;
 }
