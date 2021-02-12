@@ -14,8 +14,7 @@
   </tr>
   <tr>
     <td colspan="3">
-      <h3>Total pages: {{allPages}}</h3>
-      <h3 style="display: inline-block">Current page: {{currentPage + 1}}</h3>
+      <h3 style="display: inline-block">Current page: {{currentPage + 1}} of {{allPages}}</h3>
       <button class="btn page-link" (click)="prevPage()" style="margin-left: 40px; display: inline-block;">Previous</button>
       <button class="btn page-link" (click)="nextPage()" style="display: inline-block; margin-left: 10px;">Next</button>
     </td>
