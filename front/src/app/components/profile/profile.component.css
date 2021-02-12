@@ -45,7 +45,7 @@
 
 .btn-white:hover {
   background: #191919;
-  border: 2px solid white !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
   color: white;
 }
 
@@ -62,11 +62,13 @@
 }
 
 .btn-edit {
-  border-radius: 0 0 1px 1px;
+  border-radius: 0 0 4px 4px;
+  border-top: 1px solid #CFB9BB;
   transition: 0.25s;
 }
 
 .btn-edit:hover {
+  border-top: 1px solid #a136ac;
   background: #a136ac;
   color: white;
 }
@@ -82,12 +84,14 @@
 .card-header {
   background: #191919 !important;
   color: white;
+  border-radius: 0;
 }
 
 .card-body {
+  background: rgba(255, 255, 255, 0.8) !important;
   min-width: 620px;
   max-width: 620px;
-  border: 1px solid #a136ac;
+  border: 2px solid #a136ac;
 }
 
 .overlay {
@@ -153,7 +157,6 @@
 .input {
   background: none;
   display: block;
-  /*margin-left: 10px;*/
   margin-top: 20px;
   text-align: center;
   border: 2px solid white;

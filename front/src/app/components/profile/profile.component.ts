@@ -61,12 +61,18 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  addTask() {
+  addTask(projectName: string) {
     this.currentDate = Date.now();
     this.task.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
     if (this.task.assignee == null) {
       this.task.assignee = this.tokenStorage.getUsername();
     }
+    this.projectService.getProjectByName(projectName).subscribe(
+      project => {
+        this.projectService.addAssignee(project.id, this.task.assignee).subscribe();
+      }
+    );
+
     this.taskService.addTask(this.task).subscribe();
 
     this.ngOnInit();
@@ -92,9 +98,7 @@ export class ProfileComponent implements OnInit {
   addComment(comment: Comment, username: string, task: string) {
     this.currentDate = Date.now();
     this.comment.date = this.datepipe.transform(this.currentDate, this.dateFormat);
-    this.commentService.addComment(comment, username, task).subscribe(data => {
-
-    });
+    this.commentService.addComment(comment, username, task).subscribe();
     this.ngOnInit();
   }
 

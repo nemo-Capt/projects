@@ -530,3 +530,17 @@ g
 7front/src/app/components/comment/comment.component.html,9\2\92ad19b85bde5e9fe145cf0f3d804363cd87cea2
 i
 9jira/src/main/java/com/project/restservice/mail/Mail.java,d\c\dcf8f7d7d650c6546070b758f85989193748d7db
+S
+#front/src/app/entity/dto/EditDTO.ts,f\2\f27da8fd74345b16a228e57abfbb97664b8201f0
+m
+=jira/src/main/java/com/project/restservice/mail/MailImpl.java,0\5\052fdfb065c80b4240ef8f5fa832700795bb018f
+o
+?jirafapi/src/main/java/com/project/restservice/dto/EditDTO.java,d\c\dca34838e64ad87244b1790f8940cee4a2c35ab3
+m
+=front/src/app/components/profileedit/profileedit.component.ts,e\b\eb6ce06d67974810f7e821df48d47a61665e8054
+o
+?front/src/app/components/profileedit/profileedit.component.html,9\7\9729e00f05d4e58d24de8cf2a9eb4822c23e8968
+`
+0front/src/app/components/task/task.component.css,b\3\b38ae42ecf8679129b415858591af75debd9c740
+n
+>front/src/app/components/profileedit/profileedit.component.css,f\e\fe39c84ea65e4365fe31d37c2f53ce6e2c08db3d

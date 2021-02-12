@@ -42,16 +42,15 @@
         </select>
       </td>
       <td>
-        <button *ngIf="!user.banned" class="btn" (click)="banUser(user.username)">Ban</button>
-        <button *ngIf="user.banned" class="btn" (click)="unbanUser(user.username)">Unban</button>
+        <button *ngIf="!user.banned" class="btn-violet" (click)="banUser(user.username)">Ban</button>
+        <button *ngIf="user.banned" class="btn-violet" (click)="unbanUser(user.username)">Unban</button>
       </td>
     </tr>
     <tr>
       <td colspan="4">
-        <h3>Total pages: {{allPages}}</h3>
-        <h3 style="display: inline-block;">Current page: {{currentPage + 1}}</h3>
-        <button class="btn" (click)="prevPage()" style="margin-left: 40px; display: inline-block;">Previous</button>
-        <button class="btn" (click)="nextPage()" style="margin-left: 10px;">Next</button>
+        <h3 style="display: inline-block;">Current page: {{currentPage + 1}} of {{allPages}}</h3>
+        <button class="btn-violet" (click)="prevPage()" style="margin-left: 40px; display: inline-block;">Previous</button>
+        <button class="btn-violet" (click)="nextPage()" style="margin-left: 10px;">Next</button>
       </td>
     </tr>
     </tbody>
@@ -128,9 +127,11 @@
             <input type="text" class="form-control" id="TaskName" name="taskName" [(ngModel)]="task.name"
                    placeholder="Name">
             <select class="select" name="status" id="Status" [(ngModel)]="task.status">
-              <option value="to do">to do</option>
-              <option value="in progress">in progress</option>
-              <option value="done">done</option>
+              <option value="open">Open</option>
+              <option value="in progress">In progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="for test">For test</option>
+              <option value="done">Done</option>
             </select>
             <select class="select" name="project" id="Project" [(ngModel)]="task.project">
               <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>

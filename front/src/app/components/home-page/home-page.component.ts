@@ -118,6 +118,12 @@ export class HomePageComponent implements OnInit {
       this.task.assignee = this.tokenStorage.getUsername();
     }
 
+    this.projectService.getProjectByName(this.task.project).subscribe(
+      project => {
+        this.projectService.addAssignee(project.id, this.task.assignee).subscribe();
+      }
+    );
+
     this.taskService.addTask(this.task).subscribe();
   }
 

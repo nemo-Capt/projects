@@ -1,15 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
-        <form class="box" (ngSubmit)="login()">
-          <h1>Login</h1>
-          <p class="text-muted"> Please enter your login and password!</p>
-          <input type="text" name="username" placeholder="Username" [(ngModel)]="loginDTO.username">
-          <input type="password" name="password" placeholder="Password" [(ngModel)]="loginDTO.password">
-          <input class="btn" type="submit" name="" value="Login" style="margin-top: 50px;">
-        </form>
-      </div>
+      <form class="box" (ngSubmit)="login()">
+        <h1>Login</h1>
+        <p class="text-muted"> Please enter your login and password!</p>
+        <input type="text" name="username" placeholder="Username" [(ngModel)]="loginDTO.username">
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="loginDTO.password">
+        <input class="btn" type="submit" name="" value="Login" style="margin-top: 50px;">
+      </form>
     </div>
   </div>
 </div>

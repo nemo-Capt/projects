@@ -13,7 +13,7 @@
 .newtask {
   position: absolute;
   top: 80px;
-  margin-left: 290px;
+  margin-left: 300px;
 }
 
 #Status, #Project {
@@ -93,6 +93,7 @@
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .btn:hover {
@@ -111,15 +112,38 @@
   border-color: #a136ac;
 }
 
+.btn-violet {
+  background: #191919;
+  text-align: center;
+  border: 2px solid #a136ac;
+  padding: 7px 20px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-violet:hover {
+  background: #a136ac;
+  color: white;
+}
+
 .card {
-  min-width: 620px;
-  max-width: 620px;
+  min-width: 630px;
+  max-width: 630px;
   display: inline-block;
   margin-left: 20px;
+  border: 5px solid #191919;
+  border-radius: 0;
+  background: none;
 }
 
 .card-header {
   background: #191919 !important;
+  border: none;
+  border-radius: 0;
   color: white;
   min-width: 620px;
   max-width: 620px;
@@ -128,8 +152,8 @@
 .card-body {
   min-width: 620px;
   max-width: 620px;
-  background: #cdcdcd;
-  border: 1px solid #a136ac;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #a136ac;
 }
 
 input[type="text"], input[type="password"] {
@@ -190,9 +214,11 @@ table {
   margin-top: 50px;
   width: 70%;
   color: white;
+  border: 2px solid #a136ac;
 }
 
 th {
+  border: none;
   font-size: 24px;
   font-style: oblique;
   background: #191919;
@@ -200,9 +226,8 @@ th {
 }
 
 td {
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
-  border: 1px solid #a136ac;
-  background: white;
+  background: rgba(255,255,255,0.8);
   color: #191919;
 }

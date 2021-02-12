@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
-        <form class="box" (ngSubmit)="edit(editDTO)">
-          <h1>Edit</h1>
-          <h3 style="color: white">{{user.username}}</h3>
-          <input type="text" name="username" placeholder="Username" [(ngModel)]="editDTO.username">
-          <input type="text" name="email" placeholder="Email" [(ngModel)]="editDTO.email">
-          <input type="password" name="passwordOld" placeholder="Old Password" [(ngModel)]="editDTO.oldPassword">
-          <input type="password" name="password" placeholder="New Password" [(ngModel)]="editDTO.newPassword">
-          <input type="password" name="password" placeholder="Repeat Password" [(ngModel)]="confirmPassword">
-          <input class="btn" type="submit" name="" value="Confirm" style="margin-top: 50px;">
-        </form>
-      </div>
+      <form class="box" (ngSubmit)="edit(editDTO)">
+        <h1>Edit</h1>
+        <h3 style="color: white">{{user.username}}</h3>
+        <input type="text" name="username" placeholder="Username" [(ngModel)]="editDTO.username">
+        <input type="text" name="email" placeholder="Email" [(ngModel)]="editDTO.email">
+        <input type="password" name="passwordOld" placeholder="Old Password" [(ngModel)]="editDTO.oldPassword">
+        <input type="password" name="password" placeholder="New Password" [(ngModel)]="editDTO.newPassword">
+        <input type="password" name="password" placeholder="Repeat Password" [(ngModel)]="confirmPassword">
+        <input class="btn" type="submit" name="" value="Confirm" style="margin-top: 50px;">
+      </form>
     </div>
   </div>
 </div>

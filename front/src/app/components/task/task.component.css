@@ -2,9 +2,11 @@ table {
   margin-top: 50px;
   width: 70%;
   color: white;
+  border: 2px solid #a136ac;
 }
 
 th {
+  border: none;
   font-size: 24px;
   font-style: oblique;
   background: #191919;
@@ -14,10 +16,10 @@ th {
 td {
   font-size: 20px;
   text-align: center;
-  border: 1px solid #a136ac;
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   color: #191919;
 }
+
 
 .btn {
   background: none;

@@ -1,28 +1,30 @@
 <div class="container">
   <div class="row">
 
-    <div class="card" style="width: 20%; border: 1px solid #a136ac;">
+    <div class="card"
+         style="width: 20%; border: none; border-radius: 0 0 5px 5px; background: rgba(255, 255, 255, 0.8);">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Logged id as: <b>{{user.username}}</b></li>
-        <li class="list-group-item">Email: {{user.email}}</li>
-        <li class="list-group-item">Role: {{user.role}}</li>
+        <li class="list-group-item" style="background: none;">Logged id as: <b>{{user.username}}</b></li>
+        <li class="list-group-item" style="background: none;">Email: {{user.email}}</li>
+        <li class="list-group-item" style="background: none;">Role: {{user.role}}</li>
       </ul>
       <button class="btn btn-edit" routerLink="edit">Edit</button>
     </div>
 
     <div style="margin-left: 400px; margin-bottom: 100px; margin-top: -100px;">
-      <h3>Projects</h3>
-      <div class="card" *ngFor="let project of projects" style="margin-top: 25px;">
+      <h3 style="color: white;">Projects</h3>
+      <div class="card" *ngFor="let project of projects"
+           style="margin-top: 25px; border: 5px solid #191919; background: none;">
         <div class="card-header">
           <h4>{{project.name}}
             <button class="btn btn-black btn-outline-dark" (click)="switchProject(project)">Edit</button>
             <button class="btn btn-black btn-outline-dark" (click)="newtaskpopup = true; task.project = project.name"
-                    style="width: 100px;">
+                    style="width: 100px;" *ngIf="user.role=='productmanager'">
               New Task
             </button>
           </h4>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background: rgba(255, 255, 255, 0.8)!important;">
           <form *ngIf="project.shown" (ngSubmit)="saveProject(project); switchProject(project)">
             <label for="ProjectName">Name:</label>
             <input type="text" class="form-control" id="ProjectName" name="name" [(ngModel)]="project.name">
@@ -72,7 +74,7 @@
 
         <div class="tasks">
           <div *ngFor="let task of tasks">
-            <div class="card" *ngIf="task.project == project.name" style="border: none;">
+            <div class="card" *ngIf="task.project == project.name" style="border: none; background: none;">
               <div class="card-header">
                 <h4>{{task.name}}
                   <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
@@ -86,7 +88,7 @@
                   </button>
                 </h4>
               </div>
-              <div class="card-body" *ngIf="task.showTask">
+              <div class="card-body" *ngIf="task.showTask" style="background: rgba(255, 255, 255, 0.8)!important;">
                 <form *ngIf="task.showEdit" (ngSubmit)="saveTask(task); switchTask(task);">
                   <label for="TaskName">Name:</label>
                   <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.name">
@@ -110,9 +112,14 @@
                          [(ngModel)]="task.duedate">
                   <label for="Status">Status</label>
                   <select name="status" id="Status" [(ngModel)]="task.status" class="form-control">
-                    <option value="to do">to do</option>
-                    <option value="in progress">in progress</option>
-                    <option value="done">done</option>
+                    <option value="open" *ngIf="user.role=='productmanager'">Open</option>
+                    <option value="in progress" *ngIf="user.role=='productmanager' || user.role=='tester'">In progress
+                    </option>
+                    <option value="resolved" *ngIf="user.role=='productmanager' || user.role=='developer'">Resolved
+                    </option>
+                    <option value="for test" *ngIf="user.role=='productmanager' || user.role=='developer'">For test
+                    </option>
+                    <option value="done" *ngIf="user.role=='productmanager' || user.role=='tester'">Done</option>
                   </select>
                   <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
                   </button>
@@ -172,12 +179,14 @@
 
 
     <div class="unassigned" *ngIf="user.role == 'productmanager'">
-      <h3 style="margin-top: 20px;">Unassigned Projects</h3>
-      <div class="card" *ngFor="let project of unassignedProjects" style="margin-top: 50px;">
+      <h3 style="margin-top: 20px; color: white">Unassigned Projects</h3>
+      <div class="card" *ngFor="let project of unassignedProjects"
+           style="margin-top: 25px; border: 5px solid #191919; background: none;">
         <div class="card-header">
           <h4>{{project.name}}
             <button class="btn btn-black btn-outline-dark" (click)="switchProject(project)">Edit</button>
-            <button class="btn btn-delete btn-outline-danger" (click)="deleteProjectApprove(project.id)">Delete</button>
+            <button class="btn btn-delete btn-outline-danger" (click)="deleteProjectApprove(project.id)">Delete
+            </button>
           </h4>
         </div>
         <div class="card-body">
@@ -229,7 +238,7 @@
 
         <div class="tasks">
           <div *ngFor="let task of tasks">
-            <div class="card" *ngIf="task.project == project.name">
+            <div class="card" *ngIf="task.project == project.name" style="border: none; background: none">
               <div class="card-header">
                 <h4>{{task.name}}
                   <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
@@ -243,7 +252,7 @@
                   </button>
                 </h4>
               </div>
-              <div class="card-body" *ngIf="task.showTask">
+              <div class="card-body" *ngIf="task.showTask" style="background: rgba(255, 255, 255, 0.8);">
                 <form *ngIf="task.showEdit" (ngSubmit)="saveTask(task); switchTask(task);">
                   <label for="TaskName">Name:</label>
                   <input type="text" class="form-control" id="UTaskName" name="name" [(ngModel)]="task.name">
@@ -267,9 +276,11 @@
                          [(ngModel)]="task.duedate">
                   <label for="Status">Status</label>
                   <select name="status" id="UStatus" [(ngModel)]="task.status" class="form-control">
-                    <option value="to do">to do</option>
-                    <option value="in progress">in progress</option>
-                    <option value="done">done</option>
+                    <option value="open">Open</option>
+                    <option value="in progress">In progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="for test">For test</option>
+                    <option value="done">Done</option>
                   </select>
                   <button type="submit" class="btn btn-white" style="margin-left: 40%; margin-top: 10px;">Submit
                   </button>
@@ -335,15 +346,17 @@
   <div class="popup">
     <h2>Create new Task in {{task.project}}</h2>
     <a class="close" (click)="newtaskpopup = false">&times;</a>
-    <form (ngSubmit)="addTask();newtaskpopup = false">
+    <form (ngSubmit)="addTask(task.project);newtaskpopup = false">
       <div class="form-row">
         <div class="form-group col-md-6">
           <input type="text" class="form-control input" id="TaskNamePopUp" name="taskName" [(ngModel)]="task.name"
                  placeholder="Name">
           <select class="select" name="status" id="StatusPopUp" [(ngModel)]="task.status">
-            <option value="to do">to do</option>
-            <option value="in progress">in progress</option>
-            <option value="done">done</option>
+            <option value="open">Open</option>
+            <option value="in progress">In progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="for test">For test</option>
+            <option value="done">Done</option>
           </select>
           <input class="input" type="text" name="reporter" id="ReporterPopUp" [(ngModel)]="task.user"
                  placeholder="Reporter">

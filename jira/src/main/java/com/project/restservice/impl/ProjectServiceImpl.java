@@ -12,6 +12,7 @@ import com.project.repository.UserRepository;
 import com.project.restservice.api.ProjectService;
 import com.project.restservice.dto.ProjectDTO;
 import com.project.restservice.dto.ProjectMapper;
+import com.project.restservice.mail.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,14 +31,16 @@ public class ProjectServiceImpl implements ProjectService {
     private final TaskRepository taskRepository;
     private final AssigneeRepository assigneeRepository;
     private final UserRepository userRepository;
+    private final Mail mail;
 
     @Autowired
     public ProjectServiceImpl(ProjectRepository repository, TaskRepository taskRepository,
-                              AssigneeRepository assigneeRepository, UserRepository userRepository) {
+                              AssigneeRepository assigneeRepository, UserRepository userRepository, Mail mail) {
         this.repository = repository;
         this.taskRepository = taskRepository;
         this.assigneeRepository = assigneeRepository;
         this.userRepository = userRepository;
+        this.mail = mail;
     }
 
     @Override

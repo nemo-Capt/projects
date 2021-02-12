@@ -60,7 +60,11 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
         task.setProject(projectRepository.findByName(taskDTO.getProject()));
         task.setUser(userRepository.findByUsername(taskDTO.getUser()));
+        if(task.getUser() != null) {
+            mail.sendEmailToReporter(task.getUser().getEmail(), task.getName());
+        }
         task.setAssignee(userRepository.findByUsername(taskDTO.getAssignee()));
+        mail.sendEmailToAssignee(task.getAssignee().getEmail(), task.getName());
         task.setEstimatedtime(taskDTO.getEstimatedtime());
 
         repository.save(task);
@@ -125,7 +129,7 @@ public class TaskServiceImpl implements TaskService {
             repository.findById(id)
                     .map(oldTask -> {
                         oldTask.setAssignee(newAssignee);
-                        mail.sendEmailToReporter(newAssignee.getEmail(), oldTask.getName());
+                        mail.sendEmailToAssignee(newAssignee.getEmail(), oldTask.getName());
                         return repository.save(oldTask);
                     })
                     .orElseThrow(
