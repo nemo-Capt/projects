@@ -7,6 +7,9 @@
         <input type="text" name="username" placeholder="Username" [(ngModel)]="loginDTO.username">
         <input type="password" name="password" placeholder="Password" [(ngModel)]="loginDTO.password">
         <input class="btn" type="submit" name="" value="Login" style="margin-top: 50px;">
+        <div *ngIf="showError" class="alert-danger">
+          {{errorMsg}}
+        </div>
       </form>
     </div>
   </div>

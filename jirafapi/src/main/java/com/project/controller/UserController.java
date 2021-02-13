@@ -1,6 +1,7 @@
 package com.project.controller;
 
 
+import com.project.controller.emailvalidation.EmailValidation;
 import com.project.entity.PageResponse;
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
@@ -25,10 +26,12 @@ import javax.websocket.server.PathParam;
 public class UserController {
 
     private final UserService service;
+    private final EmailValidation emailValidation;
 
     @Autowired
-    public UserController(UserService service) {
+    public UserController(UserService service, EmailValidation emailValidation) {
         this.service = service;
+        this.emailValidation = emailValidation;
     }
 
     @GetMapping
@@ -73,8 +76,19 @@ public class UserController {
     }
 
     @PutMapping("/edit")
-    public void edit(@RequestBody EditDTO editDTO) {
-        service.edit(editDTO);
+    public ResponseEntity edit(@RequestBody EditDTO editDTO) {
+        if (!emailValidation.validate(editDTO.getEmail())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid email");
+        }
+        if (editDTO.getNewPassword().length() < 4) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Password must be at least 4 characters long");
+        }
+        try {
+            service.edit(editDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Wrong password");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
 }

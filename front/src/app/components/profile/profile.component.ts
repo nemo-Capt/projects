@@ -73,10 +73,11 @@ export class ProfileComponent implements OnInit {
       }
     );
 
-    this.taskService.addTask(this.task).subscribe();
+    this.taskService.addTask(this.task).subscribe(
+      () => {
+        this.ngOnInit();
+      });
 
-    this.ngOnInit();
-    window.location.reload();
   }
 
   getUnassignedProjects() {
@@ -86,25 +87,26 @@ export class ProfileComponent implements OnInit {
   }
 
   addAssignee(id: number) {
-    this.projectService.addAssignee(id, this.projectUser.username).subscribe();
-    this.ngOnInit();
+    this.projectService.addAssignee(id, this.projectUser.username).subscribe(
+      () => this.ngOnInit());
   }
 
   deleteAssignee(projectId: number) {
-    this.projectService.deleteAssignee(projectId, this.projectUser.username).subscribe();
-    this.ngOnInit();
+    this.projectService.deleteAssignee(projectId, this.projectUser.username).subscribe(
+      () => this.ngOnInit());
   }
 
   addComment(comment: Comment, username: string, task: string) {
     this.currentDate = Date.now();
     this.comment.date = this.datepipe.transform(this.currentDate, this.dateFormat);
-    this.commentService.addComment(comment, username, task).subscribe();
-    this.ngOnInit();
+    this.commentService.addComment(comment, username, task).subscribe(
+      () => this.ngOnInit()
+    );
   }
 
   deleteComment(id: number) {
-    this.commentService.deleteComment(id).subscribe()
-    this.ngOnInit();
+    this.commentService.deleteComment(id).subscribe(
+      () => this.ngOnInit());
   }
 
   getCommentsByUsername(username: string) {
@@ -138,8 +140,9 @@ export class ProfileComponent implements OnInit {
 
   saveProject(project: Project) {
     project.duedate = this.datepipe.transform(project.duedate, this.dateFormat);
-    this.projectService.editProject(project, project.id).subscribe();
-    this.ngOnInit();
+    this.projectService.editProject(project, project.id).subscribe(
+      () => this.ngOnInit()
+    );
   }
 
   deleteProjectApprove(id: number) {
@@ -149,13 +152,13 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProject(id: number) {
-    this.projectService.deleteProject(id).subscribe(data => {
-
+    this.projectService.deleteProject(id).subscribe(() => {
+        this.ngOnInit();
       },
       (error: HttpErrorResponse) => {
         alert("Project must be empty");
       });
-    this.ngOnInit();
+
   }
 
 
@@ -164,19 +167,21 @@ export class ProfileComponent implements OnInit {
   }
 
   saveTask(task: Task) {
-    this.taskService.editTask(task).subscribe();
+    this.taskService.editTask(task).subscribe(
+      () => this.ngOnInit()
+    );
   }
 
   deleteTaskApprove(id: number) {
     if (confirm('Are you sure?') == true) {
       this.deleteTask(id);
-      window.location.reload();
     }
   }
 
   deleteTask(id: number) {
-    this.taskService.deleteTask(id).subscribe();
-    this.ngOnInit();
+    this.taskService.deleteTask(id).subscribe(
+      () => this.ngOnInit()
+    );
   }
 
   switchAssignee() {
@@ -184,13 +189,15 @@ export class ProfileComponent implements OnInit {
   }
 
   saveAssignee(task: Task) {
-    this.taskService.addAssignee(task, task.assignee).subscribe();
+    this.taskService.addAssignee(task, task.assignee).subscribe(
+      () => this.ngOnInit()
+    );
     this.projectService.getProjectByName(task.project).subscribe(data => {
       if (!data.assignees.includes(task.user)) {
-        this.projectService.addAssignee(data.id, task.user).subscribe();
+        this.projectService.addAssignee(data.id, task.user).subscribe(
+          () => this.ngOnInit());
       }
     });
-    this.ngOnInit();
   }
 
   switchReporter() {
@@ -198,20 +205,21 @@ export class ProfileComponent implements OnInit {
   }
 
   saveReporter(task: Task) {
-    this.taskService.addReporter(task, task.user).subscribe(res => {
-
-    }, (err: HttpErrorResponse) => {
-      alert("qq");
-      console.log(err.message);
-    });
+    this.taskService.addReporter(task, task.user).subscribe(() => {
+        this.ngOnInit()
+      },
+      (err: HttpErrorResponse) => {
+        alert("qq");
+        console.log(err.message);
+      });
 
     this.projectService.getProjectByName(task.project).subscribe(data => {
       if (!data.assignees.includes(task.user)) {
-        this.projectService.addAssignee(data.id, task.user).subscribe();
+        this.projectService.addAssignee(data.id, task.user).subscribe(
+          () => this.ngOnInit()
+        );
       }
     });
-    this.ngOnInit();
-
   }
 
   switchProjectAssignees() {

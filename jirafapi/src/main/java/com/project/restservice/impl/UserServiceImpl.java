@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void edit(EditDTO editDTO) {
+    public void edit(EditDTO editDTO) throws Exception {
         String oldPassword = editDTO.getOldPassword();
         User user = restTemplate.getForObject(Constants.USER_URL + "/" + editDTO.getId(), User.class);
         assert user != null;
@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(passwordEncoder.encode(editDTO.getNewPassword()));
             }
         }
+        else throw new Exception("Wrong password");
         restTemplate.put(Constants.USER_URL + "/" + user.getId(), user);
 
     }

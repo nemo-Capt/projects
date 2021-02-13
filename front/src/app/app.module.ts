@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {UserService} from "./service/user.service";
 import {AppRoutingModule} from './app-routing.module';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./service/auth.service";
 import {TokenStorageService} from "./service/token-storage.service";
@@ -43,7 +43,8 @@ import { ProfileeditComponent } from './components/profileedit/profileedit.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,

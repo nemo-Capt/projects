@@ -10,6 +10,9 @@
         <input type="password" name="password" placeholder="New Password" [(ngModel)]="editDTO.newPassword">
         <input type="password" name="password" placeholder="Repeat Password" [(ngModel)]="confirmPassword">
         <input class="btn" type="submit" name="" value="Confirm" style="margin-top: 50px;">
+        <div *ngIf="showError" class="alert-danger">
+          {{errorMsg}}
+        </div>
       </form>
     </div>
   </div>

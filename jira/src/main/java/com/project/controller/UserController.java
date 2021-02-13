@@ -8,6 +8,8 @@ import com.project.restservice.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,9 +64,13 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public void registration(@RequestBody RegistrationUserDTO userDTO) {
-
-        service.registerUser(userDTO);
+    public ResponseEntity registration(@RequestBody RegistrationUserDTO userDTO) {
+        try {
+            service.registerUser(userDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.valueOf(500)).body("User already exists");
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")

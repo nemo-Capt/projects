@@ -19,7 +19,7 @@ public interface UserService {
 
     User register(RegistrationUserDTO registrationUserDTO);
 
-    void edit(EditDTO editDTO);
+    void edit(EditDTO editDTO) throws Exception;
 
     void setUserRole(Long id, String role);
 

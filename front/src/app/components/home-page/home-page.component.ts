@@ -101,7 +101,9 @@ export class HomePageComponent implements OnInit {
   }
 
   changeRole(user: User) {
-    this.userService.setRole(user).subscribe();
+    this.userService.setRole(user).subscribe(
+      () => this.ngOnInit()
+    );
   }
 
   addProject() {
@@ -141,20 +143,16 @@ export class HomePageComponent implements OnInit {
 
   banUser(username: string) {
     if (this.user.username != username) {
-      this.userService.ban(username).subscribe(data => {
-
-      });
-      window.location.reload();
+      this.userService.ban(username).subscribe(() =>
+        this.ngOnInit());
     } else {
       alert('You can\'t ban yourself!');
     }
   }
 
   unbanUser(username: string) {
-    this.userService.unban(username).subscribe(data => {
-
-    });
-    window.location.reload();
+    this.userService.unban(username).subscribe(
+      () => this.ngOnInit());
   }
 
 

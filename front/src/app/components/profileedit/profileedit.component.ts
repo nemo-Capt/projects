@@ -4,6 +4,7 @@ import {UserService} from "../../service/user.service";
 import {TokenStorageService} from "../../service/token-storage.service";
 import {EditDTO} from "../../entity/dto/EditDTO";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-profileedit',
@@ -16,6 +17,8 @@ export class ProfileeditComponent implements OnInit {
   editDTO: EditDTO;
   username: string;
   confirmPassword: string;
+  showError: boolean;
+  errorMsg: string;
 
   constructor(
     private userService: UserService,
@@ -38,18 +41,23 @@ export class ProfileeditComponent implements OnInit {
   edit(editDTO: EditDTO) {
     if (this.confirmPassword == editDTO.newPassword) {
       this.userService.edit(editDTO).subscribe(
-        data => {},
-        error => {
-          alert('Wrong password!');
+        () => {
+          if (editDTO.newPassword != null && editDTO.newPassword != editDTO.oldPassword) {
+            this.router.navigate(['/login']).then(() => this.tokenStorage.logout());
+          } else {
+            this.router.navigate(['/profile']).then(() => this.ngOnInit());
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.showError = true;
+          this.errorMsg = error.error;
         }
       );
-      if (editDTO.newPassword != null && editDTO.newPassword != editDTO.oldPassword) {
-        this.router.navigate(['/login']).then(() => this.tokenStorage.logout());
-      } else {
-        this.router.navigate(['']).then(() => this.ngOnInit());
-      }
+
+
     } else {
-      alert("Passwords do not match!");
+      this.showError = true;
+      this.errorMsg = 'Passwords do not match!';
     }
   }
 

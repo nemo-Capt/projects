@@ -5,6 +5,7 @@ import {ApiResponse} from "../../entity/ApiResponse";
 import {SignUpDTO} from "../../entity/dto/SignUpDTO";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-registration',
@@ -16,6 +17,8 @@ export class RegistrationComponent {
 
   signUpDTO: SignUpDTO;
   apiResponse: ApiResponse;
+  showError: boolean;
+  errorMsg: HttpErrorResponse;
 
   constructor(
     private userService: UserService,
@@ -28,9 +31,14 @@ export class RegistrationComponent {
 
   save() {
     this.authService.signup(this.signUpDTO).subscribe(data => {
-      this.apiResponse = data;
-      this.router.navigate(['/login'])
-    });
+        this.apiResponse = data;
+        this.router.navigate(['/login']);
+      },
+      (error: HttpErrorResponse) => {
+        this.errorMsg = error;
+        this.showError = true;
+      }
+    );
   }
 
 }

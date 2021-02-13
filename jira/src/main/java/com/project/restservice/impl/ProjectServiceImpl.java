@@ -127,14 +127,24 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void assignAssignee(Long id, String assignee) {
         Assignee newAssignee = new Assignee();
-        newAssignee.setProject(repository.getOne(id));
-        newAssignee.setUser(userRepository.findByUsername(assignee));
-        assigneeRepository.save(newAssignee);
         repository.findById(id)
                 .map(oldProject -> {
                     List<Assignee> newAssignees = oldProject.getAssignees();
-                    newAssignees.add(newAssignee);
-                    oldProject.setAssignees(newAssignees);
+                    boolean isPresent = false;
+                    for (Assignee i : newAssignees) {
+                        if (i.getUser().getUsername().equals(assignee)) {
+                            isPresent = true;
+                            break;
+                        }
+                    }
+
+                    if (!isPresent) {
+                        newAssignee.setProject(repository.getOne(id));
+                        newAssignee.setUser(userRepository.findByUsername(assignee));
+                        assigneeRepository.save(newAssignee);
+                        newAssignees.add(newAssignee);
+                        oldProject.setAssignees(newAssignees);
+                    }
                     return repository.save(oldProject);
                 })
                 .orElseThrow(

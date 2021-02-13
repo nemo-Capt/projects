@@ -16,6 +16,8 @@ export class LoginComponent {
 
   loginDTO: SignUpDTO;
   tokenResponse: TokenResponse;
+  showError: boolean;
+  errorMsg: string;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) {
     this.loginDTO = new SignUpDTO();
@@ -31,10 +33,11 @@ export class LoginComponent {
       },
       (error: HttpErrorResponse) => {
         console.log(error);
+        this.showError = true;
         if (error.status == 510)
-          alert('Account is banned');
+          this.errorMsg = 'Account is banned';
         if (error.status == 403)
-          alert('Wrong credentials');
+          this.errorMsg = 'Wrong credentials';
       }
     )
   }
