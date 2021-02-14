@@ -7,10 +7,6 @@ import com.project.entity.User;
 import com.project.restservice.api.ProjectService;
 import com.project.restservice.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,8 +44,13 @@ public class ProjectController {
     }
 
     @PostMapping(path = "/{assignee}")
-    public void addProject(@RequestBody Project project, @PathVariable String assignee) {
-        service.addProject(project, assignee);
+    public ResponseEntity addProject(@RequestBody Project project, @PathVariable String assignee) {
+        try {
+            service.addProject(project, assignee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Type in project name");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
 
@@ -83,9 +84,13 @@ public class ProjectController {
     }
 
     @PutMapping(path = "/addassignee/{id}/{assignee}")
-    public void addAssignee(@PathVariable Long id, @PathVariable String assignee) {
-
-        service.assignAssignee(id, assignee);
+    public ResponseEntity addAssignee(@PathVariable Long id, @PathVariable String assignee) {
+        try {
+            service.assignAssignee(id, assignee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
     @DeleteMapping(path = "/deleteassignee/{projectId}/{username}")

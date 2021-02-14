@@ -21,9 +21,10 @@ export class UserListComponent implements OnInit {
 
   nextPage() {
     this.userService.nextPage(this.currentPage).subscribe(data => {
-      this.users = data.content;
-      this.allPages = data.totalPages;
+
       if (this.currentPage != this.allPages - 1) {
+        this.users = data.content;
+        this.allPages = data.totalPages;
         this.currentPage++;
       }
     })

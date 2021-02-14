@@ -15,19 +15,18 @@ export class TaskComponent implements OnInit {
   tasks: Task[];
   pageable: Pageable;
   currentPage: number;
-  test: number;
   allPages: number;
 
   constructor(private taskService: TaskService) {
     this.currentPage = 0;
-    //this.test = 1;
   }
 
   nextPage() {
     this.taskService.nextPage(this.currentPage).subscribe(data => {
-      this.tasks = data.content;
-      this.allPages = data.totalPages;
+
       if (this.currentPage != this.allPages - 1) {
+        this.tasks = data.content;
+        this.allPages = data.totalPages;
         this.currentPage++;
       }
     })

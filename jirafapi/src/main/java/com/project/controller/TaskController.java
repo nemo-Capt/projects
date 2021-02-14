@@ -31,9 +31,13 @@ public class TaskController {
     }
 
     @PostMapping
-    public void addTask(@RequestBody Task task) {
-
-        service.addTask(task);
+    public ResponseEntity addTask(@RequestBody Task task) {
+        try {
+            service.addTask(task);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Empty fields");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("false");
     }
 
     @GetMapping
@@ -64,15 +68,23 @@ public class TaskController {
     }
 
     @PutMapping(path = "/addassignee/{id}/assignee")
-    public void addAssignee(@PathVariable Long id, @RequestParam String assignee) {
-
-        service.assignAssignee(id, assignee);
+    public ResponseEntity addAssignee(@PathVariable Long id, @RequestParam String assignee) {
+        try {
+            service.assignAssignee(id, assignee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
     @PutMapping(path = "/addreporter/{id}/reporter")
-    public void addReporter(@PathVariable Long id, @RequestParam String reporter) {
-
-        service.assignReporter(id, reporter);
+    public ResponseEntity addReporter(@PathVariable Long id, @RequestParam String reporter) {
+        try {
+            service.assignReporter(id, reporter);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
     @PutMapping(path = "/addstatus/{id}/{statusid}")
@@ -82,8 +94,13 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable Long id) {
-        service.deleteTask(id);
+    public ResponseEntity deleteTask(@PathVariable Long id) {
+        try {
+            service.deleteTask(id);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Make sure you removed all comments");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
 }

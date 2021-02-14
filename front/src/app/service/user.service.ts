@@ -22,6 +22,10 @@ export class UserService {
     return this.http.get<Page<User>>(`${this.url}`);
   }
 
+  public currentPage(currentPage: number): Observable<Page<User>> {
+    return this.http.get<Page<User>>(`${this.url}?page=${currentPage}`);
+  }
+
   public nextPage(currentPage: number): Observable<Page<User>> {
     return this.http.get<Page<User>>(`${this.url}?page=${currentPage + 1}`);
   }

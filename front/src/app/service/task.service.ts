@@ -59,4 +59,8 @@ export class TaskService {
     return this.http.delete<ApiResponse>(`${this.url}/${id}`);
   }
 
+  public setTaskStatus(id: number, statusid: number): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.url}/addstatus/${id}/${statusid}`, ApiResponse);
+  }
+
 }

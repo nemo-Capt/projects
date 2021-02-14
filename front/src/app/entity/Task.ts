@@ -15,5 +15,8 @@ export class Task {
   comments: Comment[];
   showTask: boolean;
   showEdit: boolean;
+  showError: boolean;
+  tempTaskName: string;
+  projectPrefix: string;
 
 }

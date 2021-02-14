@@ -1,3 +1,7 @@
+<div class="alert-danger" *ngIf="showError">
+  {{errorMsg.error}}
+</div>
+
 <div *ngIf="isAdmin()">
   <button class="btn newuser" (click)="newuserpopup = true">New User</button>
   <div class="overlay" *ngIf="newuserpopup">
@@ -49,7 +53,8 @@
     <tr>
       <td colspan="4">
         <h3 style="display: inline-block;">Current page: {{currentPage + 1}} of {{allPages}}</h3>
-        <button class="btn-violet" (click)="prevPage()" style="margin-left: 40px; display: inline-block;">Previous</button>
+        <button class="btn-violet" (click)="prevPage()" style="margin-left: 40px; display: inline-block;">Previous
+        </button>
         <button class="btn-violet" (click)="nextPage()" style="margin-left: 10px;">Next</button>
       </td>
     </tr>

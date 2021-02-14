@@ -51,6 +51,9 @@ export class ProfileeditComponent implements OnInit {
         (error: HttpErrorResponse) => {
           this.showError = true;
           this.errorMsg = error.error;
+          if(error.status == 500) {
+            this.errorMsg = 'Wrong password'
+          }
         }
       );
 

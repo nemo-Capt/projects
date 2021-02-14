@@ -11,6 +11,7 @@ import {ApiResponse} from "../../entity/ApiResponse";
 import {RoleService} from "../../service/role.service";
 import {AuthService} from "../../service/auth.service";
 import {DatePipe} from '@angular/common';
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -35,6 +36,8 @@ export class HomePageComponent implements OnInit {
   allPages: number;
   currentDate: number;
   dateFormat: string;
+  showError: boolean;
+  errorMsg: HttpErrorResponse;
 
   constructor(
     private userService: UserService,
@@ -53,6 +56,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showError = false;
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
       this.user = data;
@@ -66,7 +70,7 @@ export class HomePageComponent implements OnInit {
         });
       }
       if (this.tokenStorage.getRole() === "admin") {
-        this.userService.getAll().subscribe(data => {
+        this.userService.currentPage(this.currentPage).subscribe(data => {
           this.users = data.content;
           this.allPages = data.totalPages;
         })
@@ -76,9 +80,10 @@ export class HomePageComponent implements OnInit {
 
   nextPage() {
     this.userService.nextPage(this.currentPage).subscribe(data => {
-      this.users = data.content;
-      this.allPages = data.totalPages;
+
       if (this.currentPage != this.allPages - 1) {
+        this.users = data.content;
+        this.allPages = data.totalPages;
         this.currentPage++;
       }
     })
@@ -96,8 +101,12 @@ export class HomePageComponent implements OnInit {
 
   save() {
     this.authService.signup(this.signUpDTO).subscribe(data => {
-      this.apiResponse = data;
-    });
+        this.apiResponse = data;
+      },
+      (error: HttpErrorResponse) => {
+        this.showError = true;
+        this.errorMsg = error;
+      });
   }
 
   changeRole(user: User) {
@@ -109,8 +118,14 @@ export class HomePageComponent implements OnInit {
   addProject() {
     this.currentDate = Date.now();
     this.project.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
-    this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe();
-    this.ngOnInit();
+    this.projectService.addProject(this.project, this.tokenStorage.getUsername()).subscribe(
+      () => this.ngOnInit(),
+      (error: HttpErrorResponse) => {
+        this.showError = true;
+        this.errorMsg = error;
+      }
+    );
+
   }
 
   addTask() {
@@ -122,11 +137,23 @@ export class HomePageComponent implements OnInit {
 
     this.projectService.getProjectByName(this.task.project).subscribe(
       project => {
-        this.projectService.addAssignee(project.id, this.task.assignee).subscribe();
+        this.projectService.addAssignee(project.id, this.task.assignee).subscribe(() => {
+          },
+          (error: HttpErrorResponse) => {
+            this.showError = true;
+            this.errorMsg = error;
+          });
       }
     );
 
-    this.taskService.addTask(this.task).subscribe();
+    this.taskService.addTask(this.task).subscribe(
+      () => {
+      },
+      (error: HttpErrorResponse) => {
+        this.showError = true;
+        this.errorMsg = error;
+      }
+    );
   }
 
   getTaskByAssignee(assignee: string) {

@@ -87,8 +87,13 @@ public class ProjectController {
     }
 
     @PutMapping(path = "/addassignee/{id}/{assignee}")
-    public void addAssignee(@PathVariable long id, @PathVariable String assignee) {
-        service.assignAssignee(id, assignee);
+    public ResponseEntity addAssignee(@PathVariable long id, @PathVariable String assignee) {
+        try {
+            service.assignAssignee(id, assignee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.valueOf(500)).body(false);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(false);
     }
 
     @PutMapping(path = "/addtask/{id}/{taskId}")

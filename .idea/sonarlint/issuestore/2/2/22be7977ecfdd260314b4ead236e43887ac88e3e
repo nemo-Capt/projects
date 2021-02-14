@@ -1,17 +1,9 @@
 
-V
-java:S1128"9Remove this unused import 'triangle.test.DataTransition'.(Öéíè8Ÿ¯ôßÔ.
-]	java:S125"<This block of commented-out lines of code should be removed.(íØÉ¿ÿÿÿÿÿ8©¯öûØ.
-X	java:S125&"<This block of commented-out lines of code should be removed.(´Ş¹8©¯öûØ.
-]	java:S1253"<This block of commented-out lines of code should be removed.(­ä«ºüÿÿÿÿ8œğ÷ûØ.
-Z	java:S106/"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8·àöûØ.
-]	java:S125"<This block of commented-out lines of code should be removed.(®ÆŒ üÿÿÿÿ8©¯öûØ.
-]	java:S125"<This block of commented-out lines of code should be removed.(·ÔÅèùÿÿÿÿ8©¯öûØ.
-Z	java:S106-"9Replace this use of System.out or System.err by a logger.(‚é€Şûÿÿÿÿ8·àöûØ.
-Z	java:S1067"9Replace this use of System.out or System.err by a logger.(‚é€Şûÿÿÿÿ8äë¸‰Õ.
-Z	java:S106<"9Replace this use of System.out or System.err by a logger.(·öûŠüÿÿÿÿ8Éé¢üØ.
-]	java:S125"<This block of commented-out lines of code should be removed.(ÚğÍøüÿÿÿÿ8©¯öûØ.
 U
 java:S1128"3Remove this unused import 'triangle.test.KeyBoard'.( ¾óÚûÿÿÿÿ8Ÿ¯ôßÔ.
 T
 java:S1128"2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆıÿÿÿÿ8â¹óßÔ.
+G
+java:S1068"*Remove this unused "logger" private field.( á©8ºæÁéù.
+V
+java:S1128"9Remove this unused import 'triangle.test.DataTransition'.(Öéíè8Ÿ¯ôßÔ.

@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @Service
@@ -54,17 +55,20 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void addTask(TaskDTO taskDTO) {
         Task task = new Task();
-
-        task.setName(taskDTO.getName());
+        Random random = new Random();
+        int code = random.nextInt(9999 - 1000) + 1000;
+        task.setName(taskDTO.getProject() + "(" + code + ")-" + taskDTO.getName());
         task.setPriority("low");
         task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
         task.setProject(projectRepository.findByName(taskDTO.getProject()));
         task.setUser(userRepository.findByUsername(taskDTO.getUser()));
-        if(task.getUser() != null) {
+        if (task.getUser() != null) {
             mail.sendEmailToReporter(task.getUser().getEmail(), task.getName());
         }
         task.setAssignee(userRepository.findByUsername(taskDTO.getAssignee()));
-        mail.sendEmailToAssignee(task.getAssignee().getEmail(), task.getName());
+        if (task.getAssignee() != null) {
+            mail.sendEmailToAssignee(task.getAssignee().getEmail(), task.getName());
+        }
         task.setEstimatedtime(taskDTO.getEstimatedtime());
 
         repository.save(task);

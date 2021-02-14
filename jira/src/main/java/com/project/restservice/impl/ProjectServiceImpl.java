@@ -117,6 +117,11 @@ public class ProjectServiceImpl implements ProjectService {
                     oldProject.setDuedate(project.getDuedate());
                     oldProject.setEstimatedtime(project.getEstimatedtime());
                     oldProject.setDesc(project.getDesc());
+                    List<Task> tasks = oldProject.getTasks();
+                    for (Task task : tasks) {
+                        task.setName(project.getName().concat(task.getName().substring(task.getName().indexOf('('))));
+                    }
+                    oldProject.setTasks(tasks);
                     return repository.save(oldProject);
                 })
                 .orElseThrow(

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/users")
@@ -77,10 +76,13 @@ public class UserController {
 
     @PutMapping("/edit")
     public ResponseEntity edit(@RequestBody EditDTO editDTO) {
+        if (editDTO.getUsername() == null || editDTO.getUsername().equals("")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Type in username");
+        }
         if (!emailValidation.validate(editDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid email");
         }
-        if (editDTO.getNewPassword().length() < 4) {
+        if (editDTO.getNewPassword() != null && editDTO.getNewPassword().length() < 4) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Password must be at least 4 characters long");
         }
         try {

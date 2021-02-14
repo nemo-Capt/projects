@@ -10,10 +10,12 @@ public class MailImpl implements Mail {
 
     private final JavaMailSender javaMailSender;
 
+
     @Autowired
     public MailImpl(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
+
 
     public void sendEmail(String email, String role) {
 

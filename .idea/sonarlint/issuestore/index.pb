@@ -544,3 +544,7 @@ o
 0front/src/app/components/task/task.component.css,b\3\b38ae42ecf8679129b415858591af75debd9c740
 n
 >front/src/app/components/profileedit/profileedit.component.css,f\e\fe39c84ea65e4365fe31d37c2f53ce6e2c08db3d
+r
+Bfront/src/app/components/profileedit/profileedit.component.spec.ts,6\e\6e605fc149e83cc4178bf14d20266fdaf8b61fb6
+‚
+Rjirafapi/src/main/java/com/project/controller/emailvalidation/EmailValidation.java,5\e\5ef0b50249130c5444e63168eaf8f5843c7fd70a

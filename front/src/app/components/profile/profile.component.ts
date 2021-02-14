@@ -9,8 +9,7 @@ import {TaskService} from "../../service/task.service";
 import {CommentService} from "../../service/comment.service";
 import {Comment} from "../../entity/Comment";
 import {DatePipe} from '@angular/common';
-import {HttpClientModule, HttpErrorResponse} from '@angular/common/http';
-import {error} from "@angular/compiler/src/util";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -34,6 +33,8 @@ export class ProfileComponent implements OnInit {
   dateFormat: string;
   newtaskpopup: boolean;
   task: Task;
+  showError: boolean;
+  errorMsg: HttpErrorResponse;
 
   constructor(
     private userService: UserService,
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showError = false;
     let username: string = this.tokenStorage.getUsername();
     this.userService.getOne(username).subscribe(data => {
       this.user = data;
@@ -61,21 +63,36 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+
+  setTaskStatus(id: number, statusid: number) {
+    this.taskService.setTaskStatus(id, statusid).subscribe(
+      () => this.ngOnInit());
+  }
+
   addTask(projectName: string) {
     this.currentDate = Date.now();
     this.task.estimatedtime = this.datepipe.transform(this.currentDate, this.dateFormat);
-    if (this.task.assignee == null) {
+    if (this.task.assignee == null || this.task.assignee == '') {
       this.task.assignee = this.tokenStorage.getUsername();
     }
     this.projectService.getProjectByName(projectName).subscribe(
       project => {
-        this.projectService.addAssignee(project.id, this.task.assignee).subscribe();
-      }
-    );
+        this.projectService.addAssignee(project.id, this.task.assignee).subscribe(
+          () => {
+          },
+          (error: HttpErrorResponse) => {
+            this.showError = true;
+            this.errorMsg = error;
+          });
+      });
 
     this.taskService.addTask(this.task).subscribe(
       () => {
         this.ngOnInit();
+      },
+      (error: HttpErrorResponse) => {
+        this.showError = true;
+        this.errorMsg = error;
       });
 
   }
@@ -88,7 +105,13 @@ export class ProfileComponent implements OnInit {
 
   addAssignee(id: number) {
     this.projectService.addAssignee(id, this.projectUser.username).subscribe(
-      () => this.ngOnInit());
+      () => {
+        this.ngOnInit()
+      },
+      (error: HttpErrorResponse) => {
+        this.showError = true;
+        this.errorMsg = error;
+      });
   }
 
   deleteAssignee(projectId: number) {
@@ -131,7 +154,13 @@ export class ProfileComponent implements OnInit {
   getTaskByAssignee(assignee: string) {
     this.taskService.getTasksByAssignee(assignee).subscribe(data => {
       this.tasks = data;
-    })
+      this.tasks.forEach(task => {
+        task.projectPrefix = task.name.substr(0, task.name.indexOf('-') + 1);
+        task.tempTaskName = task.name.substr(task.name.indexOf('-') + 1);
+      });
+    });
+
+
   }
 
   switchProject(project: Project) {
@@ -167,20 +196,25 @@ export class ProfileComponent implements OnInit {
   }
 
   saveTask(task: Task) {
+    task.name = task.projectPrefix.concat(task.tempTaskName);
     this.taskService.editTask(task).subscribe(
       () => this.ngOnInit()
     );
   }
 
-  deleteTaskApprove(id: number) {
+  deleteTaskApprove(id: number, task: Task) {
     if (confirm('Are you sure?') == true) {
-      this.deleteTask(id);
+      this.deleteTask(id, task);
     }
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number, task: Task) {
     this.taskService.deleteTask(id).subscribe(
-      () => this.ngOnInit()
+      () => this.ngOnInit(),
+      (error: HttpErrorResponse) => {
+        task.showError = true;
+        this.errorMsg = error;
+      }
     );
   }
 
@@ -190,12 +224,15 @@ export class ProfileComponent implements OnInit {
 
   saveAssignee(task: Task) {
     this.taskService.addAssignee(task, task.assignee).subscribe(
-      () => this.ngOnInit()
-    );
+      () => this.ngOnInit());
     this.projectService.getProjectByName(task.project).subscribe(data => {
       if (!data.assignees.includes(task.user)) {
         this.projectService.addAssignee(data.id, task.user).subscribe(
-          () => this.ngOnInit());
+          () => this.ngOnInit(),
+          (error: HttpErrorResponse) => {
+            this.showError = true;
+            this.errorMsg = error;
+          });
       }
     });
   }
@@ -206,18 +243,22 @@ export class ProfileComponent implements OnInit {
 
   saveReporter(task: Task) {
     this.taskService.addReporter(task, task.user).subscribe(() => {
-        this.ngOnInit()
-      },
-      (err: HttpErrorResponse) => {
-        alert("qq");
-        console.log(err.message);
-      });
+      this.ngOnInit()
+    });
 
     this.projectService.getProjectByName(task.project).subscribe(data => {
       if (!data.assignees.includes(task.user)) {
         this.projectService.addAssignee(data.id, task.user).subscribe(
-          () => this.ngOnInit()
-        );
+          () => this.ngOnInit(),
+          (error: HttpErrorResponse) => {
+            if (error.status == 403) {
+              this.showError = true;
+              this.errorMsg = error;
+            }
+            if (error.status == 404) {
+              alert("404");
+            }
+          });
       }
     });
   }

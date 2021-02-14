@@ -38,7 +38,7 @@ public class TaskController {
 
     @PostMapping(consumes = "application/json")
     public void create(@RequestBody TaskDTO taskDTO) {
-        
+
         service.addTask(taskDTO);
     }
 
@@ -89,16 +89,22 @@ public class TaskController {
     }
 
     @PutMapping(path = "/addassignee/{id}/assignee")
-    public void addAssignee(@PathVariable long id, @RequestParam String assignee) {
-        service.assignAssignee(id, assignee);
+    public ResponseEntity addAssignee(@PathVariable long id, @RequestParam String assignee) {
+        try {
+            service.assignAssignee(id, assignee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.valueOf(500)).body("User not found");
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @PutMapping(path = "/addreporter/{id}/reporter")
-    public ResponseEntity<ApiResponse> addReporter(@PathVariable long id, @RequestParam String reporter) {
+    public ResponseEntity addReporter(@PathVariable long id, @RequestParam String reporter) {
         try {
             service.assignReporter(id, reporter);
-        } catch (HttpServerErrorException e) {
-            return new ResponseEntity<>(HttpStatus.resolve(404));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.valueOf(500)).body("User not found");
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -109,8 +115,13 @@ public class TaskController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable("id") long id) {
-        service.deleteTask(id);
+    public ResponseEntity delete(@PathVariable("id") long id) {
+        try {
+            service.deleteTask(id);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.valueOf(500)).body("User already exists");
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
