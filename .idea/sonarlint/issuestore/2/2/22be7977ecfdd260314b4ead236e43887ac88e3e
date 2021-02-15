@@ -1,8 +1,8 @@
 
-U
-java:S1128"3Remove this unused import 'triangle.test.KeyBoard'.( ¾óÚûÿÿÿÿ8Ÿ¯ôßÔ.
 T
 java:S1128"2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆıÿÿÿÿ8â¹óßÔ.
+U
+java:S1128"3Remove this unused import 'triangle.test.KeyBoard'.( ¾óÚûÿÿÿÿ8Ÿ¯ôßÔ.
 G
 java:S1068"*Remove this unused "logger" private field.( á©8ºæÁéù.
 V

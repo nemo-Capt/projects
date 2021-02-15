@@ -13,7 +13,6 @@ export class Task {
   estimatedtime: string;
   status: string;
   comments: Comment[];
-  showTask: boolean;
   showEdit: boolean;
   showError: boolean;
   tempTaskName: string;

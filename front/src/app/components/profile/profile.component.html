@@ -4,18 +4,20 @@
     <div class="card"
          style="width: 20%; border: none; border-radius: 0 0 5px 5px; background: rgba(255, 255, 255, 0.8);">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" style="background: none;">Logged id as: <b>{{user.username}}</b></li>
+        <li class="list-group-item" style="background: none;">Logged in as: <b>{{user.username}}</b></li>
         <li class="list-group-item" style="background: none;">Email: {{user.email}}</li>
         <li class="list-group-item" style="background: none;">Role: {{user.role}}</li>
       </ul>
       <button class="btn btn-edit" routerLink="edit">Edit</button>
     </div>
-    <div *ngIf="showError" class="alert-danger">
-      {{errorMsg.error}}
-    </div>
+
 
     <!-- PROJECTS   -->
     <div style="margin-left: 400px; margin-bottom: 100px; margin-top: -100px;">
+      <div *ngIf="showError" class="alert-danger animated"
+           style="height: 40px; text-align: center; font-size: 28px; background: white;">
+        {{errorMsg.error}}
+      </div>
       <h3 style="color: white;">Projects</h3>
       <div class="card" *ngFor="let project of projects"
            style="margin-top: 25px; border: 5px solid #191919; background: none;">
@@ -82,18 +84,21 @@
             <div class="card" *ngIf="task.project == project.name" style="border: none; background: none;">
               <div class="card-header">
                 <h4>{{task.name}}
-                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
+                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)"
+                          *ngIf="pinnedTasks[task.id-1]">Edit
                   </button>
                   <button class="btn btn-delete btn-outline-danger" (click)="deleteTaskApprove(task.id, task)"
-                          *ngIf="task.showTask">
+                          *ngIf="pinnedTasks[task.id-1]">
                     Delete
                   </button>
-                  <button class="showtaskbtn btn btn-black btn-outline-dark" (click)="task.showTask = !task.showTask">
+                  <button class="showtaskbtn btn btn-black btn-outline-dark"
+                          (click)="pinnedTasks[task.id-1] = !pinnedTasks[task.id-1]">
                     Show
                   </button>
                 </h4>
               </div>
-              <div class="card-body" *ngIf="task.showTask" style="background: rgba(255, 255, 255, 0.8)!important;">
+              <div class="card-body" *ngIf="pinnedTasks[task.id-1]"
+                   style="background: rgba(255, 255, 255, 0.8)!important;">
                 <form *ngIf="task.showEdit" (ngSubmit)="saveTask(task); switchTask(task);">
                   <label for="TaskName">Name:</label>
                   <input type="text" class="form-control" id="TaskName" name="name" [(ngModel)]="task.tempTaskName">
@@ -284,18 +289,19 @@
             <div class="card" *ngIf="task.project == project.name" style="border: none; background: none">
               <div class="card-header">
                 <h4>{{task.name}}
-                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="task.showTask">Edit
+                  <button class="btn btn-black btn-outline-dark" (click)="switchTask(task)" *ngIf="pinnedTasks[task.id-1]">Edit
                   </button>
                   <button class="btn btn-delete btn-outline-danger" (click)="deleteTaskApprove(task.id, task)"
-                          *ngIf="task.showTask">
+                          *ngIf="pinnedTasks[task.id-1]">
                     Delete
                   </button>
-                  <button class="showtaskbtn btn btn-black btn-outline-dark" (click)="task.showTask = !task.showTask">
+                  <button class="showtaskbtn btn btn-black btn-outline-dark"
+                          (click)="pinnedTasks[task.id-1] = !pinnedTasks[task.id-1]">
                     Show
                   </button>
                 </h4>
               </div>
-              <div class="card-body" *ngIf="task.showTask" style="background: rgba(255, 255, 255, 0.8);">
+              <div class="card-body" *ngIf="pinnedTasks[task.id-1]" style="background: rgba(255, 255, 255, 0.8);">
                 <form *ngIf="task.showEdit" (ngSubmit)="saveTask(task); switchTask(task);">
                   <label for="TaskName">Name:</label>
                   <input type="text" class="form-control" id="UTaskName" name="name" [(ngModel)]="task.tempTaskName">

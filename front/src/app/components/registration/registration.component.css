@@ -58,3 +58,9 @@
   background: #a136ac;
 }
 
+.alert-danger {
+  border-radius: 5px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+}

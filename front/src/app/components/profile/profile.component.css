@@ -205,3 +205,14 @@ option {
 h2 {
   color: white !important;
 }
+
+.animated {
+  border-radius: 5px;
+  animation: color-change 1s infinite;
+}
+
+@keyframes color-change {
+  0% { color: #C01515; }
+  50% { color: #1565c0; }
+  100% { color: #C01515; }
+}

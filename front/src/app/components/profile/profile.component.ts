@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   task: Task;
   showError: boolean;
   errorMsg: HttpErrorResponse;
+  pinnedTasks: boolean[];
 
   constructor(
     private userService: UserService,
@@ -48,7 +49,9 @@ export class ProfileComponent implements OnInit {
     this.projectUser = new User();
     this.dateFormat = 'yyyy-MM-dd HH:mm:ss';
     this.task = new Task();
+    this.pinnedTasks = [];
   }
+
 
   ngOnInit() {
     this.showError = false;
