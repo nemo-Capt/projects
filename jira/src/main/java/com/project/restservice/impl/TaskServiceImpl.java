@@ -1,12 +1,9 @@
 package com.project.restservice.impl;
 
 import com.project.EntityNotFoundException;
-import com.project.entity.Assignee;
-import com.project.entity.Project;
 import com.project.entity.Status;
 import com.project.entity.Task;
 import com.project.entity.User;
-import com.project.repository.AssigneeRepository;
 import com.project.repository.ProjectRepository;
 import com.project.repository.StatusRepository;
 import com.project.repository.TaskRepository;

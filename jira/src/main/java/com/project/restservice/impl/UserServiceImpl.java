@@ -11,7 +11,6 @@ import com.project.restservice.dto.RegistrationUserDTO;
 import com.project.restservice.dto.UserDTO;
 import com.project.restservice.dto.UserMapper;
 import com.project.restservice.mail.Mail;
-import com.project.restservice.mail.MailImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

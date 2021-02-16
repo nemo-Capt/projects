@@ -1,12 +1,10 @@
 package com.project.restservice.dto;
 
 import com.project.EntityNotFoundException;
-import com.project.entity.Assignee;
 import com.project.entity.Project;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ProjectMapper {

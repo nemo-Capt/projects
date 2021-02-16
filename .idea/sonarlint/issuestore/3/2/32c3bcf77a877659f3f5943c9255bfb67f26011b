@@ -1,15 +1,9 @@
 
 L
-java:S2201|"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
-c
-java:S1128	"FRemove this unused import 'com.project.repository.AssigneeRepository'.(Úó’›8†Û‚ïô.
+java:S2201y"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
 M
-java:S2201‹"/The return value of "orElseThrow" must be used.(©—şô8ÎäôÏò.
-U
-java:S1128"8Remove this unused import 'com.project.entity.Assignee'.(Øš•Š8»©èíô.
-T
-java:S1128"7Remove this unused import 'com.project.entity.Project'.(¤¢·8ƒâäíô.
+java:S2201ˆ"/The return value of "orElseThrow" must be used.(©—şô8ÎäôÏò.
 M
-java:S2201œ"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
+java:S2201™"/The return value of "orElseThrow" must be used.(©—şô8ª±ôí.
 M
-java:S2201ª"/The return value of "orElseThrow" must be used.(©—şô8ç÷€Ãî.
+java:S2201§"/The return value of "orElseThrow" must be used.(©—şô8ç÷€Ãî.

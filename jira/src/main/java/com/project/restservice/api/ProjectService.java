@@ -1,7 +1,6 @@
 package com.project.restservice.api;
 
 import com.project.entity.Project;
-import com.project.entity.Task;
 import com.project.restservice.dto.ProjectDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

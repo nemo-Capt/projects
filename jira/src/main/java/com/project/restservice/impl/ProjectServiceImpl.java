@@ -4,7 +4,6 @@ import com.project.EntityNotFoundException;
 import com.project.entity.Assignee;
 import com.project.entity.Project;
 import com.project.entity.Task;
-import com.project.entity.User;
 import com.project.repository.AssigneeRepository;
 import com.project.repository.ProjectRepository;
 import com.project.repository.TaskRepository;
@@ -21,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional

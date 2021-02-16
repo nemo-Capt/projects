@@ -1,7 +1,6 @@
 package com.project.controller;
 
 import com.project.entity.Task;
-import com.project.entity.User;
 import com.project.restservice.api.TaskService;
 import com.project.restservice.dto.TaskDTO;
 import com.project.restservice.dto.TaskMapper;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 

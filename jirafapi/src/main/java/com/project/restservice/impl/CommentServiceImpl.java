@@ -3,7 +3,6 @@ package com.project.restservice.impl;
 import com.project.config.Constants;
 import com.project.controller.ApiResponse;
 import com.project.entity.Comment;
-import com.project.entity.Project;
 import com.project.restservice.api.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -12,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
