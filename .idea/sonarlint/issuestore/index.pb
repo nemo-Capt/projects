@@ -276,8 +276,6 @@ q
 Ajira/src/main/java/com/project/restservice/api/StatusService.java,1\6\166eaa2171cd11762c1bfa43a47e7dbf81734efc
 v
 Fjira/src/main/java/com/project/restservice/impl/StatusServiceImpl.java,e\d\edc42dff61ec9136184a5d5f7a4b55b37dde2e15
-m
-=jirafapi/src/main/java/com/project/config/SecurityConfig.java,9\7\9750a9db7ae582c7f32cbf001a9927ef75e045e5
 h
 8jirafapi/src/main/java/com/project/config/WebConfig.java,8\8\88ab7d45d740c9a8455cab9615ffa70d0007dd9d
 n
@@ -548,3 +546,5 @@ r
 Bfront/src/app/components/profileedit/profileedit.component.spec.ts,6\e\6e605fc149e83cc4178bf14d20266fdaf8b61fb6
 ‚
 Rjirafapi/src/main/java/com/project/controller/emailvalidation/EmailValidation.java,5\e\5ef0b50249130c5444e63168eaf8f5843c7fd70a
+p
+@jirafapi/src/main/java/com/project/config/WebSecurityConfig.java,0\c\0c963b2f2b3f158d21c4521db4dfe792d77ac149

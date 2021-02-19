@@ -40,10 +40,10 @@ export class TokenStorageService {
   }
 
   logout() {
-    sessionStorage.removeItem(TOKEN)
-    sessionStorage.removeItem(USERNAME)
-    sessionStorage.removeItem(ROLE)
-    sessionStorage.removeItem(ID)
+    sessionStorage.removeItem(TOKEN);
+    sessionStorage.removeItem(USERNAME);
+    sessionStorage.removeItem(ROLE);
+    sessionStorage.removeItem(ID);
   }
 
 }

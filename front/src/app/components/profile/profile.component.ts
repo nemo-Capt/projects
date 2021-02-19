@@ -66,6 +66,40 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  styleObject(priority: string): Object {
+    if (priority == 'blocker') {
+      return {color: '#ff0000'}
+    }
+    if (priority == 'critical') {
+      return {color: '#E80031'}
+    }
+    if (priority == 'major') {
+      return {color: '#FF00A2'}
+    }
+    if (priority == 'highest') {
+      return {color: '#FF8000'}
+    }
+    if (priority == 'high') {
+      return {color: '#e8e400'}
+    }
+    if (priority == 'medium') {
+      return {color: '#a2b431'}
+    }
+    if (priority == 'low') {
+      return {color: '#00b450'}
+    }
+    if (priority == 'lowest') {
+      return {color: '#5fb458'}
+    }
+    if (priority == 'minor') {
+      return {color: '#97b491'}
+    }
+    if (priority == 'trivial') {
+      return {color: 'white'}
+    }
+    return {}
+  }
+
 
   setTaskStatus(id: number, statusid: number) {
     this.taskService.setTaskStatus(id, statusid).subscribe(
@@ -161,6 +195,43 @@ export class ProfileComponent implements OnInit {
         task.projectPrefix = task.name.substr(0, task.name.indexOf('-') + 1);
         task.tempTaskName = task.name.substr(task.name.indexOf('-') + 1);
       });
+      this.tasks.forEach(task => {
+        if (task.priority == 'blocker') {
+          task.priority = 'a' + task.priority
+        }
+        if (task.priority == 'critical') {
+          task.priority = 'b' + task.priority
+        }
+        if (task.priority == 'major') {
+          task.priority = 'c' + task.priority
+        }
+        if (task.priority == 'highest') {
+          task.priority = 'd' + task.priority
+        }
+        if (task.priority == 'high') {
+          task.priority = 'e' + task.priority
+        }
+        if (task.priority == 'medium') {
+          task.priority = 'f' + task.priority
+        }
+        if (task.priority == 'low') {
+          task.priority = 'g' + task.priority
+        }
+        if (task.priority == 'lowest') {
+          task.priority = 'h' + task.priority
+        }
+        if (task.priority == 'minor') {
+          task.priority = 'i' + task.priority
+        }
+        if (task.priority == 'trivial') {
+          task.priority = 'j' + task.priority
+        }
+
+      });
+      this.tasks.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+      this.tasks.forEach(task => {
+        task.priority = task.priority.substr(1);
+      })
     });
 
 
