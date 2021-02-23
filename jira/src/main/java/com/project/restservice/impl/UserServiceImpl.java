@@ -17,6 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -69,6 +72,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(Long id) {
         return repository.getOne(id);
+    }
+
+    @Override
+    public List<UserDTO> findByUsernameContains(String username) {
+
+        List<User> users = repository.findByUsernameContaining(username);
+        List<UserDTO> userDTOs = new ArrayList<>();
+        for (User user : users) {
+            userDTOs.add(UserMapper.createDTO(user));
+        }
+        return userDTOs;
     }
 
     @Override

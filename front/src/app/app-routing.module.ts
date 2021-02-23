@@ -10,6 +10,7 @@ import {TaskComponent} from "./components/task/task.component";
 import {CommentComponent} from "./components/comment/comment.component";
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {ProfileeditComponent} from "./components/profileedit/profileedit.component";
+import {PmtasksComponent} from "./components/pmtasks/pmtasks.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'comments', component: CommentComponent},
   {path: '', component: HomePageComponent},
   {path: 'profile/edit', component: ProfileeditComponent},
+  {path: 'profile/tasks', component: PmtasksComponent}
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import com.project.EntityNotFoundException;
 import com.project.entity.Status;
 import com.project.entity.Task;
 import com.project.entity.User;
+import com.project.repository.CommentRepository;
 import com.project.repository.ProjectRepository;
 import com.project.repository.StatusRepository;
 import com.project.repository.TaskRepository;
@@ -31,15 +32,18 @@ public class TaskServiceImpl implements TaskService {
     private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
     private final StatusRepository statusRepository;
+    private final CommentRepository commentRepository;
     private final Mail mail;
 
     @Autowired
     public TaskServiceImpl(TaskRepository repository, UserRepository userRepository,
-                           ProjectRepository projectRepository, StatusRepository statusRepository, Mail mail) {
+                           ProjectRepository projectRepository, StatusRepository statusRepository,
+                           CommentRepository commentRepository, Mail mail) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
         this.statusRepository = statusRepository;
+        this.commentRepository = commentRepository;
         this.mail = mail;
     }
 
@@ -50,10 +54,32 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<TaskDTO> getTasksByProjects(List<String> projects) {
+
+        List<Task> tasks = repository.findAll();
+        List<TaskDTO> taskDTOs = new ArrayList<>();
+        for (Task task : tasks) {
+            taskDTOs.add(TaskMapper.createDTO(task));
+        }
+
+        List<TaskDTO> projectTasks = new ArrayList<>();
+        for (TaskDTO task : taskDTOs) {
+            for (String project : projects) {
+                if (task.getProject().equals(project)) {
+                    projectTasks.add(task);
+                }
+            }
+        }
+
+        return projectTasks;
+    }
+
+
+    @Override
     public void addTask(TaskDTO taskDTO) {
         Task task = new Task();
         Random random = new Random();
-        int code = random.nextInt(9999 - 1000) + 1000;
+        int code = random.nextInt(9999 - 1000) + 1000; // заменить на id
         task.setName(taskDTO.getProject() + "(" + code + ")-" + taskDTO.getName());
         task.setPriority("low");
         task.setStatus(statusRepository.findByStatus(taskDTO.getStatus()));
@@ -82,6 +108,18 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<TaskDTO> getByNameContaining(String name) {
+
+        List<Task> tasks = repository.findByNameContaining(name);
+        List<TaskDTO> taskDTOs = new ArrayList<>();
+        for (Task task : tasks) {
+            taskDTOs.add(TaskMapper.createDTO(task));
+        }
+
+        return taskDTOs;
+    }
+
+    @Override
     public List<TaskDTO> getTasksByAssignee(String assignee) {
         List<Task> tasks = repository.findTasksByAssigneeUsername(assignee);
         List<TaskDTO> newTasks = new ArrayList<>();
@@ -103,6 +141,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public void pmDeleteTask(Long id) {
+
+        commentRepository.deleteAllByTaskName(repository.getOne(id).getName());
         repository.deleteById(id);
     }
 

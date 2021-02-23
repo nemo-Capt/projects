@@ -48,6 +48,19 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getTasksByNameContaining(String name) {
+
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.TASK_URL + "/contains/" + name, Task[].class)));
+    }
+
+    @Override
+    public List<Task> getTasksByProjects(List<String> projects) {
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.TASK_URL + "/project/" + Arrays.toString(projects.toArray()).substring(1) + ",", Task[].class)));
+    }
+
+    @Override
     public List<Task> getTasksByAssignee(String assignee) {
 
         return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
@@ -64,6 +77,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Long id) {
         restTemplate.delete(Constants.TASK_URL + "/" + id);
+    }
+
+    @Override
+    public void pmDelete(Long id) {
+
+        restTemplate.delete(Constants.TASK_URL + "/pm/" + id);
     }
 
     @Override

@@ -23,6 +23,8 @@ export class HomePageComponent implements OnInit {
 
   user: User;
   users: User[];
+  searchUsers: User[];
+  searchUsername: string;
   tasks: Task[];
   newprojectpopup: boolean;
   newtaskpopup: boolean;
@@ -38,6 +40,7 @@ export class HomePageComponent implements OnInit {
   dateFormat: string;
   showError: boolean;
   errorMsg: HttpErrorResponse;
+  searchSwitch: boolean;
 
   constructor(
     private userService: UserService,
@@ -53,6 +56,7 @@ export class HomePageComponent implements OnInit {
     this.signUpDTO = new SignUpDTO();
     this.currentPage = 0;
     this.dateFormat = 'yyyy-MM-dd HH:mm:ss';
+    this.searchUsers = [];
   }
 
   ngOnInit() {
@@ -76,6 +80,13 @@ export class HomePageComponent implements OnInit {
         })
       }
     });
+  }
+
+  search() {
+    this.userService.getByUsernameContaining(this.searchUsername).subscribe(data => {
+      this.searchUsers = data;
+      this.ngOnInit();
+    })
   }
 
   nextPage() {
@@ -111,8 +122,10 @@ export class HomePageComponent implements OnInit {
 
   changeRole(user: User) {
     this.userService.setRole(user).subscribe(
-      () => this.ngOnInit()
-    );
+      () => {
+        this.search();
+        this.ngOnInit();
+      });
   }
 
   addProject() {
@@ -170,8 +183,10 @@ export class HomePageComponent implements OnInit {
 
   banUser(username: string) {
     if (this.user.username != username) {
-      this.userService.ban(username).subscribe(() =>
-        this.ngOnInit());
+      this.userService.ban(username).subscribe(() => {
+        this.search();
+        this.ngOnInit();
+      });
     } else {
       alert('You can\'t ban yourself!');
     }
@@ -179,7 +194,10 @@ export class HomePageComponent implements OnInit {
 
   unbanUser(username: string) {
     this.userService.unban(username).subscribe(
-      () => this.ngOnInit());
+      () => {
+        this.search();
+        this.ngOnInit();
+      });
   }
 
 

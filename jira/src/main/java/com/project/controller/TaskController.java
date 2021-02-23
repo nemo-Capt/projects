@@ -65,6 +65,23 @@ public class TaskController {
         return taskDTO;
     }
 
+    @GetMapping(path = "/contains/{name}")
+    public List<TaskDTO> getTasksByNameContaining(@PathVariable String name) {
+
+        List<TaskDTO> taskDTOs = service.getByNameContaining(name);
+
+        return taskDTOs;
+    }
+
+
+    @GetMapping(path = "/project/{projects}")
+    public List<TaskDTO> getTasksByProject(@PathVariable("projects") List<String> projects) {
+
+        List<TaskDTO> taskDTOs = service.getTasksByProjects(projects);
+
+        return taskDTOs;
+    }
+
     @GetMapping(path = "/assignee/{assignee}")
     public List<TaskDTO> findTaskByAssignee(@PathVariable("assignee") String assignee) {
 
@@ -120,6 +137,11 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.valueOf(500)).body("User already exists");
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/pm/{id}")
+    public void pmDelete(@PathVariable Long id) {
+        service.pmDeleteTask(id);
     }
 
 }

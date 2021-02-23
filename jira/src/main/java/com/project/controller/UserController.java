@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/users")
@@ -47,6 +49,14 @@ public class UserController {
         UserDTO userDTO = UserMapper.createDTO(user);
 
         return userDTO;
+    }
+
+    @GetMapping("/contains/{username}")
+    public List<UserDTO> getByUsernameContaining(@PathVariable String username) {
+
+        List<UserDTO> userDTOs = service.findByUsernameContains(username);
+
+        return  userDTOs;
     }
 
     @GetMapping("/username/{username}")

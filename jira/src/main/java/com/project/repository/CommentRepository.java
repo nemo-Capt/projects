@@ -11,4 +11,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> getCommentsByTaskName(String task);
 
+    void deleteAllByTaskName(String taskName);
+
 }

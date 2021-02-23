@@ -15,6 +15,8 @@ public interface UserService {
 
     User getUserByName(String name);
 
+    List<User> getByUsernameContains(String username);
+
     User create(UserDTO userDTO);
 
     User register(RegistrationUserDTO registrationUserDTO);

@@ -21,7 +21,47 @@
     </div>
   </div>
 
-  <table class="table" align="center">
+  <div class="search">
+    <form (ngSubmit)="search(); searchSwitch = true">
+      <input type="search" id="form1" class="search-form" placeholder="Search" [(ngModel)]="searchUsername" name="search">
+      <button type="submit" class="search-btn">Search</button>
+      <button *ngIf="searchSwitch" (click)="searchSwitch = false;" class="back-btn">Back</button>
+    </form>
+  </div>
+
+  <table class="table" align="center" *ngIf="searchSwitch">
+    <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Banned</th>
+      <th scope="col">Role</th>
+      <th scope="col">Ban</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of searchUsers">
+      <td>{{user.username}}</td>
+      <td>{{user.banned}}</td>
+      <td><b *ngIf="user.role === 'admin'">{{user.role}}</b>
+        <select *ngIf="user.role != 'admin'" [(ngModel)]="user.role" name="role"
+                (change)="changeRole(user)"
+                style="border-radius: 24px; padding-left: 20px; padding-right: 20px;">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option value="productmanager">PM</option>
+          <option value="developer">Developer</option>
+          <option value="tester">Tester</option>
+        </select>
+      </td>
+      <td>
+        <button *ngIf="!user.banned" class="btn-violet" (click)="banUser(user.username); search()">Ban</button>
+        <button *ngIf="user.banned" class="btn-violet" (click)="unbanUser(user.username); search()">Unban</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table" align="center" *ngIf="!searchSwitch">
     <thead>
     <tr>
       <th scope="col">Username</th>

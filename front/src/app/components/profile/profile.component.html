@@ -8,6 +8,7 @@
         <li class="list-group-item" style="background: none;">Email: {{user.email}}</li>
         <li class="list-group-item" style="background: none;">Role: {{user.role}}</li>
       </ul>
+      <button *ngIf="user.role == 'productmanager'" class="btn btn-edit" routerLink="tasks" style="border-radius: 0">Tasks</button>
       <button class="btn btn-edit" routerLink="edit">Edit</button>
     </div>
 
@@ -68,7 +69,7 @@
           </form>
           <div *ngIf="!project.shown">
             <h5 class="card-title">Stage: {{project.stage}}</h5>
-            <h5 class="card-title">Tasks: {{tasks.length}}</h5>
+            <h5 class="card-title">Tasks: {{project.tasks.length}}</h5>
             <h5 *ngFor="let task of project.tasks" style="display: inline-block">{{task | slice:task.indexOf('-') + 1}},&nbsp;</h5>
             <h5 class="card-title">Due: {{project.duedate}}</h5>
             <h5 class="card-title">Started: {{project.estimatedtime}}</h5>
@@ -146,17 +147,18 @@
                   {{errorMsg.error}}
                 </div>
                 <form *ngIf="showAssignee" (ngSubmit)="saveAssignee(task); switchAssignee();">
-                  <label for="Assignee">Assignee:</label>
+                  <select *ngIf="showAssignee" [(ngModel)]="task.assignee" name="assignee">
+                    <option *ngFor="let assignee of project.assignees" value="{{assignee}}">{{assignee}}</option>
+                  </select>
                   <button type="submit" class="btn btn-white">Submit</button>
-                  <input type="text" class="form-control" id="Assignee" name="Assignee" [(ngModel)]="task.assignee"
-                         style="width: 30%">
                 </form>
 
+
                 <form *ngIf="showReporter" (ngSubmit)="saveReporter(task); switchReporter();">
-                  <label for="Reporter">Reporter:</label>
+                  <select *ngIf="showReporter" [(ngModel)]="task.user" name="reporter">
+                    <option *ngFor="let reporter of project.assignees" value="{{reporter}}">{{reporter}}</option>
+                  </select>
                   <button type="submit" class="btn btn-white">Submit</button>
-                  <input type="text" class="form-control" id="Reporter" name="reporter" [(ngModel)]="task.user"
-                         style="width: 30%">
                 </form>
 
                 <div *ngIf="!task.showEdit">

@@ -18,11 +18,17 @@ public interface TaskService {
 
     Task getTaskByName(String name);
 
+    List<TaskDTO> getTasksByProjects(List<String> project);
+
     List<TaskDTO> getTasksByAssignee(String assignee);
 
     List<TaskDTO> getTaskByReporter(String reporter);
 
+    List<TaskDTO> getByNameContaining(String name);
+
     void deleteTask(Long id);
+
+    void pmDeleteTask(Long id);
 
     void editTask(TaskDTO task, Long id);
 

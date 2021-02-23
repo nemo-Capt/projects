@@ -49,6 +49,18 @@ public class TaskController {
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
+    @GetMapping("/contains/{name}")
+    public List<Task> getTasksByNameContaining(@PathVariable String name) {
+
+        return service.getTasksByNameContaining(name);
+    }
+
+    @GetMapping(path = "/project/{projects}")
+    public List<Task> getTasksByProjects(@PathVariable List<String> projects) {
+
+        return service.getTasksByProjects(projects);
+    }
+
     @GetMapping(path = "/assignee/{assignee}")
     public List<Task> getTaskByAssignee(@PathVariable String assignee) {
 
@@ -101,6 +113,12 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Make sure you removed all comments");
         }
         return ResponseEntity.status(HttpStatus.OK).body(false);
+    }
+
+    @DeleteMapping("/pm/{id}")
+    public void pmDelete(@PathVariable Long id) {
+
+        service.pmDelete(id);
     }
 
 }

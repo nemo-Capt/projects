@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   showError: boolean;
   errorMsg: HttpErrorResponse;
   pinnedTasks: boolean[];
+  username: string;
 
   constructor(
     private userService: UserService,
@@ -55,11 +56,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.showError = false;
-    let username: string = this.tokenStorage.getUsername();
-    this.userService.getOne(username).subscribe(data => {
+    this.username = this.tokenStorage.getUsername();
+    this.userService.getOne(this.username).subscribe(data => {
       this.user = data;
-      this.getProjectsByAssignee(username);
-      this.getTaskByAssignee(username);
+      this.getProjectsByAssignee(this.username);
+      this.getTaskByAssignee(this.username);
       if (this.user.role == "productmanager") {
         this.getUnassignedProjects();
       }

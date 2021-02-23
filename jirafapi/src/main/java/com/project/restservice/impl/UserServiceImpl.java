@@ -3,6 +3,7 @@ package com.project.restservice.impl;
 import com.project.config.Constants;
 import com.project.controller.ApiResponse;
 import com.project.entity.PageResponse;
+import com.project.entity.Task;
 import com.project.entity.User;
 import com.project.restservice.api.UserService;
 import com.project.restservice.dto.EditDTO;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -39,6 +43,13 @@ public class UserServiceImpl implements UserService {
                         PageResponse.class
                 );
         return pageResponse;
+    }
+
+    @Override
+    public List<User> getByUsernameContains(String username) {
+
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(
+                Constants.USER_URL + "/contains/" + username, User[].class)));
     }
 
     @Override
@@ -73,8 +84,7 @@ public class UserServiceImpl implements UserService {
             if (editDTO.getNewPassword() != null) {
                 user.setPassword(passwordEncoder.encode(editDTO.getNewPassword()));
             }
-        }
-        else throw new Exception("Wrong password");
+        } else throw new Exception("Wrong password");
         restTemplate.put(Constants.USER_URL + "/" + user.getId(), user);
 
     }

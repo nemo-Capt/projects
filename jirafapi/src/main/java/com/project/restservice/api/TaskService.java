@@ -13,11 +13,17 @@ public interface TaskService {
 
     Task getTask(Long id);
 
+    List<Task> getTasksByNameContaining(String name);
+
     List<Task> getTasksByAssignee(String assignee);
 
     List<Task> getTasksByReporter(String reporter);
 
+    List<Task> getTasksByProjects(List<String> projects);
+
     void deleteTask(Long id);
+
+    void pmDelete(Long id);
 
     void editTask(Task task, Long id);
 

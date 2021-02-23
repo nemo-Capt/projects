@@ -4,9 +4,6 @@ import {Observable, throwError} from "rxjs";
 import {Page} from "../entity/Page";
 import {Task} from "../entity/Task";
 import {ApiResponse} from "../entity/ApiResponse";
-import {error} from "@angular/compiler/src/util";
-import {catchError} from "rxjs/operators";
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +21,15 @@ export class TaskService {
 
   public getTasks(): Observable<Page<Task>> {
     return this.http.get<Page<Task>>(`${this.url}`);
+  }
+
+  public getTasksByNameContaining(name: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.url}/contains/${name}`);
+  }
+
+  public getTasksByProjects(projects: string[]): Observable<Task[]> {
+
+    return this.http.get<Task[]>(`${this.url}/project/${projects},`);
   }
 
   public getTasksByAssignee(assignee: string): Observable<Task[]> {
@@ -57,6 +63,10 @@ export class TaskService {
 
   public deleteTask(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(`${this.url}/${id}`);
+  }
+
+  public pmDelete(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.url}/pm/${id}`);
   }
 
   public setTaskStatus(id: number, statusid: number): Observable<ApiResponse> {

@@ -1,0 +1,73 @@
+<div class="search">
+  <form (ngSubmit)="search(); searchSwitch = true">
+    <input type="search" id="form1" class="search-form" placeholder="Search" [(ngModel)]="searchName" name="search">
+    <button type="submit" class="search-btn">Search</button>
+    <button *ngIf="searchSwitch" (click)="searchSwitch = false;" class="back-btn">Back</button>
+  </form>
+</div>
+
+<div style="width: 70%; margin: 50px auto auto;" *ngIf="searchSwitch">
+  <h3 style="color: rgba(255, 255, 255, 0.8)">Found</h3>
+  <table class="table" align="center">
+    <thead>
+    <tr>
+      <th scope="col">Task</th>
+      <th scope="col">Description</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Due</th>
+      <th scope="col">Started</th>
+      <th scope="col">Status</th>
+      <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let task of searchTasks">
+    <tr>
+      <td>{{task.name}}</td>
+      <td>{{task.desc}}</td>
+      <td>{{task.priority}}</td>
+      <td>{{task.duedate}}</td>
+      <td>{{task.estimatedtime}}</td>
+      <td>{{task.status}}</td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="deleteTaskApprove(task.id, task.name)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div *ngIf="!searchSwitch">
+
+  <div class="main" *ngFor="let project of projects">
+    <h3 style="color: rgba(255, 255, 255, 0.8)">{{project.name}}</h3>
+    <table class="table" align="center">
+      <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Description</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Due</th>
+        <th scope="col">Started</th>
+        <th scope="col">Status</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let task of tasks">
+      <tr *ngIf="project.name == task.project">
+        <td>{{task.name | slice:task.name.indexOf('-') + 1}}</td>
+        <td>{{task.desc}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.duedate}}</td>
+        <td>{{task.estimatedtime}}</td>
+        <td>{{task.status}}</td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="deleteTaskApprove(task.id, task.name)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -34,6 +34,11 @@ export class UserService {
     return this.http.get<Page<User>>(`${this.url}?page=${currentPage - 1}`);
   }
 
+  public getByUsernameContaining(username: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/contains/${username}`);
+  }
+
+
   public getOne(username: string): Observable<User> {
     return this.http.get<User>(`${this.url}/username/${username}`);
   }

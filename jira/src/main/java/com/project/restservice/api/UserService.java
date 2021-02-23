@@ -6,6 +6,8 @@ import com.project.restservice.dto.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 
 public interface UserService {
 
@@ -16,6 +18,8 @@ public interface UserService {
     User registerUser(RegistrationUserDTO userDTO);
 
     User getUser(Long id);
+
+    List<UserDTO> findByUsernameContains(String username);
 
     User getUserByName(String username);
 

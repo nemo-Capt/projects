@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -55,9 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtAuthenticationFilter authenticationFilter() {
         return new JwtAuthenticationFilter(
-                new TokenProvider(),
+                tokenProvider(),
                 userDetailsService
         );
+    }
+
+    @Bean
+    public TokenProvider tokenProvider() {
+        return new TokenProvider();
     }
 
     @Override
@@ -71,10 +77,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**")
-                .permitAll();
-    }
+                .antMatchers("/auth/**",
+                        "/tasks/**",
+                        "/comments/**",
+                        "/users/username/{username}",
+                        "/projects/**"
+                ).permitAll()
+                .antMatchers("/users", "/projects", "/tasks", "/users/ban/{username}", "/users/unban/{username}").denyAll()
+                .antMatchers("/users", "/projects", "/tasks", "/users/ban/{username}", "/users/unban/{username}", "/users/contains/{username}, /users/**").hasAuthority("admin")
+                .anyRequest().authenticated();
+        http.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
+    }
 
 
 }

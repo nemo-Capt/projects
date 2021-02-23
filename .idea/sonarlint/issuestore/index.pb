@@ -548,3 +548,11 @@ Bfront/src/app/components/profileedit/profileedit.component.spec.ts,6\e\6e605fc
 Rjirafapi/src/main/java/com/project/controller/emailvalidation/EmailValidation.java,5\e\5ef0b50249130c5444e63168eaf8f5843c7fd70a
 p
 @jirafapi/src/main/java/com/project/config/WebSecurityConfig.java,0\c\0c963b2f2b3f158d21c4521db4dfe792d77ac149
+j
+:front/src/app/components/pmtasks/pmtasks.component.spec.ts,4\a\4abdbc4ccbbc0b98c9104ed3d2807e3f1513a994
+f
+6front/src/app/components/pmtasks/pmtasks.component.css,e\1\e1f75bfaf6754facfbab00e5a9a02e0c83f443f3
+g
+7front/src/app/components/pmtasks/pmtasks.component.html,e\6\e63211c9867f71d48c33f9a941419626f05ebd49
+e
+5front/src/app/components/pmtasks/pmtasks.component.ts,2\c\2cd6dacbf3b55314e0a8b67f5d9509e45ca88785
