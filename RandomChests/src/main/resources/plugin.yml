@@ -1,0 +1,10 @@
+name: Randomchests
+version: ${project.version}
+main: nemocapt.RandomChests
+api-version: 1.13
+authors: [nemoCapt]
+commands:
+  resetchests:
+    description: Reset chests
+    usage: /resetchests
+    aliases: [p]

@@ -1,0 +1,485 @@
+items:
+  0:
+    material: IRON_SWORD
+    chance: 0.03
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  1:
+    material: IRON_AXE
+    chance: 0.02
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  2:
+    material: IRON_HELMET
+    chance: 0.02
+    min: 1
+    max: 1
+    type: ARMOUR
+  3:
+    material: IRON_CHESTPLATE
+    chance: 0.02
+    min: 1
+    max: 1
+    type: ARMOUR
+  4:
+    material: IRON_LEGGINGS
+    chance: 0.02
+    min: 1
+    max: 1
+    type: ARMOUR
+  5:
+    material: IRON_BOOTS
+    chance: 0.02
+    min: 1
+    max: 1
+    type: ARMOUR
+  6:
+    material: LEATHER_HELMET
+    chance: 0.05
+    min: 1
+    max: 1
+    type: ARMOUR
+  7:
+    material: LEATHER_CHESTPLATE
+    chance: 0.05
+    min: 1
+    max: 1
+    type: ARMOUR
+  8:
+    material: LEATHER_LEGGINGS
+    chance: 0.05
+    min: 1
+    max: 1
+    type: ARMOUR
+  9:
+    material: LEATHER_BOOTS
+    chance: 0.05
+    min: 1
+    max: 1
+    type: ARMOUR
+  10:
+    material: WOODEN_SWORD
+    chance: 0.02
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  11:
+    material: WOODEN_AXE
+    chance: 0.02
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  12:
+    material: STONE_SWORD
+    chance: 0.03
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  13:
+    material: STONE_AXE
+    chance: 0.03
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  14:
+    material: GOLDEN_SWORD
+    chance: 0.02
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  15:
+    material: GOLDEN_AXE
+    chance: 0.02
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  16:
+    material: DIAMOND_SWORD
+    chance: 0.005
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  17:
+    material: DIAMOND_AXE
+    chance: 0.005
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  18:
+    material: DIAMOND_HELMET
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ARMOUR
+  19:
+    material: DIAMOND_CHESTPLATE
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ARMOUR
+  20:
+    material: DIAMOND_LEGGINGS
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ARMOUR
+  21:
+    material: DIAMOND_BOOTS
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ARMOUR
+  22:
+    material: GOLDEN_CHESTPLATE
+    chance: 0.03
+    min: 1
+    max: 1
+    type: ARMOUR
+  23:
+    material: GOLDEN_LEGGINGS
+    chance: 0.03
+    min: 1
+    max: 1
+    type: ARMOUR
+  24:
+    material: GOLDEN_BOOTS
+    chance: 0.03
+    min: 1
+    max: 1
+    type: ARMOUR
+  25:
+    material: GOLDEN_HELMET
+    chance: 0.03
+    min: 1
+    max: 1
+    type: ARMOUR
+  26:
+    material: CHAINMAIL_CHESTPLATE
+    chance: 0.025
+    min: 1
+    max: 1
+    type: ARMOUR
+  27:
+    material: CHAINMAIL_LEGGINGS
+    chance: 0.025
+    min: 1
+    max: 1
+    type: ARMOUR
+  28:
+    material: CHAINMAIL_BOOTS
+    chance: 0.025
+    min: 1
+    max: 1
+    type: ARMOUR
+  29:
+    material: CHAINMAIL_HELMET
+    chance: 0.025
+    min: 1
+    max: 1
+    type: ARMOUR
+  30:
+    material: SHIELD
+    chance: 0.01
+    min: 1
+    max: 1
+    type: ITEM
+  31:
+    material: BOW
+    chance: 0.03
+    min: 1
+    max: 1
+    type: BOW
+  32:
+    material: ARROW
+    chance: 0.06
+    min: 1
+    max: 15
+    type: ITEM
+  33:
+    material: APPLE
+    chance: 0.09
+    min: 1
+    max: 6
+    type: ITEM
+  34:
+    material: COOKED_BEEF
+    chance: 0.06
+    min: 1
+    max: 2
+    type: ITEM
+  35:
+    material: CARROT
+    chance: 0.07
+    min: 1
+    max: 4
+    type: ITEM
+  36:
+    material: GOLDEN_CARROT
+    chance: 0.015
+    min: 1
+    max: 1
+    type: ITEM
+  37 :
+    material: GOLDEN_APPLE
+    chance: 0.001
+    min: 1
+    max: 1
+    type: ITEM
+  38:
+    material: MELON_SLICE
+    chance: 0.08
+    min: 1
+    max: 6
+    type: ITEM
+  39:
+    material: CROSSBOW
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ITEM
+  40:
+    material: STICK
+    chance: 0.06
+    min: 1
+    max: 3
+    type: ITEM
+  41:
+    material: STRING
+    chance: 0.04
+    min: 1
+    max: 2
+    type: ITEM
+  42:
+    material: IRON_INGOT
+    chance: 0.02
+    min: 1
+    max: 2
+    type: ITEM
+  43:
+    material: GOLD_INGOT
+    chance: 0.02
+    min: 1
+    max: 3
+    type: ITEM
+  44:
+    material: LEATHER
+    chance: 0.04
+    min: 1
+    max: 4
+    type: ITEM
+  45:
+    material: DIAMOND
+    chance: 0.005
+    min: 1
+    max: 1
+    type: ITEM
+  46:
+    material: FISHING_ROD
+    chance: 0.02
+    min: 1
+    max: 1
+    type: ITEM
+  47:
+    material: PUFFERFISH
+    chance: 0.01
+    min: 1
+    max: 1
+    type: ITEM
+  48:
+    material: COBWEB
+    chance: 0.02
+    min: 1
+    max: 5
+    type: ITEM
+  49:
+    material: FEATHER
+    chance: 0.02
+    min: 1
+    max: 3
+    type: ITEM
+  50:
+    material: FLINT
+    chance: 0.02
+    min: 1
+    max: 2
+    type: ITEM
+melee_weapon_enchantments:
+  0:
+    name: FIRE_ASPECT
+    chance: 1
+    min: 1
+    max: 1
+  1:
+    name: SHARPNESS
+    chance: 0.9
+    min: 1
+    max: 3
+  2:
+    name: SWEEPING
+    chance: 1
+    min: 1
+    max: 2
+  3:
+    name: KNOCKBACK
+    chance: 1
+    min: 1
+    max: 1
+bow_enchantments:
+  0:
+    name: POWER
+    chance: 1
+    min: 1
+    max: 2
+  1:
+    name: PUNCH
+    chance: 1
+    min: 1
+    max: 1
+  2:
+    name: FLAME
+    chance: 1
+    min: 1
+    max: 1
+doublechest_items:
+  0:
+    material: DIAMOND
+    chance: 1
+    min: 2
+    max: 4
+    type: ITEM
+  1:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 45
+    color: 0x00FFFF
+    name: §9Зелье скорости
+    type: SPEED
+  2:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 15
+    color: 0xFF0000
+    name: §cЗелье регенерации
+    type: REGENERATION
+  3:
+    material: SPLASH_POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 15
+    color: 0xC0C0C0
+    name: §7Взрывное зелье слабости
+    type: WEAKNESS
+  4:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 25
+    color: 0x008000
+    name: §2Зелье силы
+    type: INCREASE_DAMAGE
+  5:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    color: 0xFF0000
+    name: §cЗелье мгновенного лечения
+    type: HEAL
+  6:
+    material: SPLASH_POTION
+    chance: 1
+    min: 1
+    max: 1
+    color: 0x800000
+    name: §4Взрывное зелье урона
+    type: HARM
+  7:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 25
+    color: 0x0000FF
+    name: §1Зелье защиты
+    type: DAMAGE_RESISTANCE
+  8:
+    material: POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 25
+    color: 0xFFA500
+    name: §6Зелье защиты от огня
+    type: FIRE_RESISTANCE
+  9:
+    material: SPLASH_POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 90
+    color: 0x800080
+    name: §5Взрывное зелье невидимости
+    type: INVISIBILITY
+  10:
+    material: SPLASH_POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 30
+    color: 0xFFFFFF
+    name: §Взрывное зелье слепоты
+    type: BLINDNESS
+  12:
+    material: SPLASH_POTION
+    chance: 1
+    min: 1
+    max: 1
+    duration: 60
+    color: 0x808000
+    name: Взрывное зелье отравления
+    type: POISON
+  13:
+    material: ENDER_PEARL
+    chance: 1
+    min: 1
+    max: 2
+    type: ITEM
+  14:
+    material: GOLDEN_APPLE
+    chance: 1
+    min: 1
+    max: 2
+    type: ITEM
+  15:
+    material: ENDER_PEARL
+    chance: 1
+    min: 1
+    max: 2
+    type: ITEM
+  16:
+    material: NETHERITE_SWORD
+    chance: 1
+    min: 1
+    max: 1
+    type: MELEE_WEAPON
+  17:
+    material: CROSSBOW
+    chance: 1
+    min: 1
+    max: 1
+    type: ITEM
+  18:
+    material: GOLDEN_CARROT
+    chance: 1
+    min: 1
+    max: 5
+    type: ITEM
+

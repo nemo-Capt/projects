@@ -1,0 +1,11 @@
+items:
+  0:
+    material: APPLE
+    chance: 0.8
+    min: 1
+    max: 9
+  1:
+    material: DIAMOND_SWORD
+    chance: 0.2
+    min: 1
+    max: 1
